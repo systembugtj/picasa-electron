@@ -15,6 +15,4 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
-yarn-error.log
-.idea/
-electron-out/
+electron-builds
