@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'picasa',
+    podModulePrefix: 'picasa/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'hash',
@@ -16,7 +17,14 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    resizeServiceDefaults: {
+      debounceTimeout    : 200,
+      heightSensitive    : true,
+      widthSensitive     : true,
+      injectionFactories : [ 'view', 'component']
+    },
   };
 
   if (environment === 'development') {
