@@ -1,10 +1,9 @@
 {{#split-view isVertical=true}}
   {{#split-child}}
-    Content of the left view here.
     {{path-tree}}
   {{/split-child}}
   {{split-sash}}
   {{#split-child}}
-    Content of the right view here.
+    {{image-list root=model.cwd images=model.images}}
   {{/split-child}}
 {{/split-view}}
