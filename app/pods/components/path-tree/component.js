@@ -1,8 +1,9 @@
 import Ember from 'ember';
-import TreeNode from 'ember-idx-tree/node'
+import TreeNode from 'ember-tree-view/node'
 
 export default Ember.Component.extend({
   init() {
+    this._super(...arguments);
     var family, gaya, josh, lud, moses, suz, verdi;
     family = TreeNode.create({
       title: 'Family'
