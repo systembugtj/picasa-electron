@@ -85,6 +85,19 @@ export function openRepository() {
   requireNode('electron').shell.openExternal('http://github.com/tryghost/ghost-desktop');
 }
 
+export function openFolder(item, focusedWindow) {
+  const electron = requireNode('electron');
+  const dialog = electron.remote.dialog;
+
+  dialog.showOpenDialog(focusedWindow, {
+    properties: ['openDirectory']
+  }, function() {
+    Ember.run.scheduleOnce(function() {
+
+    });
+  })
+}
+
 /**
  * Setups the window menu for the application
  *
@@ -98,6 +111,13 @@ export function setup() {
   let browserWindow = remote.getCurrentWindow();
 
   let template = [{
+    label: 'File',
+    submenu: [{
+      label: "Open Folder",
+      accelerator: 'CmdOrCtrl+O',
+      click: openFolder
+    }]
+  },{
     label: 'Edit',
     submenu: [{
       label: '回撤',

@@ -3,7 +3,7 @@ import Ember from "ember";
 export default function folderReader(target='~/', options) {
   let glob = requireNode("glob");
   options = options || {};
-
+  
   options.cwd = target
 
   return new Ember.RSVP.Promise(function(resolve, reject){
@@ -17,7 +17,7 @@ export default function folderReader(target='~/', options) {
         reject(er);
       } else {
         resolve({
-          "cwd": options.cwd, 
+          "cwd": options.cwd,
           "images": files
         });
       }
