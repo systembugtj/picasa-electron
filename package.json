@@ -50,6 +50,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-lodash": "0.0.10",
     "ember-paper": "1.0.0-alpha.3",
+    "ember-precondition": "^0.1.2",
     "ember-resolver": "^2.0.3",
     "ember-split-view": "^0.11.0",
     "ember-tree-utils": "^0.2.4",
@@ -98,6 +99,7 @@
     }
   },
   "dependencies": {
+    "electron-json-storage": "^2.0.1",
     "glob": "^7.0.6",
     "loader.js": "^4.0.1"
   }

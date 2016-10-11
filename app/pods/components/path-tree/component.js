@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import TreeNode from 'ember-tree-view/node'
+import TreeNode from 'ember-tree-view/node';
 
 export default Ember.Component.extend({
   classNames: ["path-tree"],

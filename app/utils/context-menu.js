@@ -64,4 +64,4 @@ function handleContextMenu(e) {
  */
 export function setup() {
     window.addEventListener('contextmenu', handleContextMenu);
-};
+}
