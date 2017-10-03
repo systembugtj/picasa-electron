@@ -73,7 +73,7 @@ export function toggleGhostDevTools(item, focusedWindow) {
  * @export
  */
 export function openReportIssues() {
-  requireNode('electron').shell.openExternal('http://github.com/tryghost/ghost-desktop/issues');
+  requireNode('electron').shell.openExternal('http://github.com/systembugtj/picasa-electron/issues');
 }
 
 /**
@@ -82,7 +82,7 @@ export function openReportIssues() {
  * @export
  */
 export function openRepository() {
-  requireNode('electron').shell.openExternal('http://github.com/tryghost/ghost-desktop');
+  requireNode('electron').shell.openExternal('http://github.com/systembugtj/picasa-electron');
 }
 
 export function openFolder(item, focusedWindow) {
