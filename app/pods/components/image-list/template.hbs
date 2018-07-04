@@ -1,7 +1,7 @@
 <ul >
   {{#each images as |image|}}
   <li>
-    <img src="file://{{root}}/{{image}}" width="100" height="100"/>
+    {{auto-image width=100 height=100 src=(concat "file://" root "/" image)}}
   </li>
   {{/each}}
 </ul>
