@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import TreeNode from 'ember-tree-view/node';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ["path-tree"],
   init() {
     this._super(...arguments);

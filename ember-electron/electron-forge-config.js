@@ -11,9 +11,11 @@ module.exports = {
       "rpm"
     ]
   },
-  "electronPackagerConfig": {},
+  "electronPackagerConfig": {
+    "packageManager": "yarn"
+  },
   "electronWinstallerConfig": {
-    "name": ""
+    "name": "picasa"
   },
   "electronInstallerDebian": {},
   "electronInstallerRedhat": {},
@@ -22,6 +24,7 @@ module.exports = {
     "name": ""
   },
   "windowsStoreConfig": {
-    "packageName": ""
+    "packageName": "",
+    "name": "picasa"
   }
 };
