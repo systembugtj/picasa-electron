@@ -4050,7 +4050,7 @@ electron-rebuild@^1.6.0:
 
 electron-squirrel-startup@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/electron-squirrel-startup/-/electron-squirrel-startup-1.0.0.tgz#19b4e55933fa0ef8f556784b9c660f772546a0b8"
+  resolved "http://registry.npmjs.org/electron-squirrel-startup/-/electron-squirrel-startup-1.0.0.tgz#19b4e55933fa0ef8f556784b9c660f772546a0b8"
   dependencies:
     debug "^2.2.0"
 
@@ -4630,9 +4630,9 @@ ember-decorators@^2.0.0-beta.2:
     ember-cli-babel "^6.0.0"
     semver "^5.5.0"
 
-ember-electron@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/ember-electron/-/ember-electron-2.9.0.tgz#488fe76a81e8793b2f5bf4d93d938f248936967e"
+ember-electron@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/ember-electron/-/ember-electron-2.10.0.tgz#9aa9ebcc94fe8a95014defe6e933800a5db89094"
   dependencies:
     broccoli-file-creator "^1.1.1"
     broccoli-funnel "^1.0.1"
