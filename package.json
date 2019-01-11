@@ -55,7 +55,7 @@
     "ember-qunit": "^3.4.1",
     "ember-resolver": "^5.0.1",
     "ember-source": "~3.7.0",
-    "ember-split-view": "^1.1.0",
+    "ember-split-view": "^1.2.0",
     "ember-tree-utils": "^0.3.0",
     "ember-tree-view": "^0.1.8",
     "eslint-plugin-ember": "^5.2.0",
