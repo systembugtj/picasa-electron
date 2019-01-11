@@ -7,14 +7,19 @@ module.exports = {
   plugins: [
     'ember'
   ],
+  "globals": {
+    "requireNode": true,
+  },
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended'
   ],
   env: {
-    browser: true
+    browser: true,
+    "node": true
   },
   rules: {
+    "no-console": 0
   },
   overrides: [
     // node files

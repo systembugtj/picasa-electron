@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import {
   setup as setupContextMenu
 } from '../utils/context-menu';
+import { inject } from '@ember/service';
 
 
-export default Ember.Route.extend({
-  windowMenu: Ember.inject.service(),
+export default Route.extend({
+  windowMenu: inject.service(),
 
   beforeModel() {
     this.get('windowMenu').setup();
@@ -16,8 +17,6 @@ export default Ember.Route.extend({
     //handle error
     if (e.code && e.message) {
       this.showErrorPrompt(e.code, e.message);
-    } else {
-
     }
   }
 });

@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import { Promise } from 'rsvp';
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   getService() {
     return requireNode('electron-json-storage');
   },
 
   get(key) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.getService().get(key, function(error, data) {
         if (error) {
           reject(error);
@@ -19,7 +20,7 @@ export default Ember.Service.extend({
   },
 
   set(key, value) {
-    return new Ember.RSVP.Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.getService().set(key, value, (error) => {
         if (error) {
           reject(error);

@@ -5,7 +5,7 @@ export default Component.extend({
   classNames: ["path-tree"],
   init() {
     this._super(...arguments);
-    var family, gaya, josh, lud, moses, suz, verdi;
+    let family, lud, suz;
     family = TreeNode.create({
       title: 'Family'
     });
@@ -15,16 +15,16 @@ export default Component.extend({
     lud = family.createChild({
       title: 'Luda'
     });
-    josh = suz.createChild({
+    suz.createChild({
       title: 'Josh'
     });
-    moses = suz.createChild({
+    suz.createChild({
       title: 'Moses'
     });
-    verdi = lud.createChild({
+    lud.createChild({
       title: 'Verdi'
     });
-    gaya = lud.createChild({
+    lud.createChild({
       title: 'Gaya'
     });
     return this.set('model', family);

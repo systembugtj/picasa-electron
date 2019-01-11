@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import folderReader from "../../utils/folder-reader";
 import Precondition from "ember-precondition/utils/precondition";
 import PreferenceMixin from "../../mixins/preference";
@@ -6,7 +6,7 @@ import PreferenceMixin from "../../mixins/preference";
 // TODO: a default way return document folder.
 const DEFAULT_PATH = "/Users/albert.li/Desktop";
 
-export default Ember.Route.extend(PreferenceMixin, {
+export default Route.extend(PreferenceMixin, {
 
   model() {
     // Need a very specific path reading from preferences.

@@ -1,5 +1,5 @@
-import Ember from 'ember';
-
+import { scheduleOnce } from '@ember/runloop';
+import $ from 'jquery';
 /**
  * Functions
  */
@@ -15,7 +15,7 @@ export function reload(item, focusedWindow) {
   if (focusedWindow) {
     focusedWindow.reload();
   }
-};
+}
 
 /**
  * Toggles fullscreen on the currently focused window
@@ -28,7 +28,7 @@ export function toggleFullscreen(item, focusedWindow) {
   if (focusedWindow) {
     focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
   }
-};
+}
 
 /**
  * Toggles the developer tools on the currently focused window
@@ -41,7 +41,7 @@ export function toggleDevTools(item, focusedWindow) {
   if (focusedWindow) {
     focusedWindow.toggleDevTools();
   }
-};
+}
 
 /**
  * Attempts to toggle developer tools for the currently visible Ghost instance
@@ -52,8 +52,8 @@ export function toggleDevTools(item, focusedWindow) {
  */
 export function toggleGhostDevTools(item, focusedWindow) {
   if (focusedWindow) {
-    let host = Ember.$('div.instance-host.selected');
-    let webviews = host ? Ember.$(host).find('webview') : null;
+    let host = $('div.instance-host.selected');
+    let webviews = host ? $(host).find('webview') : null;
 
     if (!webviews || !webviews[0]) {
       return;
@@ -92,7 +92,7 @@ export function openFolder(item, focusedWindow) {
   dialog.showOpenDialog(focusedWindow, {
     properties: ['openDirectory']
   }, function() {
-    Ember.run.scheduleOnce(function() {
+    scheduleOnce(function() {
 
     });
   })

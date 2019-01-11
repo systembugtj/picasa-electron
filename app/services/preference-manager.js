@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import PersistenceMixin from "../mixins/persistence";
 import Preferences from "../constants/preference-entry";
 import Precondition from "ember-precondition/utils/precondition";
+import { resolve } from 'rsvp';
 
-export default Ember.Service.extend(PersistenceMixin, {
+export default Service.extend(PersistenceMixin, {
 
   getWatchedFolder() {
     return this.getPersistenceService().get(Preferences.WATCH_PATHS)
@@ -16,7 +17,7 @@ export default Ember.Service.extend(PersistenceMixin, {
   },
 
   setWatchedFolder(folders) {
-    return Ember.RSVP.resolve()
+    return resolve()
       .then(() => {
         return this.getPersistenceService().set(Preferences.WATCH_PATHS, Precondition.checkArray(folders));
       })

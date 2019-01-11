@@ -1,4 +1,4 @@
-import Ember from "ember";
+import { Promise } from 'rsvp';
 
 export default function folderReader(target, options) {
   let glob = requireNode("glob");
@@ -6,7 +6,7 @@ export default function folderReader(target, options) {
   target = target || '~/';
   options.cwd = target;
 
-  return new Ember.RSVP.Promise(function(resolve, reject){
+  return new Promise(function(resolve, reject){
     // options is optional
     glob("**/*.png", options, function(error, files) {
       // files is an array of filenames.

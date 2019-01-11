@@ -1,10 +1,12 @@
-import Ember from 'ember';
 import {setup as getMenuTemplate} from '../utils/window-menu';
 import _ from 'lodash/lodash';
+import Service from '@ember/service';
+import { debounce } from '@ember/runloop';
+import { later } from '@ember/runloop';
 
-export default Ember.Service.extend({
+export default Service.extend({
     preferencesCallback: undefined,
-    blogs: [],
+    blogs: undefined,
 
     /**
      * The menu can be easily extended by adding an injection to the
@@ -15,13 +17,13 @@ export default Ember.Service.extend({
      *   injection: function (template) { return template }
      * }
      */
-    injections: [],
+    injections: undefined,
 
     /**
      * Schedules (debounced) the setup of the application menu
      */
     setup() {
-        Ember.run.debounce(this, this._prepareMenu, 150);
+        debounce(this, this._prepareMenu, 150);
     },
 
     /**
@@ -91,7 +93,7 @@ export default Ember.Service.extend({
         if (blogs && preferencesCallback) {
             this.set('preferencesCallback', preferencesCallback);
             this.set('blogs', blogs);
-            Ember.run.later(this, 'setup');
+            later(this, 'setup');
         }
     },
 
