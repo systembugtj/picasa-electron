@@ -25,5 +25,11 @@ install:
   - yarn install --non-interactive
 
 script:
+<<<<<<< HEAD
   - yarn lint:js
   - yarn test
+=======
+  - npm run lint:hbs
+  - npm run lint:js
+  - npm test
+>>>>>>> 95dc0f9... message
