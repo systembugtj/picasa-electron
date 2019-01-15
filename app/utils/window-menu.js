@@ -113,7 +113,7 @@ export function setup() {
   let template = [{
     label: 'File',
     submenu: [{
-      label: "Open Folder",
+      label: "打开目录",
       accelerator: 'CmdOrCtrl+O',
       click: openFolder
     }]
@@ -130,26 +130,26 @@ export function setup() {
     }, {
       type: 'separator'
     }, {
-      label: 'Cut',
+      label: '剪切',
       accelerator: 'CmdOrCtrl+X',
       role: 'cut'
     }, {
-      label: 'Copy',
+      label: '复制',
       accelerator: 'CmdOrCtrl+C',
       role: 'copy'
     }, {
-      label: 'Paste',
+      label: '粘贴',
       accelerator: 'CmdOrCtrl+V',
       role: 'paste'
     }, {
-      label: 'Select All',
+      label: '全选',
       accelerator: 'CmdOrCtrl+A',
       role: 'selectall'
     }]
   }, {
     label: 'View',
     submenu: [{
-      label: 'Reload',
+      label: '重载',
       accelerator: 'CmdOrCtrl+R',
       /**
        * (description)
@@ -168,21 +168,21 @@ export function setup() {
       click: toggleFullscreen
     }]
   }, {
-    label: 'Window',
+    label: '窗口',
     role: 'window',
     submenu: [{
-      label: 'Minimize',
+      label: '最下化',
       accelerator: 'CmdOrCtrl+M',
       role: 'minimize'
     }, {
-      label: 'Close',
+      label: '关闭',
       accelerator: 'CmdOrCtrl+W',
       role: 'close'
     }]
   }, {
-    label: 'Developer',
+    label: '开发者',
     submenu: [{
-      label: 'Toggle Developer Tools',
+      label: '开/关 开发者工具',
       accelerator: (process.platform === 'darwin') ? 'Alt+Command+I' : 'Ctrl+Shift+I',
       click: toggleDevTools
     }, {

@@ -1,6 +1,6 @@
 import {setup as getMenuTemplate} from '../utils/window-menu';
-import _ from 'lodash/lodash';
 import Service from '@ember/service';
+import { defaults } from "lodash/object";
 import { debounce } from '@ember/runloop';
 import { later } from '@ember/runloop';
 
@@ -38,7 +38,7 @@ export default Service.extend({
      * @param {number} params.position - Position of the item
      */
     injectMenuItem(params = {}) {
-        const defaults = {
+        const predefined = {
             menuName: 'Ghost',
             click: () => {},
             name: 'default-name',
@@ -47,7 +47,7 @@ export default Service.extend({
             addSeperator: false,
             position: undefined
         };
-        const options = _.defaults(params, defaults);
+        const options = defaults(params, predefined);
         const injections = this.get('injections');
         const hasInjection = injections.find((item) => (item.name === options.name));
         const injection = {

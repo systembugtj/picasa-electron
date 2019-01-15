@@ -18,6 +18,13 @@ module.exports = function(environment) {
       }
     },
 
+    i18nextOptions: {
+      // any options supported by i18next
+      backend: {
+        // any options supported by i18next-xhr-backend
+      }
+    },
+
     contentSecurityPolicy: {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-inline'",

@@ -1,14 +1,16 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    'ember-bootstrap': {
-      'bootstrapVersion': 4,
-      'importBootstrapFont': false,
-      'importBootstrapCSS': false
-    }
+
+  });
+
+  const locales = funnel('app/locales', {
+    srcDir: '/',
+    destDir: '/locales'
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -24,5 +26,5 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return app.toTree(locales);
 };

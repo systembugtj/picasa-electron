@@ -2,11 +2,11 @@ import Route from '@ember/routing/route';
 import {
   setup as setupContextMenu
 } from '../utils/context-menu';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 
 export default Route.extend({
-  windowMenu: inject.service(),
+  windowMenu: service(),
 
   beforeModel() {
     this.get('windowMenu').setup();

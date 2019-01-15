@@ -1,8 +1,8 @@
 import Mixin from '@ember/object/mixin';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
-  persistence: inject.service(),
+  persistence: service(),
 
   getPersistenceService() {
     return this.get("persistence");
