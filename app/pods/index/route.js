@@ -13,14 +13,15 @@ export default Route.extend(PreferenceMixin, {
     return this.getPreferenceService().getWatchedFolder()
         .then(paths => {
           Precondition.checkNotEmpty(paths);
-          return folderReader(paths[0]);
+          return paths[0];
         })
         .catch(() => {
-          return this.getPreferenceService().addFolder(DEFAULT_PATH);
+          this.getPreferenceService().addFolder(DEFAULT_PATH);
+          return DEFAULT_PATH;
         })
-        .then(() => {
+        .then(path => {
           // TODO: request scan service.
-          return folderReader(DEFAULT_PATH);
+          return folderReader(path);
         });
   }
 });

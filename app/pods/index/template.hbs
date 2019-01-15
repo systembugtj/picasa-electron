@@ -1,9 +1,9 @@
-{{#split-view isVertical=true}}
-  {{#split-child}}
+{{#split-view isVertical=true as |split|}}
+  {{#split.child}}
     {{path-tree}}
-  {{/split-child}}
-  {{split-sash}}
-  {{#split-child}}
+  {{/split.child}}
+  {{split.sash}}
+  {{#split.child}}
     {{image-list root=model.cwd images=model.images}}
-  {{/split-child}}
+  {{/split.child}}
 {{/split-view}}
