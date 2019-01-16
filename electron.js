@@ -67,6 +67,9 @@ app.on('ready', function onReady() {
         mainWindow = null;
     });
 
+    if (!mainWindow.isMaximized) {
+      mainWindow.maximize
+    }
     // Handle an unhandled error in the main thread
     //
     // Note that 'uncaughtException' is a crude mechanism for exception handling intended to

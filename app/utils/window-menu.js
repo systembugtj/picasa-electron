@@ -168,6 +168,9 @@ export function setup() {
       click: toggleFullscreen
     }]
   }, {
+    label: '目录管理',
+    submenu: []
+  }, {
     label: '窗口',
     role: 'window',
     submenu: [{

@@ -6,6 +6,8 @@ export default Controller.extend({
   folders: computed("model", {
     get() {
       const model = this.get("model");
+
+
       const root = TreeNode.create({
         title: model.cwd
       });

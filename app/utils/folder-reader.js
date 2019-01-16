@@ -1,5 +1,5 @@
 import { Promise } from 'rsvp';
-
+import getElectronApp from "./electron-api";
 
 export default function folderReader(target, options) {
   let glob = requireNode("glob");
@@ -9,7 +9,7 @@ export default function folderReader(target, options) {
 
   return new Promise((resolve, reject) => {
     // options is optional
-    glob("**/*.png", options, (error, files) => {
+    glob("**/*.+(png|jpg|jpeg|gif)", options, (error, files) => {
       // files is an array of filenames.
       // If the `nonull` option is set, and nothing
       // was found, then files is ["**/*.js"]
@@ -32,6 +32,5 @@ export const FOLDERS = {
 }
 
 export function specialFolder(name) {
-  const { app } = requireNode('electron');
-  return app.getPath(name);
+  return getElectronApp().getPath(name);
 }

@@ -1,2 +1,16 @@
+{{#paper-toolbar}}
+  {{#paper-toolbar-tools}}
+    {{#paper-button iconButton=true}}
+      {{paper-icon "menu"}}
+    {{/paper-button}}
+    <h2>
+      Picasa
+    </h2>
+    <span class="flex"></span>
+
+    {{#paper-button onClick=(action "flatButton")}}添加目录{{/paper-button}}
+  {{/paper-toolbar-tools}}
+{{/paper-toolbar}}
+
+
 {{em-tree model=model selected=selected}}
-<button {{action "expand"}}>toggle expand</button>

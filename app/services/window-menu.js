@@ -198,10 +198,27 @@ export default Service.extend({
                         click: () => shortcuts.openPreview()
                     });
                 }
+                if (item && item.label && item.label === '目录管理') {
+                  item.submenu.insertAt(2, {
+                      label: '添加目录',
+                      accelerator: 'CmdOrCtrl+D',
+                      name: 'add-folder',
+                      click: () => this.openFolderSelection()
+                  });
+              }
             });
         }
 
         return template;
+    },
+
+    openFolderSelection() {
+      let handlers = this.get("openFolderSelectionHanlder");
+      if(handlers && handlers.forEach) {
+        handlers.forEach(handle => {
+          handle();
+        })
+      }
     },
 
     /**

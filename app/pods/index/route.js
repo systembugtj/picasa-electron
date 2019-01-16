@@ -10,16 +10,16 @@ export default Route.extend(PreferenceMixin, {
     return this.getPreferenceService().getWatchedFolder()
         .then(paths => {
           Precondition.checkNotEmpty(paths);
-          return paths[0];
+          return paths;
         })
         .catch(() => {
           const path = specialFolder(FOLDERS.DESKTOP);
           this.getPreferenceService().addFolder(path);
-          return path;
+          return [path];
         })
         .then(path => {
           // TODO: request scan service.
-          return folderReader(path);
+          return folderReader(path[0]);
         });
   },
 });
