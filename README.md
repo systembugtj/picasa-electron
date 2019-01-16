@@ -1,7 +1,7 @@
 # picasa
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+I like the picasa, but it doesn't update any more. So I think I may use electron and emberjs to
+create one. :)
 
 ## Prerequisites
 
@@ -21,9 +21,7 @@ You will need the following things properly installed on your computer.
 
 ## Running / Development
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+* `ember electron`
 
 ### Code Generators
 
@@ -31,24 +29,18 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+* `ember electron:test`
+* `ember electron:test --server`
 
 ### Linting
 
-<<<<<<< HEAD
 * `yarn lint:js`
 * `yarn lint:js --fix`
-=======
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
->>>>>>> 95dc0f9... message
 
 ### Building
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+* `ember electron:build` 
+* `ember electron:make` or `ember electron:packge`
 
 ### Deploying
 
@@ -58,6 +50,4 @@ Specify what it takes to deploy your app.
 
 * [ember.js](https://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+* [ember-electron](https://github.com/felixrieseberg/ember-electron)
