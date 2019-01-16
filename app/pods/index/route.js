@@ -1,10 +1,7 @@
 import Route from '@ember/routing/route';
-import folderReader from "../../utils/folder-reader";
+import folderReader, { specialFolder, FOLDERS } from "../../utils/folder-reader";
 import Precondition from "ember-precondition/utils/precondition";
 import PreferenceMixin from "../../mixins/preference";
-
-// TODO: a default way return document folder.
-const DEFAULT_PATH = "/Users/albert.li/Desktop";
 
 export default Route.extend(PreferenceMixin, {
 
@@ -16,12 +13,13 @@ export default Route.extend(PreferenceMixin, {
           return paths[0];
         })
         .catch(() => {
-          this.getPreferenceService().addFolder(DEFAULT_PATH);
-          return DEFAULT_PATH;
+          const path = specialFolder(FOLDERS.DESKTOP);
+          this.getPreferenceService().addFolder(path);
+          return path;
         })
         .then(path => {
           // TODO: request scan service.
           return folderReader(path);
         });
-  }
+  },
 });

@@ -1,5 +1,6 @@
 import { Promise } from 'rsvp';
 
+
 export default function folderReader(target, options) {
   let glob = requireNode("glob");
   options = options || {};
@@ -23,4 +24,14 @@ export default function folderReader(target, options) {
       }
     });
   });
+}
+
+export const FOLDERS = {
+  DESKTOP: "desktop",
+  DOCUMENT: "document",
+}
+
+export function specialFolder(name) {
+  const { app } = requireNode('electron');
+  return app.getPath(name);
 }

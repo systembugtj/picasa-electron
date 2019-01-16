@@ -1,4 +1,6 @@
 .image-list {
+  height: 100vh;
+  overflow: auto;
   ul {
     list-style-type: none;
     li {
@@ -6,4 +8,5 @@
       float: left;
     }
   }
+  background-color: beige;
 }

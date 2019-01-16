@@ -1,9 +1,11 @@
 {{#split-view isVertical=true as |split|}}
   {{#split.child}}
-    {{path-tree}}
+    {{path-tree model=folders}}
   {{/split.child}}
   {{split.sash}}
   {{#split.child}}
-    {{image-list root=model.cwd images=model.images}}
+    <div class="image-list-view">
+      {{image-list root=model.cwd images=model.images}}
+    </div>
   {{/split.child}}
 {{/split-view}}

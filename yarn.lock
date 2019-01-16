@@ -6281,15 +6281,17 @@ ember-ast-helpers@0.3.5:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
 
-ember-auto-image@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/ember-auto-image/-/ember-auto-image-0.3.0.tgz#c6da2ba2a7bbefffa28c680720db37505482fdcd"
-  integrity sha512-v+16n1Vwt2/TpKJCu88cVBJfd1OGpqpbZoYAa066uWqKxIhLEGUsTastCMW5T/HpZVR+MN+c+eZJXBk3C+wjlw==
+ember-auto-image@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ember-auto-image/-/ember-auto-image-0.3.1.tgz#1e0de6915e8d1204b179ca56491e41dd8f444843"
+  integrity sha512-PHYukk/SPguOrl3QsMU7+xTS5olmczaRj0Mp3HnpqLhq2zBrkRSG1u+HFkgAVq/ePzjwVSSaR+6grKgyWyI2AA==
   dependencies:
     ember-cli-babel "^7.1.2"
     ember-cli-htmlbars "^3.0.0"
+    ember-image-utils "^0.2.2"
+    ember-in-viewport "^3.2.2"
 
-ember-auto-import@^1.2.14:
+ember-auto-import@^1.2.14, ember-auto-import@^1.2.15:
   version "1.2.19"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.2.19.tgz#69a2da0d2c16ab88989c51381c415214e85d1af3"
   integrity sha512-OT7I3zrIAv/rbbYJFZNqfJi/2HpAscjOWOaBPPUj8VkUnY26HlLO6mSzDIkoUOaTAEWiy2GzjenHGj6b9rivxw==
@@ -6948,6 +6950,16 @@ ember-image-utils@^0.2.2:
     ember-cli-babel "^7.1.2"
     ember-cli-update "^0.27.18"
     ember-exif-shim "^0.2.2"
+
+ember-in-viewport@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-3.2.2.tgz#81110e04076cf693f29d19e58daf5a3a5b8da60e"
+  integrity sha512-EGQ7hwSlDsjaV80Adxc9zdTpXGCtZgO05ZIlEHE4C2oUNO+aS3jVgYRgqR8AzQwx3bmC8xAB4qpcLrvKVQJKWg==
+  dependencies:
+    ember-auto-import "^1.2.15"
+    ember-cli-babel "^6.16.0"
+    intersection-observer-admin "0.0.5"
+    raf-pool "0.0.4"
 
 ember-inflector@^3.0.0:
   version "3.0.0"
@@ -9670,6 +9682,11 @@ inquirer@^6.2.1:
     string-width "^2.1.0"
     strip-ansi "^5.0.0"
     through "^2.3.6"
+
+intersection-observer-admin@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/intersection-observer-admin/-/intersection-observer-admin-0.0.5.tgz#4a97796aab49c2bca2341fcd84cae2fea79c829b"
+  integrity sha512-Nhrd3lQM0j7w6EKup+i67e39hy8IK/xPjo+g+9Ec/3F6qsd+9wGPN7Uemc/J5scVXeBEP4SEgxOYGGncc4RrWA==
 
 into-stream@^3.1.0:
   version "3.1.0"
@@ -14023,6 +14040,11 @@ qw@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/qw/-/qw-1.0.1.tgz#efbfdc740f9ad054304426acb183412cc8b996d4"
   integrity sha1-77/cdA+a0FQwRCassYNBLMi5ltQ=
+
+raf-pool@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/raf-pool/-/raf-pool-0.0.4.tgz#126ccaeeaa378e33c912f808a3c8f14acd0a714e"
+  integrity sha512-b0OhSuUxyGvvDrPPhUrCjxtayAR2yZxyleifiOT5qgxHB4pcnMPZRxgeo1S7tJ8HfQnVlR4/3d9QRNvCPcaA8g==
 
 random-path@^0.1.0:
   version "0.1.1"
