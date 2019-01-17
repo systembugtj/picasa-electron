@@ -3,9 +3,13 @@ import PersistenceMixin from "../mixins/persistence";
 import Preferences from "../constants/preference-entry";
 import Precondition from "ember-precondition/utils/precondition";
 import { resolve } from 'rsvp';
+import { difference } from "lodash/array";
 
 export default Service.extend(PersistenceMixin, {
 
+  /**
+   * return managed folder.
+   */
   getWatchedFolder() {
     return this.getPersistenceService().get(Preferences.WATCH_PATHS)
       .then(paths => {
@@ -16,26 +20,42 @@ export default Service.extend(PersistenceMixin, {
       })
   },
 
+  /**
+   * Set watched folder, overwrite exist.
+   * @param {Array} folders
+   */
   setWatchedFolder(folders) {
+    Precondition.checkArray(folders);
     return resolve()
       .then(() => {
-        return this.getPersistenceService().set(Preferences.WATCH_PATHS, Precondition.checkArray(folders));
+        this.getPersistenceService().set(Preferences.WATCH_PATHS, Precondition.checkArray(folders));
       })
   },
 
+  /**
+   * Add folder to watched folders
+   * @param {String} folder
+   */
   addFolder(folder) {
+    Precondition.checkString(folder);
     return this.getWatchedFolder()
       .then(paths => {
-        paths.push(folder);
-        return this.setWatchedFolder(paths);
+        if (!paths.contains(folder)) {
+          paths.push(folder);
+          this.setWatchedFolder(paths);
+        }
       });
   },
 
   addFolders(folders) {
+    Precondition.checkArray(folders);
     return this.getWatchedFolder()
       .then(paths => {
-        return this.setWatchedFolder(paths.concat(Precondition.checkArray(folders)));
+        const added = difference(folders, paths);
+        return paths.concat(added);
+      })
+      .then(paths => {
+        this.setWatchedFolder(paths);
       });
   }
-
 });

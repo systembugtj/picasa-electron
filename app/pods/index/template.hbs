@@ -4,8 +4,8 @@
   {{/split.child}}
   {{split.sash}}
   {{#split.child}}
-    <div class="image-list-view">
-      {{image-list root=model.cwd images=model.images}}
-    </div>
+    {{#each model.folders as |folder|}}
+      {{folder-card root=folder.cwd images=folder.images}}
+    {{/each}}
   {{/split.child}}
 {{/split-view}}

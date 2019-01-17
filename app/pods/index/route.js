@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import folderReader, { specialFolder, FOLDERS } from "../../utils/folder-reader";
 import Precondition from "ember-precondition/utils/precondition";
 import PreferenceMixin from "../../mixins/preference";
+import Promise from "rsvp";
 
 export default Route.extend(PreferenceMixin, {
 
@@ -17,9 +18,17 @@ export default Route.extend(PreferenceMixin, {
           this.getPreferenceService().addFolder(path);
           return [path];
         })
-        .then(path => {
+        .then(paths => {
+          const model = [];
+          paths.forEach(path => {
+            model.push(folderReader(path))
+          });
           // TODO: request scan service.
-          return folderReader(path[0]);
+          return Promise.all(model);
+        }).then(folders => {
+          return {
+            folders
+          }
         });
   },
 });
