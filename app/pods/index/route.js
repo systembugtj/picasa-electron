@@ -15,8 +15,9 @@ export default Route.extend(PreferenceMixin, {
         })
         .catch(() => {
           const path = specialFolder(FOLDERS.DESKTOP);
-          this.getPreferenceService().addFolder(path);
-          return [path];
+          return this.getPreferenceService().addFolder(path, true).then(() => {
+            return [path]
+          });
         })
         .then(paths => {
           const model = [];

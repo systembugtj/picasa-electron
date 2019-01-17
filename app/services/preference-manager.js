@@ -4,6 +4,7 @@ import Preferences from "../constants/preference-entry";
 import Precondition from "ember-precondition/utils/precondition";
 import { resolve } from 'rsvp';
 import { difference } from "lodash/array";
+import { A } from "@ember/array";
 
 export default Service.extend(PersistenceMixin, {
 
@@ -36,11 +37,12 @@ export default Service.extend(PersistenceMixin, {
    * Add folder to watched folders
    * @param {String} folder
    */
-  addFolder(folder) {
+  addFolder(folder, clear) {
     Precondition.checkString(folder);
     return this.getWatchedFolder()
       .then(paths => {
-        if (!paths.contains(folder)) {
+        paths = (paths && !clear) || A();
+        if (!paths.includes(folder)) {
           paths.push(folder);
           this.setWatchedFolder(paths);
         }
