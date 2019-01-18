@@ -6364,7 +6364,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6
     clone "^2.0.0"
     ember-cli-version-checker "^2.0.0"
 
-ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.7.1:
+ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.3.0:
   version "6.16.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.16.0.tgz#623b4a2764ece72b65f1572fc8aeb5714a450228"
   dependencies:
@@ -6987,17 +6987,6 @@ ember-load-initializers@^1.1.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-lodash@^4.17.5:
-  version "4.18.0"
-  resolved "https://registry.yarnpkg.com/ember-lodash/-/ember-lodash-4.18.0.tgz#45de700d6a4f68f1cd62888d90b50aa6477b9a83"
-  dependencies:
-    broccoli-debug "^0.6.1"
-    broccoli-funnel "^2.0.1"
-    broccoli-merge-trees "^2.0.0"
-    broccoli-string-replace "^0.1.1"
-    ember-cli-babel "^6.10.0"
-    lodash-es "^4.17.4"
-
 ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-maybe-import-regenerator/-/ember-maybe-import-regenerator-0.1.6.tgz#35d41828afa6d6a59bc0da3ce47f34c573d776ca"
@@ -7060,12 +7049,12 @@ ember-power-select@^2.0.0:
     ember-text-measurer "^0.4.0"
     ember-truth-helpers "^2.0.0"
 
-ember-precondition@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/ember-precondition/-/ember-precondition-0.1.6.tgz#18e3b4b80f08e0c1a72212bd22cfb196594067f5"
+ember-precondition@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ember-precondition/-/ember-precondition-0.2.1.tgz#3906561bd568dabe6e235433c0ef13552c365833"
+  integrity sha512-bfM/Kos2eTZgCIy6OspfVvncdpouHjCrWDztTmCbbVPOKBtZoaDs02/a0MQ68237uge286W5RFjWPazJ2POSSw==
   dependencies:
-    ember-cli-babel "^6.7.1"
-    ember-lodash "^4.17.5"
+    ember-cli-babel "^7.1.2"
 
 ember-qunit@^3.4.1:
   version "3.5.3"
@@ -10716,10 +10705,6 @@ lockfile@^1.0.4, lockfile@~1.0.3:
   integrity sha512-cvbTwETRfsFh4nHsL1eGWapU1XFi5Ot9E85sWAwia7Y7EgB7vfqcZhTKZ+l7hCGxSPoushMv5GKhT5PdLv03WA==
   dependencies:
     signal-exit "^3.0.2"
-
-lodash-es@^4.17.4:
-  version "4.17.10"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.10.tgz#62cd7104cdf5dd87f235a837f0ede0e8e5117e05"
 
 lodash._baseassign@^3.0.0:
   version "3.2.0"
