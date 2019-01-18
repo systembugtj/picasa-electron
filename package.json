@@ -51,6 +51,7 @@
     "ember-i18next": "^2.1.0",
     "ember-image-utils": "^0.2.2",
     "ember-load-initializers": "^1.1.0",
+    "ember-lodash": "^4.19.4",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-paper": "^1.0.0-beta.21",
     "ember-precondition": "^0.2.1",

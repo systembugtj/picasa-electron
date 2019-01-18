@@ -1,6 +1,6 @@
 import {
   setup as getMenuTemplate
-} from '../utils/window-menu';
+} from 'picasa/utils/window-menu';
 import Service from '@ember/service';
 import {
   defaults

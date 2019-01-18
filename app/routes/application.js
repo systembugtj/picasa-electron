@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import {
   setup as setupContextMenu
-} from '../utils/context-menu';
+} from 'picasa/utils/context-menu';
 import { inject as service } from '@ember/service';
 
 
