@@ -5,7 +5,7 @@ function startWatcher(path){
   var chokidar = require("chokidar");
 
   var watcher = chokidar.watch(path, {
-      ignored: /[\/\\]\./,
+      ignored: /[/\\]\./,
       persistent: true
   });
 

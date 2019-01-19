@@ -4,10 +4,43 @@ import Preferences from "../constants/preference-entry";
 import Precondition from "ember-precondition/utils/precondition";
 import { resolve } from 'rsvp';
 import { difference } from "lodash/array";
+import { isEmpty } from "lodash/lang";
 import { A } from "@ember/array";
+import { specialFolder, FOLDERS } from "picasa/utils/folder-reader";
 
 export default Service.extend(PersistenceMixin, {
 
+  createPath(path) {
+    return new Promise((resolve, reject) => {
+      const mkdirp = require('mkdirp');
+      mkdirp(path, (err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(path)
+          }
+      });
+    })
+  },
+
+  getCachedPath() {
+    const cachedPath = this.get(Preferences.CACHED_PATH);
+
+    return resolve().then(() => {
+        if (isEmpty(cachedPath)) {
+          return this.getPersistenceService().get(Preferences.CACHED_PATH)
+        } else {
+          return cachedPath;
+        }
+      })
+      .then(path => {
+        return Precondition.checkNotEmpty(path);
+      })
+      .catch(() => {
+        const cachedPath = specialFolder(FOLDERS.APPDATA) + "/cache/thumbnail";
+        return this.createPath(cachedPath);
+      })
+  },
   /**
    * return managed folder.
    */

@@ -29,6 +29,8 @@ export default function folderReader(target, options) {
 export const FOLDERS = {
   DESKTOP: "desktop",
   DOCUMENT: "document",
+  APPDATA: "appData",
+  HOME: "home"
 }
 
 export function specialFolder(name) {
