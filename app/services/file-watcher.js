@@ -29,7 +29,7 @@ export default Service.extend({
     this.get("preferenceManager").getWatchedFolder()
       .then(paths => {
         const watcher = createWatcher(paths, {
-          ignored: /[\/\\]\./,
+          ignored: /[/\\]\./,
           persistent: true
           });
         // Declare the listeners of the watcher
