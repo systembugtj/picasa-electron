@@ -34,11 +34,14 @@ export default Service.extend(PersistenceMixin, {
         }
       })
       .then(path => {
-        return Precondition.checkNotEmpty(path);
-      })
-      .catch(() => {
-        const cachedPath = specialFolder(FOLDERS.APPDATA) + "/cache/thumbnail";
-        return this.createPath(cachedPath);
+        if (isEmpty(path)) {
+          const cachedPath = specialFolder(FOLDERS.APPDATA) + "/cache/thumbnail";
+          this.set(Preferences.CACHED_PATH, cachedPath);
+          return this.createPath(cachedPath);
+        } else {
+          this.set(Preferences.CACHED_PATH, path);
+          return path
+        }
       })
   },
   /**

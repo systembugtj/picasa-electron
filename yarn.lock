@@ -6409,10 +6409,10 @@ ember-ast-helpers@0.3.5:
     "@glimmer/compiler" "^0.27.0"
     "@glimmer/syntax" "^0.27.0"
 
-ember-auto-image@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ember-auto-image/-/ember-auto-image-0.3.1.tgz#1e0de6915e8d1204b179ca56491e41dd8f444843"
-  integrity sha512-PHYukk/SPguOrl3QsMU7+xTS5olmczaRj0Mp3HnpqLhq2zBrkRSG1u+HFkgAVq/ePzjwVSSaR+6grKgyWyI2AA==
+ember-auto-image@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/ember-auto-image/-/ember-auto-image-0.3.2.tgz#0a0cbf2e2ffe0e6b7c6c0b97fcde3a1b1db0dd76"
+  integrity sha512-7uIIGxcHMMfUvNk7FjhgdE9qAtR2aFPDrOIOUASCefPTFEuE7ejG1O610bS9j9LrFYjysHtnsglersof+MZvsA==
   dependencies:
     ember-cli-babel "^7.1.2"
     ember-cli-htmlbars "^3.0.0"

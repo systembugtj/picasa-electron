@@ -8,7 +8,8 @@ export default Route.extend(PreferenceMixin, {
 
   model() {
     // Need a very specific path reading from preferences.
-    return this.getPreferenceService().getWatchedFolder()
+    return this.getPreferenceService().getCachedPath()
+        .then(() => this.getPreferenceService().getWatchedFolder())
         .then(paths => {
           Precondition.checkNotEmpty(paths);
           return paths;
