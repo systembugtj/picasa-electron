@@ -31,6 +31,9 @@ app.on('ready', function onReady() {
         width: width,
         height: height,
         title: "ThePicasa.com",
+        webPreferences: {
+          webSecurity: false
+        }
     });
 
     delete mainWindow.module;
