@@ -38,17 +38,7 @@ export default Component.extend(PreferenceMixin, {
               if (cached != null) {
                 return thumbnail;
               } else {
-                return this.get("imageScale").fileExist(thumbnail)
-                  .then(exists => {
-                    if (exists) {
-                      return this.get("photoStorage").setPhotoCached(uniqueName, thumbnail)
-                        .then(() => thumbnail);
-                    } else {
-                      return resizer.createThumbnail(path, thumbnail)
-                        .then(() => this.get("photoStorage").setPhotoCached(uniqueName, thumbnail))
-                        .then(() => thumbnail);
-                    }
-                  })
+                return this.cacheImage(uniqueName, thumbnail, path);
               }
             })
         })
@@ -56,5 +46,20 @@ export default Component.extend(PreferenceMixin, {
           this.set("imageSrc", `file://${thumbnail}`);
         })
     }
+  },
+
+  cacheImage(uniqueName, thumbnail, path) {
+    const resizer = this.get("imageScale");
+    return resizer.fileExist(thumbnail)
+              .then(exists => {
+                const ob = exists ?
+                  this.get("photoStorage").setPhotoCached(uniqueName, thumbnail)
+                    .then(() => thumbnail)
+                  :
+                  resizer.createThumbnail(path, thumbnail)
+                    .then(() => this.get("photoStorage").setPhotoCached(uniqueName, thumbnail));
+
+                return ob.then(() => thumbnail);
+              })
   }
 });

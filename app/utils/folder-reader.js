@@ -1,8 +1,11 @@
 import { Promise } from 'rsvp';
 import getElectronApp from "./electron-api";
 
+const os = requireNode("os");
+const glob = requireNode("glob");
+
 export default function folderReader(target, options) {
-  let glob = requireNode("glob");
+
   options = options || {};
   target = target || '~/';
   options.cwd = target;
@@ -35,4 +38,8 @@ export const FOLDERS = {
 
 export function specialFolder(name) {
   return getElectronApp().getPath(name);
+}
+
+export function hostname() {
+  return os.hostname();
 }
