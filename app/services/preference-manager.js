@@ -35,7 +35,7 @@ export default Service.extend(PersistenceMixin, {
       })
       .then(path => {
         if (isEmpty(path)) {
-          const cachedPath = specialFolder(FOLDERS.APPDATA) + "/cache/thumbnail";
+          const cachedPath = specialFolder(FOLDERS.APPDATA) + "/ThePicasa/cache/thumbnail";
           this.set(Preferences.CACHED_PATH, cachedPath);
           return this.createPath(cachedPath);
         } else {

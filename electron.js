@@ -26,9 +26,14 @@ app.on('window-all-closed', function onWindowAllClosed() {
 });
 
 app.on('ready', function onReady() {
+    const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600
+        width: width,
+        height: height,
+        title: "ThePicasa.com",
+        webPreferences: {
+          webSecurity: false
+        }
     });
 
     delete mainWindow.module;
@@ -67,8 +72,8 @@ app.on('ready', function onReady() {
         mainWindow = null;
     });
 
-    if (!mainWindow.isMaximized) {
-      mainWindow.maximize
+    if (!mainWindow.isMaximized()) {
+      mainWindow.maximize();
     }
     // Handle an unhandled error in the main thread
     //
