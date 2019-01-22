@@ -52,14 +52,15 @@ export default Component.extend(PreferenceMixin, {
     const resizer = this.get("imageScale");
     return resizer.fileExist(thumbnail)
               .then(exists => {
-                const ob = exists ?
+                return exists ?
                   this.get("photoStorage").setPhotoCached(uniqueName, thumbnail)
                     .then(() => thumbnail)
                   :
                   resizer.createThumbnail(path, thumbnail)
                     .then(() => this.get("photoStorage").setPhotoCached(uniqueName, thumbnail));
 
-                return ob.then(() => thumbnail);
+
               })
+              .then(() => thumbnail);
   }
 });

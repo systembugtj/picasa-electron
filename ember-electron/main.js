@@ -31,8 +31,8 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize
   mainWindow = new BrowserWindow({
-    width: width,
-    height: height,
+    width: width * 2 / 3,
+    height: height * 2 / 3,
     title: "ThePicasa.com",
     webPreferences: {
       webSecurity: false
