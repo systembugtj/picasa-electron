@@ -7,9 +7,7 @@
   {{split.sash}}
   {{#split.child}}
     <div class="images-area">
-      {{#each model.folders as |folder|}}
-        {{folder-card root=folder.cwd images=folder.images}}
-      {{/each}}
+      {{folder-photos folders=model.folders}}
     </div>
   {{/split.child}}
 

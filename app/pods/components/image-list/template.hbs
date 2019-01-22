@@ -1,7 +1,7 @@
 <ul>
   {{#each images as |image|}}
     <li>
-      {{thumbnail-image root=root src=image}}
+      {{thumbnail-image root=image.root src=image.thumbnail}}
     </li>
   {{/each}}
 </ul>

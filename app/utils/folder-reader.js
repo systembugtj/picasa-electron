@@ -43,3 +43,8 @@ export function specialFolder(name) {
 export function hostname() {
   return os.hostname();
 }
+
+export function uniqueName(path) {
+  const spark = requireNode("spark-md5");
+  return  spark.hash(path);
+}

@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 import PersistenceMixin from "../mixins/persistence";
-import Preferences from "../constants/preference-entry";
+import Preferences from "picasa/constants/preference-entry";
 import Precondition from "ember-precondition/utils/precondition";
 import { resolve } from 'rsvp';
 import { difference } from "lodash/array";

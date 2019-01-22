@@ -1,5 +1,4 @@
-{{#if hasImageReady }}
-  <div class="thumbnail-frame">
-    {{auto-image width="100" height="100" src=imageSrc}}
-  </div>
-{{/if}}
+
+<div class="thumbnail-frame">
+  {{auto-image width="100" height="100" src=(concat "file://" src)}}
+</div>

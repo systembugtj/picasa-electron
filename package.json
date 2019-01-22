@@ -32,6 +32,7 @@
     "electron-prebuilt-compile": "2.0.7",
     "ember-ajax": "^3.1.0",
     "ember-auto-image": "^0.3.2",
+    "ember-auto-import": "^1.2.19",
     "ember-cli": "~3.7.1",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^7.1.2",
@@ -57,14 +58,20 @@
     "ember-paper": "^1.0.0-beta.21",
     "ember-precondition": "^0.2.1",
     "ember-qunit": "^3.4.1",
+    "ember-redux": "^4.0.1",
+    "ember-redux-shim": "^4.0.1",
+    "ember-redux-thunk-shim": "^2.5.0",
     "ember-resolver": "^5.0.1",
     "ember-source": "~3.7.0",
     "ember-split-view": "^1.2.0",
+    "ember-symbol-observable": "1.0.2",
     "ember-tree-utils": "^3.7.1",
     "ember-tree-view": "^3.7.1",
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.0"
+    "qunit-dom": "^0.8.0",
+    "redux": "4.0.0",
+    "redux-thunk": "2.3.0"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
@@ -78,7 +85,8 @@
     "lodash": "^4.17.11",
     "mkdirp": "^0.5.1",
     "realm": "^2.22.0",
-    "sharp": "^0.21.2",
+    "rxjs": "^6.3.3",
+    "sharp": "^0.21.3",
     "spark-md5": "^3.0.0"
   },
   "config": {

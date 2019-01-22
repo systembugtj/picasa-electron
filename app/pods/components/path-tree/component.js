@@ -2,9 +2,9 @@ import Component from '@ember/component';
 import PreferenceMixin from "picasa/mixins/preference";
 
 function startWatcher(path){
-  var chokidar = require("chokidar");
+  const chokidar = require("chokidar");
 
-  var watcher = chokidar.watch(path, {
+  const watcher = chokidar.watch(path, {
       ignored: /[/\\]\./,
       persistent: true
   });
@@ -41,6 +41,7 @@ function startWatcher(path){
 }
 export default Component.extend(PreferenceMixin, {
   classNames: ["path-tree"],
+  expandDepth: 1,
   actions: {
     flatButton() {
       const { dialog } = requireNode('electron').remote;

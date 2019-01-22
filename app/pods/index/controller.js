@@ -9,7 +9,6 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
-
     this.get("windowMenu").on("openFolderSelection", () => {
       this.openDirectoryDialog();
     });
@@ -22,8 +21,6 @@ export default Controller.extend({
     }, (paths) => {
         if (paths) {
           this.getPreferenceService().addFolders(paths);
-          // Start to watch the selected path
-          //startWatcher(path[0]);
         } else {
           console.log("No path selected");
         }
@@ -36,7 +33,6 @@ export default Controller.extend({
       const root = TreeNode.create({
         title: hostname()
       });
-
 
       folders.forEach(element => {
         root.createChild({

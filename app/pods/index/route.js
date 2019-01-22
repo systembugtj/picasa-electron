@@ -3,6 +3,7 @@ import folderReader, { specialFolder, FOLDERS } from "../../utils/folder-reader"
 import Precondition from "ember-precondition/utils/precondition";
 import PreferenceMixin from "../../mixins/preference";
 import Promise from "rsvp";
+import { uniqueName } from "picasa/utils/folder-reader";
 
 export default Route.extend(PreferenceMixin, {
 
@@ -28,6 +29,20 @@ export default Route.extend(PreferenceMixin, {
           // TODO: request scan service.
           return Promise.all(model);
         }).then(folders => {
+          folders.forEach(folder => {
+            const images = [];
+            folder.images.forEach(image => {
+              const path = `${folder.cwd}/${image}`;
+              images.push({
+                root: folder.cwd,
+                name: image,
+                path: `${folder.cwd}/${image}`,
+                uniqueName: uniqueName(path)
+              });
+            })
+            folder.images = images;
+          })
+
           return {
             folders
           }

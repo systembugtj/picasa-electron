@@ -1,9 +1,9 @@
 import Service from '@ember/service';
+import { uniqueName } from "picasa/utils/folder-reader";
 
 export default Service.extend({
   uniqueName(path) {
-    const spark = requireNode("spark-md5");
-    return  spark.hash(path);
+    return uniqueName(path);
   },
 
   fileExist(file) {
