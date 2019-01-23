@@ -19,10 +19,16 @@ module.exports = function(environment) {
     },
 
     i18nextOptions: {
-      // any options supported by i18next
+      ns: [ 'main' ],
+      defaultNS: 'main',
+      useCookie: false,
+      preload: [ 'en', 'zh-CN' ],
+      lng: 'en',
+      fallbackLng: 'en',
       backend: {
-        // any options supported by i18next-xhr-backend
-      }
+        loadPath: '/locales/{{ns}}/{{lng}}.json'
+      },
+      debug: true
     },
 
     contentSecurityPolicy: {

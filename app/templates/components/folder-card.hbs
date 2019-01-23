@@ -2,9 +2,32 @@
 {{#paper-card as |card|}}
   {{folder-header root=root save=(action "saveToDisk") hasChange=imageChanged }}
   {{#card.content class="layout-row layout-align-space-between"}}
-    {{image-list images=images}}
+    {{image-list images=images imageClicked=(action "handleImageClicked")}}
   {{/card.content}}
 {{/paper-card}}
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") clickOutsideToClose=true}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Mango (Fruit)</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+
+    {{#paper-dialog-content}}
+        {{auto-image width=200 height=200 src=lightboxSrc }}
+    {{/paper-dialog-content}}
+
+    {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button href="http://en.wikipedia.org/wiki/Mango" target="_blank"}}More on Wikipedia{{/paper-button}}
+      <span class="flex"></span>
+      {{#paper-button onClick=(action "closeDialog" "cancel")}}Cancel{{/paper-button}}
+      {{#paper-button onClick=(action "closeDialog" "ok")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}
 
 {{#if showToast}}
   {{#paper-toast duration=5000 position="bottom right" swipeToClose=true onClose=(action "closeToast") as |toast|}}

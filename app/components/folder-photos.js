@@ -15,6 +15,7 @@ export default Component.extend(PreferenceMixin, {
   folderChanged: observer(PROPERTY_NAME.FOLDERS, () => {
     this.scanThumbnail();
   }),
+  imageClicked: () => {},
 
   init() {
     this._super(...arguments);
@@ -50,5 +51,5 @@ export default Component.extend(PreferenceMixin, {
         folders.push(folder);
         this.set("foldersWithThumbnail", folders);
       });
-  }
+  },
 });

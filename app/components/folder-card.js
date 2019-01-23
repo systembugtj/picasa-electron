@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
+  imageClicked: () => {},
   actions: {
     saveToDisk() {
       this.set("showToast", true);
@@ -10,6 +11,14 @@ export default Component.extend({
     },
     buttonAction() {
 
+    },
+    handleImageClicked(src) {
+      this.set("lightboxSrc", `file://${src}`);
+      this.set("showDialog", true);
+    },
+
+    closeDialog() {
+      this.set("showDialog", false);
     }
   }
 });
