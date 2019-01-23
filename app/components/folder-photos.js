@@ -5,7 +5,6 @@ import { inject as service } from "@ember/service";
 import { from } from 'rxjs';
 import { mergeMap, reduce, map } from 'rxjs/operators';
 import PreferenceMixin from "picasa/mixins/preference";
-import { A } from "@ember/array";
 
 const PROPERTY_NAME = {
   FOLDERS: "folders"
