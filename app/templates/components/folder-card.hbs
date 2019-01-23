@@ -7,17 +7,9 @@
 {{/paper-card}}
 
 {{#if showDialog}}
-  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") clickOutsideToClose=true}}
-    {{#paper-toolbar}}
-      {{#paper-toolbar-tools}}
-        <h2>Mango (Fruit)</h2>
-        <span class="flex"></span>
-        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
-      {{/paper-toolbar-tools}}
-    {{/paper-toolbar}}
-
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") }}
     {{#paper-dialog-content}}
-        {{auto-image width=200 height=200 src=lightboxSrc }}
+        {{auto-image width=700 height=500 src=lightboxSrc }}
     {{/paper-dialog-content}}
 
     {{#paper-dialog-actions class="layout-row"}}

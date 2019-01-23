@@ -7199,6 +7199,19 @@ ember-paper@^1.0.0-beta.21:
     tinycolor2 "^1.4.1"
     virtual-each "~0.6.0"
 
+ember-photoswipe@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/ember-photoswipe/-/ember-photoswipe-0.4.3.tgz#b48885dfcdd5a8924aff56d926be6723d0613204"
+  integrity sha512-KZLzvPXl4tUHnplfDahMqUV0miEwGj1E58rdno79kgKvYbJrHpqkTFZLJuL6ldYQS33meLBwt/9Z8PeRXVko2Q==
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^2.0.0"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-cli-htmlbars-inline-precompile "^1.0.3"
+    fastboot-transform "^0.1.2"
+    photoswipe "^4.1.2"
+
 ember-power-select@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-2.0.4.tgz#862e3993668b27190da288514693559bae70c4c7"
@@ -13689,6 +13702,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+photoswipe@^4.1.2:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/photoswipe/-/photoswipe-4.1.3.tgz#59f49494eeb9ddab5888d03392926a19bc197550"
+  integrity sha512-89Z43IRUyw7ycTolo+AaiDn3W1EEIfox54hERmm9bI12IB9cvRfHSHez3XhAyU8XW2EAFrC+2sKMhh7SJwn0bA==
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
