@@ -3,7 +3,7 @@ import { notEmpty } from '@ember/object/computed';
 import { observer } from '@ember/object';
 import { inject as service } from "@ember/service";
 import { from } from 'rxjs';
-import { mergeMap, reduce } from 'rxjs/operators';
+import { mergeMap, reduce, map } from 'rxjs/operators';
 import PreferenceMixin from "picasa/mixins/preference";
 import { A } from "@ember/array";
 
@@ -22,27 +22,33 @@ export default Component.extend(PreferenceMixin, {
     this.scanThumbnail();
   },
 
-  scanThumbnail() {
-    const $source = from(this.get(PROPERTY_NAME.FOLDERS))
+  isCached(image) {
+    return from(this.get("fetchCache").checkCache(image));
+  },
+
+  checkImages(folder) {
     const mergeImage = (images, image) => {
       images.push(image);
       return images
     };
 
-    $source.pipe(
-        mergeMap(folder => from(folder.images)),
-        mergeMap(image => this.get("fetchCache").checkCache(image)),
-        reduce(mergeImage, A()),
-        reduce((folders, images) => {
-          folders.forEach(folder => {
-            if (folder.cwd === images[0].root) {
-              folder.images = images;
-            }
-          });
-          return folders;
-        }, this.get(PROPERTY_NAME.FOLDERS))
+    return from(folder.images).pipe (
+        mergeMap(image => this.isCached(image)),
+        reduce(mergeImage, []),
+        map(images => {
+          folder.images = images;
+          return folder;
+        })
+      );
+  },
+
+  scanThumbnail() {
+    from(this.get(PROPERTY_NAME.FOLDERS)).pipe(
+        mergeMap(folder => this.checkImages(folder))
       )
-      .subscribe(folders => {
+      .subscribe(folder => {
+        const folders = this.get("foldersWithThumbnail") || [];
+        folders.push(folder);
         this.set("foldersWithThumbnail", folders);
       });
   }
