@@ -5,6 +5,7 @@ import { inject as service } from "@ember/service";
 import { from } from 'rxjs';
 import { mergeMap, reduce, map } from 'rxjs/operators';
 import PreferenceMixin from "picasa/mixins/preference";
+import { run } from "@ember/runloop";
 
 const PROPERTY_NAME = {
   FOLDERS: "folders"
@@ -47,9 +48,11 @@ export default Component.extend(PreferenceMixin, {
         mergeMap(folder => this.checkImages(folder))
       )
       .subscribe(folder => {
-        const folders = this.get("foldersWithThumbnail") || [];
-        folders.push(folder);
-        this.set("foldersWithThumbnail", folders);
+        run(() => {
+          const folders = this.get("foldersWithThumbnail") || [];
+          folders.pushObject(folder);
+          this.set("foldersWithThumbnail", folders);
+        })
       });
   },
 });

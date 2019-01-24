@@ -9,8 +9,13 @@ export default Controller.extend({
 
   init() {
     this._super(...arguments);
-    this.get("windowMenu").on("openFolderSelection", () => {
+    const windowMenu = this.get("windowMenu");
+    windowMenu.on("openFolderSelection", () => {
       this.openDirectoryDialog();
+    });
+
+    windowMenu.on("openPreferences", () => {
+      this.set("showPreferenceDialog", true);
     });
   },
 
@@ -41,5 +46,11 @@ export default Controller.extend({
       });
       return root;
     }
-  })
+  }),
+
+  actions: {
+    closeDialog() {
+      this.set("showPreferenceDialog", false);
+    }
+  }
 })

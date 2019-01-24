@@ -12,3 +12,42 @@
   {{/split.child}}
 
 {{/split-view}}
+
+{{#if showPreferenceDialog}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") }}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>Mango (Fruit)</h2>
+        <span class="flex"></span>
+        {{#paper-button iconButton=true onClick=(action "closeDialog" "cancel")}}{{paper-icon icon="close"}}{{/paper-button}}
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{#paper-dialog-content}}
+      {{#paper-tabs
+        center=center
+        stretch=stretch
+        borderBottom=borderBottom
+        selected=selectedBasicTab
+        onChange=(action (mut selectedBasicTab)) as |tabs|}}
+        {{#tabs.tab}}
+          Page One
+        {{/tabs.tab}}
+        {{#tabs.tab disabled=true}}
+          Page Two (disabled)
+        {{/tabs.tab}}
+        {{#tabs.tab}}
+          Page Three
+        {{/tabs.tab}}
+        {{#tabs.tab}}
+          Page Four
+        {{/tabs.tab}}
+        {{#tabs.tab}}
+          Page Five
+        {{/tabs.tab}}
+      {{/paper-tabs}}
+    {{/paper-dialog-content}}
+    {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button onClick=(action "closeDialog" "ok")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}

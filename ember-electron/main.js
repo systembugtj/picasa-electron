@@ -69,10 +69,6 @@ app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-
-  if (!mainWindow.isMaximized()) {
-    mainWindow.maximize();
-  }
 });
 
 // Handle an unhandled error in the main thread

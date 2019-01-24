@@ -26,7 +26,7 @@ module.exports = function(environment) {
       lng: 'en',
       fallbackLng: 'en',
       backend: {
-        loadPath: '/locales/{{ns}}/{{lng}}.json'
+        loadPath: '../locales/{{ns}}/{{lng}}.json'
       },
       debug: true
     },

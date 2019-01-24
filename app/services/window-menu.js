@@ -12,8 +12,9 @@ import {
   later
 } from '@ember/runloop';
 import Evented from '@ember/object/evented';
+import I18nMixin from 'ember-i18next/mixins/i18n';
 
-export default Service.extend(Evented, {
+export default Service.extend(Evented, I18nMixin, {
   preferencesCallback: undefined,
   blogs: undefined,
 
@@ -121,7 +122,7 @@ export default Service.extend(Evented, {
     const template = getMenuTemplate();
 
     this._injectBlogs(template);
-    this._injectPreferencesCallback(template);
+    this._injectPreferences(template);
     this._injectShortcuts(template);
     this._processInjections(template);
 
@@ -217,7 +218,7 @@ export default Service.extend(Evented, {
         }
         if (item && item.label && item.label === '目录管理') {
           item.submenu.insertAt(0, {
-            label: '添加目录',
+            label: this.t("folder.management.add"),
             accelerator: 'CmdOrCtrl+D',
             name: 'add-folder',
             click: () => this.dispatchEvent("openFolderSelection")
@@ -258,15 +259,13 @@ export default Service.extend(Evented, {
    * @param template - Electron menu template
    * @returns template - Electron menu template.
    */
-  _injectPreferencesCallback(template) {
-    let preferencesCallback = this.get('preferencesCallback');
-
-    if (template && template.forEach && preferencesCallback) {
+  _injectPreferences(template) {
+    if (template && template.forEach) {
       template.forEach((menuItem) => {
         if (
           menuItem &&
           menuItem.label &&
-          menuItem.label === 'Ghost' ||
+          menuItem.label === 'The Picasa' ||
           menuItem.label === 'Electron' ||
           menuItem.label === 'File'
         ) {
@@ -276,7 +275,7 @@ export default Service.extend(Evented, {
               subMenuItem.label &&
               subMenuItem.label === 'Preferences'
             ) {
-              subMenuItem.click = preferencesCallback;
+              subMenuItem.click = () => this.dispatchEvent("openPreferences");
             }
           });
         }

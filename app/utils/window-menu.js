@@ -91,10 +91,7 @@ export function openFolder(item, focusedWindow) {
 
   dialog.showOpenDialog(focusedWindow, {
     properties: ['openDirectory']
-  }, function() {
-    scheduleOnce(function() {
-
-    });
+  }, () => {
   })
 }
 
@@ -211,9 +208,9 @@ export function setup() {
   if (process.platform === 'darwin') {
     // Mac OS is a special snowflake.
     template.unshift({
-      label: 'Ghost',
+      label: 'The Picasa',
       submenu: [{
-        label: 'About Ghost',
+        label: 'About The Picasa',
         role: 'about'
       }, {
         type: 'separator'
