@@ -62,7 +62,7 @@ export default Service.extend(PreferenceMixin, {
     let exist = this.fileExistsSync(action.targetFullPath);
     while(exist) {
       const parts = path.parse(action.targetFullPath)
-      action.targetFullPath = `${parts.dir}/${parts.name}_${count}.${parts.ext}`;
+      action.targetFullPath = `${parts.dir}/${parts.name}_${count}${parts.ext}`;
       exist = this.fileExistsSync(action.targetFullPath);
       count ++;
     }
@@ -102,11 +102,16 @@ export default Service.extend(PreferenceMixin, {
   resolveExifDate(action) {
     const promise = this.checkExifDate(action.file)
         .then(date => {
-          if (date) {
+          if (date && date.value[0]) {
             const created = moment(date.value[0], 'YYYY:MM:DD hh:mm:ss');
             action.created = created.toDate();
             action.targetName = created.format("YYYY/YYYYMMDD");
+          } else {
+            const created = moment(action.created);
+            action.created = created.toDate();
+            action.targetName = created.format("YYYY/YYYYMMDD");
           }
+
           return action;
         })
     return from(promise)

@@ -30,13 +30,15 @@ export default Controller.extend({
       properties: ['openDirectory']
     }, (paths) => {
         if (paths) {
+          this.set("showImportDialog", true);
           const path = paths[0];
           this.get("photoImport").import(path)
             .subscribe(photo => {
-              this.set("currentProcessing", photo.file);
-              this.set("showNotification", true);
+              this.set("fileInProgress", photo.file);
             }, () => {
-              this.set("showNotification", false);
+              this.set("showImportDialog", false);
+            }, () => {
+              this.set("showImportDialog", false);
             })
         } else {
           console.log("No path selected");

@@ -23,6 +23,20 @@
   {{/paper-toast}}
 {{/if}}
 
+{{#if showImportDialog}}
+  {{#paper-dialog class="flex-77"}}
+    {{#paper-toolbar}}
+      {{#paper-toolbar-tools}}
+        <h2>导入目录</h2>
+      {{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{#paper-dialog-content}}
+      {{paper-progress-linear}}
+      {{fileInProgress}}
+    {{/paper-dialog-content}}
+  {{/paper-dialog}}
+{{/if}}
+
 {{#if showPreferenceDialog}}
   {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") }}
     {{#paper-toolbar}}
