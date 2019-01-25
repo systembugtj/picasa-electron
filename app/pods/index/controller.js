@@ -3,9 +3,11 @@ import { computed } from "@ember/object";
 import { inject as service } from '@ember/service';
 import { hostname } from "picasa/utils/folder-reader";
 import TreeNode from 'ember-tree-view/node';
+const { dialog } = requireNode('electron').remote;
 
 export default Controller.extend({
   windowMenu: service(),
+  photoImport: service(),
 
   init() {
     this._super(...arguments);
@@ -17,10 +19,32 @@ export default Controller.extend({
     windowMenu.on("openPreferences", () => {
       this.set("showPreferenceDialog", true);
     });
+
+    windowMenu.on("importFromFolder", () => {
+      this.importPhotosFromFoloer();
+    })
+  },
+
+  importPhotosFromFoloer() {
+    dialog.showOpenDialog({
+      properties: ['openDirectory']
+    }, (paths) => {
+        if (paths) {
+          const path = paths[0];
+          this.get("photoImport").import(path)
+            .subscribe(photo => {
+              this.set("currentProcessing", photo.file);
+              this.set("showNotification", true);
+            }, () => {
+              this.set("showNotification", false);
+            })
+        } else {
+          console.log("No path selected");
+        }
+    });
   },
 
   openDirectoryDialog() {
-    const { dialog } = requireNode('electron').remote;
     dialog.showOpenDialog({
         properties: ['openDirectory']
     }, (paths) => {
@@ -51,6 +75,12 @@ export default Controller.extend({
   actions: {
     closeDialog() {
       this.set("showPreferenceDialog", false);
+    },
+    closeToast() {
+      this.set("showNotification", false);
+    },
+    showImage() {
+
     }
   }
 })

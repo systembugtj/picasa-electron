@@ -28,7 +28,7 @@ export default Route.extend(PreferenceMixin, {
 
   fetchWatchedFolders() {
     return this.getPreferenceService().getCachedPath()
-      .then(() => this.getPreferenceService().getWatchedFolder())
+      .then(() => this.getPreferenceService().getWatchedFolders())
       .then(paths => {
         Precondition.checkNotEmpty(paths);
         return paths;

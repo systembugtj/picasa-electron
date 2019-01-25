@@ -9,6 +9,11 @@
 .image-list-view {
   background-color: lightgray;
 }
+.inline-image {
+  div {
+    display: inline-block;
+  }
+}
 
 .thumbnail-frame {
   width: 100px;

@@ -223,6 +223,12 @@ export default Service.extend(Evented, I18nMixin, {
             name: 'add-folder',
             click: () => this.dispatchEvent("openFolderSelection")
           });
+          item.submenu.insertAt(1, {
+            label: "导入目录",//this.t("folder.management.import"),
+            accelerator: 'CmdOrCtrl+D',
+            name: 'import-folder',
+            click: () => this.dispatchEvent("importFromFolder")
+          });
         }
       });
     }

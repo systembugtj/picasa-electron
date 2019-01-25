@@ -47,7 +47,7 @@ export default Service.extend(PersistenceMixin, {
   /**
    * return managed folder.
    */
-  getWatchedFolder() {
+  getWatchedFolders() {
     return this.getPersistenceService().get(Preferences.WATCH_PATHS)
       .then(paths => {
         return Precondition.checkArray(paths);
@@ -75,7 +75,7 @@ export default Service.extend(PersistenceMixin, {
    */
   addFolder(folder, clear) {
     Precondition.checkString(folder);
-    return this.getWatchedFolder()
+    return this.getWatchedFolders()
       .then(paths => {
         paths = (paths && !clear) || A();
         if (!paths.includes(folder)) {
@@ -87,7 +87,7 @@ export default Service.extend(PersistenceMixin, {
 
   addFolders(folders) {
     Precondition.checkArray(folders);
-    return this.getWatchedFolder()
+    return this.getWatchedFolders()
       .then(paths => {
         const added = difference(folders, paths);
         return paths.concat(added);

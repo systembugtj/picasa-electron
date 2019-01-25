@@ -26,7 +26,7 @@ export default Service.extend({
   },
 
   startWatcher() {
-    this.get("preferenceManager").getWatchedFolder()
+    this.get("preferenceManager").getWatchedFolders()
       .then(paths => {
         const watcher = createWatcher(paths, {
           ignored: /[/\\]\./,
