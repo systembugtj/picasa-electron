@@ -2,6 +2,7 @@ import Service, { inject as service } from '@ember/service';
 import { isEmpty } from "lodash/lang";
 import { resolve } from "rsvp";
 import PreferenceMixin from "picasa/mixins/preference";
+import { debug, info} from "picasa/utils/logger";
 
 export default Service.extend(PreferenceMixin, {
   imageScale: service(),
@@ -10,6 +11,7 @@ export default Service.extend(PreferenceMixin, {
   checkCache(image) {
     if (!isEmpty(image.root) && !isEmpty(image.name)) {
       const { path, uniqueName } = image;
+      info("Check ${path}");
       return this.getPreferenceService().getCachedPath()
         .then(cached => `${cached}/${uniqueName}`)
         .then(thumbnail => {
@@ -18,6 +20,7 @@ export default Service.extend(PreferenceMixin, {
               if (cached != null) {
                 return thumbnail;
               } else {
+                debug(`Check ${uniqueName} to ${thumbnail}`);
                 return this.cacheImage(uniqueName, thumbnail, path);
               }
             })

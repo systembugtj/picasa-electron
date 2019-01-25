@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { debug, error } from "picasa/utils/logger";
 
 const Realm = require('realm');
 // Define your models and their properties
@@ -17,6 +18,7 @@ export default Service.extend({
   checkPhotoCached(uniqueName) {
     return Realm.open({schema: [PhotoCacheSchema]})
       .then(realm => {
+        debug(`Check if ${uniqueName} is cached`);
         const items = realm.objects(NAME).filtered(`uniqueName = "${uniqueName}"`);
         if (items.length > 0) {
           return items;
@@ -25,7 +27,7 @@ export default Service.extend({
         }
       })
       .catch(err => {
-        console.log(err);
+        error(err);
         return null;
       })
   },
