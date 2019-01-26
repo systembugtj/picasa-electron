@@ -19,9 +19,20 @@ You will need the following things properly installed on your computer.
 * `cd picasa`
 * `yarn install`
 
+
 ## Running / Development
 
 * `ember electron`
+
+### Windows
+
+* Install chocolatey or scoop
+* Install node version managment windows. https://github.com/coreybutler/nvm-windows
+* Install https://github.com/felixrieseberg/windows-build-tools#readme
+* Install vcpkg under c:\src(didn't try if install different location has effect). https://github.com/Microsoft/vcpkg
+* `cd c:\src\vcpkg`
+* `.\vcpkg install openssl:x64-windows-static`
+* `.\vcpkg install openssl:x32-windows-static`
 
 ### Code Generators
 
