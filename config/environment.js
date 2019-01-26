@@ -23,10 +23,10 @@ module.exports = function(environment) {
       defaultNS: 'main',
       useCookie: false,
       preload: [ 'en', 'zh-CN' ],
-      lng: 'en',
+      lng: 'zh',
       fallbackLng: 'en',
       backend: {
-        loadPath: '../locales/{{ns}}/{{lng}}.json'
+        loadPath: '/locales/{{ns}}/{{lng}}.json'
       },
       debug: true
     },

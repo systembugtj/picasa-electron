@@ -20,6 +20,7 @@ export default Component.extend(PreferenceMixin, {
 
   init() {
     this._super(...arguments);
+    this.set("foldersWithThumbnail", []);
     this.scanThumbnail();
   },
 
@@ -49,9 +50,9 @@ export default Component.extend(PreferenceMixin, {
       )
       .subscribe(folder => {
         run(() => {
-          const folders = this.get("foldersWithThumbnail") || [];
+          const folders = this.get("foldersWithThumbnail");
           folders.pushObject(folder);
-          this.set("foldersWithThumbnail", folders);
+          //this.set("foldersWithThumbnail", folders);
         })
       });
   },

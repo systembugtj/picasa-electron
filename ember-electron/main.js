@@ -32,7 +32,7 @@ app.on('ready', () => {
   const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize
   mainWindow = new BrowserWindow({
     width: width * 2 / 3,
-    height: height * 3/ 4,
+    height: height * 4/ 5,
     title: "ThePicasa.com",
     webPreferences: {
       webSecurity: false

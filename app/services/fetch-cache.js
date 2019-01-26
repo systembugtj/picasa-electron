@@ -11,7 +11,7 @@ export default Service.extend(PreferenceMixin, {
   checkCache(image) {
     if (!isEmpty(image.root) && !isEmpty(image.name)) {
       const { path, uniqueName } = image;
-      info("Check ${path}");
+      info(`Check ${path}`);
       return this.getPreferenceService().getCachedPath()
         .then(cached => `${cached}/${uniqueName}`)
         .then(thumbnail => {

@@ -2,7 +2,6 @@
 @import 'pods';
 @import "auto-image";
 
-
 .content-area {
   margin-top: 64px;
 }
@@ -20,13 +19,20 @@
   height: 100px
 }
 
-.split-view-sash {
-  background-color: darkgray;
+.split-view  {
+  .split-view-sash {
+    background-color: black; // Overwrite value from sccs
+  }
 }
 
 .images-area {
   height: 100%;
   background-color: aliceblue;
+  margin-top: -8px;
+}
+.md-card .md-card-content {
+  padding: 8px;
+  background-color: beige;
 }
 
 .tree-area {
