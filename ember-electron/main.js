@@ -9,7 +9,6 @@ let mainWindow = null;
 ipcMain.on('picasa-is-ready', function() {
     splash.destroy();
     mainWindow.show();
-
 });
 
 // Registering a protocol & schema to serve our Ember application
