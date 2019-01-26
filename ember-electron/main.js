@@ -1,9 +1,16 @@
 /* eslint-env node */
-const { app, BrowserWindow, protocol } = require('electron');
+const { app, BrowserWindow, protocol, ipcMain } = require('electron');
 const { dirname, join, resolve } = require('path');
 const protocolServe = require('electron-protocol-serve');
 
+let splash = null;
 let mainWindow = null;
+
+ipcMain.on('picasa-is-ready', function() {
+    splash.destroy();
+    mainWindow.show();
+
+});
 
 // Registering a protocol & schema to serve our Ember application
 protocol.registerStandardSchemes(['serve'], { secure: true });
@@ -29,6 +36,16 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
+
+  // create a new `splash`-Window
+  splash = new BrowserWindow({
+    width: 400,
+    height: 300,
+    frame: false,
+    alwaysOnTop: true
+  });
+  splash.loadURL(`file://${__dirname}/splash.html`);
+
   const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize
   mainWindow = new BrowserWindow({
     width: width * 2 / 3,
@@ -36,7 +53,8 @@ app.on('ready', () => {
     title: "ThePicasa.com",
     webPreferences: {
       webSecurity: false
-    }
+    },
+    show: false,
   });
 
   // If you want to open up dev tools programmatically, call

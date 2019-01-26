@@ -21,7 +21,7 @@
 
 .split-view  {
   .split-view-sash {
-    background-color: black; // Overwrite value from sccs
+    background-color: black;
   }
 }
 
@@ -31,8 +31,8 @@
   margin-top: -8px;
 }
 .md-card .md-card-content {
-  padding: 8px;
-  background-color: beige;
+  padding: 8px !important;
+  background-color: beige !important;
 }
 
 .tree-area {

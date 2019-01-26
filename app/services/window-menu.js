@@ -119,7 +119,7 @@ export default Service.extend(Evented, I18nMixin, {
     const {
       Menu
     } = remote;
-    const template = getMenuTemplate();
+    const template = getMenuTemplate(this.t.bind(this));
 
     this._injectBlogs(template);
     this._injectPreferences(template);
@@ -273,7 +273,7 @@ export default Service.extend(Evented, I18nMixin, {
           menuItem.label &&
           menuItem.label === 'The Picasa' ||
           menuItem.label === 'Electron' ||
-          menuItem.label === 'File'
+          menuItem.label === this.t("file.label")
         ) {
           menuItem.submenu.forEach((subMenuItem) => {
             if (
