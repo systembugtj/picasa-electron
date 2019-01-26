@@ -8,6 +8,8 @@ import { isEmpty } from "lodash/lang";
 import { A } from "@ember/array";
 import { specialFolder, FOLDERS } from "picasa/utils/folder-reader";
 
+const APPDATA_CACHE_THUMBNAIL = "/ThePicasa/cache/thumbnail";
+
 export default Service.extend(PersistenceMixin, {
 
   createPath(path) {
@@ -35,7 +37,7 @@ export default Service.extend(PersistenceMixin, {
       })
       .then(path => {
         if (isEmpty(path)) {
-          const cachedPath = specialFolder(FOLDERS.APPDATA) + "/ThePicasa/cache/thumbnail";
+          const cachedPath = `${specialFolder(FOLDERS.APPDATA)}${APPDATA_CACHE_THUMBNAIL}`;
           this.set(Preferences.CACHED_PATH, cachedPath);
           return this.createPath(cachedPath);
         } else {

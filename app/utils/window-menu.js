@@ -1,5 +1,5 @@
-import { scheduleOnce } from '@ember/runloop';
 import $ from 'jquery';
+
 /**
  * Functions
  */
@@ -95,22 +95,27 @@ export function openFolder(item, focusedWindow) {
   })
 }
 
+function translate(key){
+  return key;
+}
 /**
  * Setups the window menu for the application
  *
  * @export
  * @returns {Electron.Menu} - Built Menu
  */
-export function setup() {
+export function setup(t) {
+  t =  t || translate;
+
   let {
     remote
   } = requireNode('electron');
   let browserWindow = remote.getCurrentWindow();
 
   let template = [{
-    label: 'File',
+    label: t("file.label"),
     submenu: [{
-      label: "打开目录",
+      label: t("file.folder.open"),
       accelerator: 'CmdOrCtrl+O',
       click: openFolder
     }]

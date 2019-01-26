@@ -2,7 +2,17 @@
 @import 'pods';
 @import "auto-image";
 
-
+body {
+  overflow: hidden;
+}
+.loading-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  .icon {
+    margin: auto;
+  }
+}
 .content-area {
   margin-top: 64px;
 }
@@ -19,14 +29,44 @@
   width: 100px;
   height: 100px
 }
+.right-pane::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+.right-pane::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(linear,
+                      left bottom,
+                      left top,
+                      color-stop(0.44, rgb(122,153,217)),
+                      color-stop(0.72, rgb(73,125,189)),
+                      color-stop(0.86, rgb(28,58,148)));
+}
 
-.split-view-sash {
-  background-color: darkgray;
+.split-view  {
+  .split-view-sash {
+    background-color: black;
+  }
 }
 
 .images-area {
   height: 100%;
   background-color: aliceblue;
+  margin-top: -8px;
+
+
+  md-card {
+    margin-left: 0;
+    margin-right: 0;
+    md-card-content {
+      padding: 8px !important;
+      background-color: beige !important;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
 }
 
 .tree-area {

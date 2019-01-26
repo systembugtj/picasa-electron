@@ -1,0 +1,18 @@
+{
+  "title": "The Picasa",
+  "menu": {
+    "open": "打开"
+  },
+  "folder": {
+    "management": {
+      "add": "添加目录",
+      "import": "导入图片..."
+    }
+  },
+  "file": {
+    "label": "文件",
+    "folder": {
+      "open": "打开目录"
+    }
+  }
+}

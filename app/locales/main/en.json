@@ -5,7 +5,8 @@
   },
   "folder": {
     "management": {
-      "add": "Add Folder"
+      "add": "Add Folder",
+      "import": "Import from ..."
     }
   }
 }

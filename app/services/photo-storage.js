@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { error } from "picasa/utils/logger";
 
 const Realm = require('realm');
 // Define your models and their properties
@@ -25,7 +26,7 @@ export default Service.extend({
         }
       })
       .catch(err => {
-        console.log(err);
+        error(err);
         return null;
       })
   },

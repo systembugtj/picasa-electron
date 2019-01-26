@@ -6,13 +6,16 @@ import { from } from 'rxjs';
 import { mergeMap, reduce, map } from 'rxjs/operators';
 import PreferenceMixin from "picasa/mixins/preference";
 import { run } from "@ember/runloop";
+import { error } from "picasa/utils/logger";
 
 const PROPERTY_NAME = {
-  FOLDERS: "folders"
+  FOLDERS: "folders",
+  THUMBNAILS: "foldersWithThumbnail"
 }
+
 export default Component.extend(PreferenceMixin, {
   fetchCache: service(),
-  hasFolders: notEmpty("foldersWithThumbnail"),
+  hasFolders: notEmpty(PROPERTY_NAME.THUMBNAILS),
   folderChanged: observer(PROPERTY_NAME.FOLDERS, () => {
     this.scanThumbnail();
   }),
@@ -20,6 +23,7 @@ export default Component.extend(PreferenceMixin, {
 
   init() {
     this._super(...arguments);
+    this.set(PROPERTY_NAME.THUMBNAILS, []);
     this.scanThumbnail();
   },
 
@@ -49,10 +53,12 @@ export default Component.extend(PreferenceMixin, {
       )
       .subscribe(folder => {
         run(() => {
-          const folders = this.get("foldersWithThumbnail") || [];
+          const folders = this.get(PROPERTY_NAME.THUMBNAILS);
           folders.pushObject(folder);
-          this.set("foldersWithThumbnail", folders);
         })
+      }, error, () => {
+        const { ipcRenderer } = requireNode('electron');
+        ipcRenderer.send('picasa-is-ready');
       });
   },
 });
