@@ -86,6 +86,11 @@ app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  // Open Debug tools if not in production.
+  if (process.evn.NODE_ENV !== "production" && mainWindow.toggleDevTools) {
+    mainWindow.toggleDevTools();
+  }
 });
 
 // Handle an unhandled error in the main thread

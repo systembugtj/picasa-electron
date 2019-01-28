@@ -52,6 +52,9 @@ module.exports = function(environment) {
       widthSensitive     : true,
       injectionFactories : [ 'view', 'component']
     },
+    PICASA: {
+      allowDevTools: false
+    }
   };
 
   if (environment === 'development') {
@@ -60,6 +63,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.PICASA.allowDevTools = true;
   }
 
   if (environment === 'test') {

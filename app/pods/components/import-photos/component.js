@@ -20,11 +20,10 @@ export default Component.extend(I18nMixin, {
     this.get("photoImport").import(path)
       .subscribe(photo => {
         this.set("fileInProgress", photo.file);
-      }, () => {
-        this.set("showImportDialog", false);
+      }, error => {
+        this.importFinished(error);
       }, () => {
         this.importFinished();
-        this.set("showImportDialog", false);
       })
   },
 

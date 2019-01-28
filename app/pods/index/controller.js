@@ -21,12 +21,12 @@ export default Controller.extend({
     });
 
     windowMenu.on("importFromFolder", () => {
-      this.importPhotosFromFoloer();
+      this.importPhotosFromFolder();
     })
   },
 
-  importPhotosFromFoloer() {
-    dialog.showOpenDialog({
+  importPhotosFromFolder(item, focusedWindow) {
+    dialog.showOpenDialog(focusedWindow, {
       properties: ['openDirectory']
     }, (paths) => {
         if (paths) {

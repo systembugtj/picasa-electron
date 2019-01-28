@@ -13,6 +13,8 @@ import {
 } from '@ember/runloop';
 import Evented from '@ember/object/evented';
 import I18nMixin from 'ember-i18next/mixins/i18n';
+import EventNames from "picasa/constants/event-name";
+import { info } from "picasa/utils/logger";
 
 export default Service.extend(Evented, I18nMixin, {
   preferencesCallback: undefined,
@@ -129,9 +131,9 @@ export default Service.extend(Evented, I18nMixin, {
     Menu.setApplicationMenu(Menu.buildFromTemplate(template));
   },
 
-  dispatchEvent(name) {
-    console.log(name);
-    this.trigger(name);
+  dispatchEvent(name, item, focusedWindow) {
+    info(`${name} event is fired.`);
+    this.trigger(name, item, focusedWindow);
   },
   /**
    * Adds webview-specific shortcuts to the menu.
@@ -150,37 +152,37 @@ export default Service.extend(Evented, I18nMixin, {
             label: 'Labs',
             accelerator: 'CmdOrCtrl+Alt+L',
             name: 'open-labs',
-            click: () => this.dispatchEvent("openSettingsLabs")
+            click: (item, focusedWindow) => this.dispatchEvent("openSettingsLabs", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'Apps',
             accelerator: 'CmdOrCtrl+Alt+A',
             name: 'open-apps',
-            click: () => this.dispatchEvent("openSettingsApps")
+            click: (item, focusedWindow) => this.dispatchEvent("openSettingsApps", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'Code Injection',
             accelerator: 'CmdOrCtrl+Alt+C+I',
             name: 'open-code-injection',
-            click: () => this.dispatchEvent("openSettingsCodeInjection")
+            click: (item, focusedWindow) => this.dispatchEvent("openSettingsCodeInjection", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'Tags',
             accelerator: 'CmdOrCtrl+Alt+T',
             name: 'open-tags',
-            click: () => this.dispatchEvent("openSettingsTags")
+            click: (item, focusedWindow) => this.dispatchEvent("openSettingsTags", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'Navigation',
             accelerator: 'CmdOrCtrl+Alt+N',
             name: 'open-navigation',
-            click: () => this.dispatchEvent("openSettingsNavigation")
+            click: (item, focusedWindow) => this.dispatchEvent("openSettingsNavigation", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'General',
             accelerator: 'CmdOrCtrl+Alt+G',
             name: 'open-general',
-            click: () => this.dispatchEvent("openSettingsGeneral")
+            click: (item, focusedWindow) => this.dispatchEvent("openSettingsGeneral", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             type: 'separator'
@@ -189,19 +191,19 @@ export default Service.extend(Evented, I18nMixin, {
             label: 'Team',
             accelerator: 'CmdOrCtrl+Alt+T',
             name: 'open-team',
-            click: () => this.dispatchEvent("openTeam")
+            click: (item, focusedWindow) => this.dispatchEvent("openTeam", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'Content',
             accelerator: 'CmdOrCtrl+Alt+L',
             name: 'open-content',
-            click: () => this.dispatchEvent("openContent")
+            click: (item, focusedWindow) => this.dispatchEvent("openContent", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             label: 'New Post',
             accelerator: 'CmdOrCtrl+Alt+C',
             name: 'open-new-post',
-            click: () => this.dispatchEvent("openNewPost")
+            click: (item, focusedWindow) => this.dispatchEvent("openNewPost", item, focusedWindow)
           });
           item.submenu.insertAt(2, {
             type: 'separator'
@@ -213,21 +215,21 @@ export default Service.extend(Evented, I18nMixin, {
             label: 'Open Preview',
             accelerator: 'CmdOrCtrl+P',
             name: 'open-preview',
-            click: () => this.dispatchEvent("openPreview")
+            click: (item, focusedWindow) => this.dispatchEvent(EventNames.OpenPreview, item, focusedWindow)
           });
         }
-        if (item && item.label && item.label === '目录管理') {
+        if (item && item.label && item.label === this.t('folder.management.label')) {
           item.submenu.insertAt(0, {
             label: this.t("folder.management.add"),
             accelerator: 'CmdOrCtrl+D',
             name: 'add-folder',
-            click: () => this.dispatchEvent("openFolderSelection")
+            click: (item, focusedWindow) => this.dispatchEvent(EventNames.OpenFolderSelection, item, focusedWindow)
           });
           item.submenu.insertAt(1, {
-            label: "导入目录",//this.t("folder.management.import"),
+            label: this.t("folder.management.import"),
             accelerator: 'CmdOrCtrl+D',
             name: 'import-folder',
-            click: () => this.dispatchEvent("importFromFolder")
+            click: (item, focusedWindow) => this.dispatchEvent(EventNames.ImportFromFolder, item, focusedWindow)
           });
         }
       });
@@ -279,9 +281,9 @@ export default Service.extend(Evented, I18nMixin, {
             if (
               subMenuItem &&
               subMenuItem.label &&
-              subMenuItem.label === 'Preferences'
+              subMenuItem.label === this.t("preferences.label")
             ) {
-              subMenuItem.click = () => this.dispatchEvent("openPreferences");
+              subMenuItem.click = (item, focusedWindow) => this.dispatchEvent(EventNames.OpenPreferences, item, focusedWindow);
             }
           });
         }

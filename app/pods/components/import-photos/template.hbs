@@ -2,10 +2,12 @@
   <div class="layout-column flex">
     <div class="flex">
       {{#paper-select
-        label=folderSelectLabel
-        options=folders
-        selected=selectedFolder}}
-        {{folders.path}}
+        placeholder="Assign to a user"
+        selected=selectedUser
+        options=users
+        onChange=(action (mut selectedUser))
+        as |user|}}
+        {{user.name}}
       {{/paper-select}}
     </div>
     <div class="flex">

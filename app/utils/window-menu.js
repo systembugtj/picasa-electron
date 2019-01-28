@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+import ENV from "picasa/config/environment";
 /**
  * Functions
  */
@@ -170,7 +170,7 @@ export function setup(t) {
       click: toggleFullscreen
     }]
   }, {
-    label: '目录管理',
+    label: t('folder.management.label'),
     submenu: []
   }, {
     label: '窗口',
@@ -185,20 +185,6 @@ export function setup(t) {
       role: 'close'
     }]
   }, {
-    label: '开发者',
-    submenu: [{
-      label: '开/关 开发者工具',
-      accelerator: (process.platform === 'darwin') ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-      click: toggleDevTools
-    }, {
-      label: 'Toggle Developer Tools (Current Blog)',
-      accelerator: (process.platform === 'darwin') ? 'Alt+Command+Shift+I' : 'Ctrl+Alt+Shift+I',
-      click: toggleGhostDevTools
-    }, {
-      label: 'Repository',
-      click: openRepository
-    }]
-  }, {
     label: 'Help',
     role: 'help',
     submenu: [{
@@ -210,6 +196,23 @@ export function setup(t) {
     }]
   }];
 
+  if (ENV.PICASA.allowDevTools) {
+    template.push({
+      label: '开发者',
+      submenu: [{
+        label: '开/关 开发者工具',
+        accelerator: (process.platform === 'darwin') ? 'Alt+Command+I' : 'Ctrl+Shift+I',
+        click: toggleDevTools
+      }, {
+        label: 'Toggle Developer Tools (Current Blog)',
+        accelerator: (process.platform === 'darwin') ? 'Alt+Command+Shift+I' : 'Ctrl+Alt+Shift+I',
+        click: toggleGhostDevTools
+      }, {
+        label: 'Repository',
+        click: openRepository
+      }]
+    })
+  }
   if (process.platform === 'darwin') {
     // Mac OS is a special snowflake.
     template.unshift({
@@ -258,7 +261,7 @@ export function setup(t) {
       label: t("file.label"),
       submenu: [{
         // The click action gets injected from gh-switcher.
-        label: 'Preferences',
+        label: t("preferences.label"),
         accelerator: 'CmdOrCtrl+,'
       }]
     });

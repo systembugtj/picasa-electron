@@ -3,8 +3,12 @@
   "menu": {
     "open": "打开"
   },
+  "view": {
+    "label": "视图"
+  },
   "folder": {
     "management": {
+      "label": "目录管理",
       "add": "添加目录",
       "import": "导入图片..."
     }
@@ -23,6 +27,10 @@
       "label": "选择存放的目录"
     }
   },
+  "preferences": {
+    "label": "设置"
+  },
+
   "button": {
     "cancel": "取消",
     "ok": "确定",
