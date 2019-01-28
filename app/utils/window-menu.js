@@ -255,7 +255,7 @@ export function setup(t) {
   } else {
     // Windows and Linux
     template.unshift({
-      label: 'File',
+      label: t("file.label"),
       submenu: [{
         // The click action gets injected from gh-switcher.
         label: 'Preferences',

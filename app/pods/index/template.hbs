@@ -19,7 +19,7 @@
     {{#toast.text}}
       <p>{{auto-image width=32 height=32 src=(concat "file://" currentProcessing) class="inline-image"}}{{currentProcessing}}</p>
     {{/toast.text}}
-    {{#paper-button accent=true onClick=(action "showImage")}}Undo{{/paper-button}}
+    {{#paper-button accent=true onClick=(action "showImage")}}{{t "button.ok"}}{{/paper-button}}
   {{/paper-toast}}
 {{/if}}
 
@@ -27,13 +27,17 @@
   {{#paper-dialog class="flex-77"}}
     {{#paper-toolbar}}
       {{#paper-toolbar-tools}}
-        <h2>导入目录</h2>
+        <h2>{{t "import.photos.label"}}</h2>
       {{/paper-toolbar-tools}}
     {{/paper-toolbar}}
     {{#paper-dialog-content}}
-      {{paper-progress-linear}}
-      {{fileInProgress}}
+      {{import-photos source=importSource folders=model.folders
+          importStarted=(action "handleImportStarted")
+          importFinished=(action "handleImportFinished")}}
     {{/paper-dialog-content}}
+     {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button disabled=disableCancel onClick=(action "closeImportDialog" "cancel")}}{{t "button.cancel"}}{{/paper-button}}
+    {{/paper-dialog-actions}}
   {{/paper-dialog}}
 {{/if}}
 
@@ -47,31 +51,10 @@
       {{/paper-toolbar-tools}}
     {{/paper-toolbar}}
     {{#paper-dialog-content}}
-      {{#paper-tabs
-        center=center
-        stretch=stretch
-        borderBottom=borderBottom
-        selected=selectedBasicTab
-        onChange=(action (mut selectedBasicTab)) as |tabs|}}
-        {{#tabs.tab}}
-          Page One
-        {{/tabs.tab}}
-        {{#tabs.tab disabled=true}}
-          Page Two (disabled)
-        {{/tabs.tab}}
-        {{#tabs.tab}}
-          Page Three
-        {{/tabs.tab}}
-        {{#tabs.tab}}
-          Page Four
-        {{/tabs.tab}}
-        {{#tabs.tab}}
-          Page Five
-        {{/tabs.tab}}
-      {{/paper-tabs}}
+      {{setting}}
     {{/paper-dialog-content}}
     {{#paper-dialog-actions class="layout-row"}}
-      {{#paper-button onClick=(action "closeDialog" "ok")}}OK{{/paper-button}}
+      {{#paper-button  onClick=(action "closeDialog" "ok")}}{{t "button.ok"}}{{/paper-button}}
     {{/paper-dialog-actions}}
   {{/paper-dialog}}
 {{/if}}

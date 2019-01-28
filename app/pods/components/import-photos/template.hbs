@@ -1,0 +1,22 @@
+<div class="layout-row flex">
+  <div class="layout-column flex">
+    <div class="flex">
+      {{#paper-select
+        label=folderSelectLabel
+        options=folders
+        selected=selectedFolder}}
+        {{folders.path}}
+      {{/paper-select}}
+    </div>
+    <div class="flex">
+      {{paper-progress-linear}}
+      {{fileInProgress}}
+    </div>
+  </div>
+  <div class="layout-column flex">
+    <div class="flex">
+      {{#paper-button onClick=(action "startImport")}}{{t "button.start"}}{{/paper-button}}
+    </div>
+    <div class="flex">{{#paper-button onClick=(action "stopImport")}}{{t "button.stop"}}{{/paper-button}}</div>
+  </div>
+</div>

@@ -31,6 +31,8 @@ export default Controller.extend({
     }, (paths) => {
         if (paths) {
           this.set("showImportDialog", true);
+          this.set("importSource", paths[0]);
+          /*
           const path = paths[0];
           this.get("photoImport").import(path)
             .subscribe(photo => {
@@ -40,6 +42,7 @@ export default Controller.extend({
             }, () => {
               this.set("showImportDialog", false);
             })
+          */
         } else {
           console.log("No path selected");
         }
@@ -75,6 +78,18 @@ export default Controller.extend({
   }),
 
   actions: {
+    handleImportStarted() {
+      this.set("disableCancel", true);
+    },
+
+    handleImportFinished() {
+      this.set("disableCancel", false);
+    },
+
+    closeImportDialog() {
+      this.set("showImportDialog", false);
+    },
+
     closeDialog() {
       this.set("showPreferenceDialog", false);
     },

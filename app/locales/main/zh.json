@@ -14,5 +14,18 @@
     "folder": {
       "open": "打开目录"
     }
+  },
+  "import": {
+    "photos": {
+      "label": "从目录导入照片"
+    },
+    "select": {
+      "label": "选择存放的目录"
+    }
+  },
+  "button": {
+    "cancel": "取消",
+    "ok": "确定",
+    "start": "开始"
   }
 }
