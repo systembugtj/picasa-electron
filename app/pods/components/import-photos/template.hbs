@@ -1,26 +1,32 @@
-<div class="layout-row flex">
-  <div class="layout-column flex">
+
+{{#paper-card as |card|}}
+  {{#card.title as |title|}}
+    {{#title.text as |text|}}
+      {{#text.headline}} {{ t "import.folder.label" }}{{/text.headline}}
+      {{#text.subhead}} {{source}} {{/text.subhead}}
+    {{/title.text}}
+  {{/card.title}}
+  {{#card.content class="layout-row layout-align-space-between"}}
+    {{#card.media size="lg"}}
+
+    {{/card.media}}
     {{#unless importing}}
-      <div class="flex">
-        {{#paper-select class="folder-selctor"
-          label=folderSelectLabel
-          selected=selectedFolder
-          options=folders
-          onChange=(action (mut selectedUser))
-          as |folder|}}
-          {{folder.cwd}}
-        {{/paper-select}}
-      </div>
+      {{#paper-select
+        label=folderSelectLabel
+        selected=selectedFolder
+        options=folders
+        onChange=(action (mut selectedUser))
+        as |folder|}}
+        {{folder.cwd}}
+      {{/paper-select}}
     {{/unless}}
     {{#if importing}}
-      <div class="flex">
-        {{fileInProgress}}
-        {{paper-progress-linear}}
-      </div>
+      {{fileInProgress}}
+      {{paper-progress-linear}}
     {{/if}}
-    <div class="flex ">
+    {{#card.actions}}
       {{#paper-button onClick=(action "startImport")}}{{t "button.start"}}{{/paper-button}}
       {{#paper-button onClick=(action "stopImport")}}{{t "button.stop"}}{{/paper-button}}
-    </div>
-  </div>
-</div>
+    {{/card.actions}}
+  {{/card.content}}
+{{/paper-card}}
