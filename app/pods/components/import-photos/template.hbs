@@ -1,24 +1,26 @@
 <div class="layout-row flex">
   <div class="layout-column flex">
-    <div class="flex">
-      {{#paper-select
-        placeholder="Assign to a user"
-        selected=selectedUser
-        options=users
-        onChange=(action (mut selectedUser))
-        as |user|}}
-        {{user.name}}
-      {{/paper-select}}
-    </div>
-    <div class="flex">
-      {{paper-progress-linear}}
-      {{fileInProgress}}
-    </div>
-  </div>
-  <div class="layout-column flex">
-    <div class="flex">
+    {{#unless importing}}
+      <div class="flex">
+        {{#paper-select class="folder-selctor"
+          label=folderSelectLabel
+          selected=selectedFolder
+          options=folders
+          onChange=(action (mut selectedUser))
+          as |folder|}}
+          {{folder.cwd}}
+        {{/paper-select}}
+      </div>
+    {{/unless}}
+    {{#if importing}}
+      <div class="flex">
+        {{fileInProgress}}
+        {{paper-progress-linear}}
+      </div>
+    {{/if}}
+    <div class="flex ">
       {{#paper-button onClick=(action "startImport")}}{{t "button.start"}}{{/paper-button}}
+      {{#paper-button onClick=(action "stopImport")}}{{t "button.stop"}}{{/paper-button}}
     </div>
-    <div class="flex">{{#paper-button onClick=(action "stopImport")}}{{t "button.stop"}}{{/paper-button}}</div>
   </div>
 </div>

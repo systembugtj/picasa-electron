@@ -10,20 +10,32 @@ export default Component.extend(I18nMixin, {
       return this.t("import.select.label")
     }
   }),
+
+  importing: false,
+
+  selectedFolder: computed("folders", {
+    get() {
+      return this.get('folders').objectAt(0);
+    }
+  }),
+
   importStarted: () => {},
   importFinished: () => {},
 
   folders: undefined, // folders to save imported folders.
 
   importFolder(path) {
+    this.set("importing", true);
     this.importStarted();
     this.get("photoImport").import(path)
       .subscribe(photo => {
         this.set("fileInProgress", photo.file);
       }, error => {
         this.importFinished(error);
+        this.set("importing", false);
       }, () => {
         this.importFinished();
+        this.set("importing", false);
       })
   },
 
