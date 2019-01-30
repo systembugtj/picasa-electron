@@ -28,13 +28,13 @@ export default Component.extend(PreferenceMixin, {
   },
 
   isCached(image) {
-    return from(this.get("fetchCache").checkCache(image));
+    return from(this.get("fetchCache").checkCache(image, true));
   },
 
   checkImages(folder) {
     const mergeImage = (images, image) => {
       images.push(image);
-      return images
+      return images;
     };
 
     return from(folder.images).pipe (

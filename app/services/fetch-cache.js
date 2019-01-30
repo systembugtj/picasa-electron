@@ -7,7 +7,7 @@ export default Service.extend(PreferenceMixin, {
   imageScale: service(),
   photoStorage: service(),
 
-  checkCache(image) {
+  checkCache(image, skipExistCheck) {
     if (!isEmpty(image.root) && !isEmpty(image.name)) {
       const { path, uniqueName } = image;
       return this.getPreferenceService().getCachedPath()
@@ -15,7 +15,7 @@ export default Service.extend(PreferenceMixin, {
         .then(thumbnail => {
           return this.get("photoStorage").checkPhotoCached(uniqueName)
             .then(cached => {
-              if (cached != null) {
+              if (cached != null && skipExistCheck) {
                 return thumbnail;
               } else {
                 return this.cacheImage(uniqueName, thumbnail, path);

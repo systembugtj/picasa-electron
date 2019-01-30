@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import PersistenceMixin from "../mixins/persistence";
+import PersistenceMixin from "picasa/mixins/persistence";
 import Preferences from "picasa/constants/preference-entry";
 import Precondition from "ember-precondition/utils/precondition";
 import { resolve } from 'rsvp';
@@ -7,10 +7,11 @@ import { difference } from "lodash/array";
 import { isEmpty } from "lodash/lang";
 import { A } from "@ember/array";
 import { specialFolder, FOLDERS } from "picasa/utils/folder-reader";
+import Evented from '@ember/object/evented';
 
 const APPDATA_CACHE_THUMBNAIL = "/ThePicasa/cache/thumbnail";
 
-export default Service.extend(PersistenceMixin, {
+export default Service.extend(PersistenceMixin, Evented, {
 
   createPath(path) {
     return new Promise((resolve, reject) => {
@@ -46,18 +47,6 @@ export default Service.extend(PersistenceMixin, {
         }
       })
   },
-  /**
-   * return managed folder.
-   */
-  getWatchedFolders() {
-    return this.getPersistenceService().get(Preferences.WATCH_PATHS)
-      .then(paths => {
-        return Precondition.checkArray(paths);
-      })
-      .catch(() => {
-        return []; // if error, return [];
-      })
-  },
 
   /**
    * Set watched folder, overwrite exist.
@@ -68,9 +57,22 @@ export default Service.extend(PersistenceMixin, {
     return resolve()
       .then(() => {
         this.getPersistenceService().set(Preferences.WATCH_PATHS, Precondition.checkArray(folders));
-      })
+        this.trigger("folderUpdated");
+      });
   },
 
+  /**
+   * @return managed folder.
+   */
+  getWatchedFolders() {
+    return this.getPersistenceService().get(Preferences.WATCH_PATHS)
+      .then(paths => {
+        return Precondition.checkArray(paths);
+      })
+      .catch(() => {
+        return []; // if error, return [];
+      })
+  },
   /**
    * Add folder to watched folders
    * @param {String} folder

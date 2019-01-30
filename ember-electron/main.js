@@ -88,7 +88,7 @@ app.on('ready', () => {
   });
 
   // Open Debug tools if not in production.
-  if (process.evn.NODE_ENV !== "production" && mainWindow.toggleDevTools) {
+  if (process.env.NODE_ENV !== "production" && mainWindow.toggleDevTools) {
     mainWindow.toggleDevTools();
   }
 });

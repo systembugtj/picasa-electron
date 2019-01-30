@@ -1,16 +1,37 @@
 import Service from '@ember/service';
-import { inject as service} from '@ember/service';
-import createWatcher from '../utils/fs-watch';
+import createWatcher from 'picasa/utils/fs-watch';
 import { difference } from "lodash/array";
-
-export default Service.extend({
-  preferenceManager: service(),
-
+import PreferenceMixin from "picasa/mixins/preference";
+import Precondition from "ember-precondition/utils/precondition";
+import { specialFolder, FOLDERS } from "picasa/utils/folder-reader";
+/**
+ * Watch folders change
+ */
+export default Service.extend(PreferenceMixin, {
   init() {
     this._super(...arguments);
 
-    this.get("preferenceManager")
+    this.getPreferenceService()
       .on("folderUpdated", folders => this.adjustWatchedFolder(folders));
+  },
+
+  getThumbnailCachePath() {
+    return this.getPreferenceService().getCachedPath();
+  },
+
+  getWatchedFolders() {
+    return this.getThumbnailCachePath()
+      .then(() => this.getPreferenceService().getWatchedFolders())
+      .then(paths => {
+        Precondition.checkNotEmpty(paths);
+        return paths;
+      })
+      .catch(() => {
+        const path = specialFolder(FOLDERS.DESKTOP);
+        return this.getPreferenceService().addFolder(path, true).then(() => {
+          return [path];
+        });
+      })
   },
 
   adjustWatchedFolder(folders) {

@@ -1,18 +1,24 @@
 import { Promise } from 'rsvp';
 import getElectronApp from "./electron-api";
+import { isArray } from "lodash/lang";
+import { join } from "lodash/array";
 
 const os = requireNode("os");
 const glob = requireNode("glob");
+const spark = requireNode("spark-md5");
 
-export default function folderReader(target, options) {
+export default function scanFolderForImages(target, options, ext) {
+  ext = ext || "png|jpg|jpeg|gif";
+  if (isArray(ext)) {
+    ext = join(ext, "|");
+  }
 
   options = options || {};
-  target = target || '~/';
-  options.cwd = target;
+  options.cwd = target || '~/';
 
   return new Promise((resolve, reject) => {
     // options is optional
-    glob("**/*.+(png|jpg|jpeg|gif)", options, (error, files) => {
+    glob(`**/*.+(${ext})`, options, (error, files) => {
       // files is an array of filenames.
       // If the `nonull` option is set, and nothing
       // was found, then files is ["**/*.js"]
@@ -45,6 +51,5 @@ export function hostname() {
 }
 
 export function uniqueName(path) {
-  const spark = requireNode("spark-md5");
   return  spark.hash(path);
 }
