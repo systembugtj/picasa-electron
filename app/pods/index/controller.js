@@ -26,6 +26,10 @@ export default Controller.extend({
   },
 
   importPhotosFromFolder(item, focusedWindow) {
+    if(this.get("showImportDialog")) {
+      // Importing photos.
+      return;
+    }
     dialog.showOpenDialog(focusedWindow, {
       properties: ['openDirectory']
     }, (paths) => {

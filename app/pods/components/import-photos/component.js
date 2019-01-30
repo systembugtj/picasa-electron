@@ -45,6 +45,9 @@ export default Component.extend(I18nMixin, {
     },
     stopImport() {
       // should allow stop?
+    },
+    cancelImport() {
+      this.importFinished();
     }
   }
 });

@@ -1,32 +1,44 @@
-
-{{#paper-card as |card|}}
-  {{#card.title as |title|}}
-    {{#title.text as |text|}}
-      {{#text.headline}} {{ t "import.folder.label" }}{{/text.headline}}
-      {{#text.subhead}} {{source}} {{/text.subhead}}
-    {{/title.text}}
-  {{/card.title}}
-  {{#card.content class="layout-row layout-align-space-between"}}
-    {{#card.media size="lg"}}
-
-    {{/card.media}}
-    {{#unless importing}}
-      {{#paper-select
-        label=folderSelectLabel
-        selected=selectedFolder
-        options=folders
-        onChange=(action (mut selectedUser))
-        as |folder|}}
-        {{folder.cwd}}
-      {{/paper-select}}
-    {{/unless}}
+{{#paper-dialog class="flex-77"}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>{{t "import.photos.label"}}</h2>
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+  {{#paper-dialog-content}}
+    <div class="layout-column layout-align-center-center">
+      {{#unless importing}}
+        <div class="folder-selection">
+          {{#paper-select
+            label=folderSelectLabel
+            selected=selectedFolder
+            options=folders
+            onChange=(action (mut selectedFolder))
+            as |folder|}}
+            {{folder.cwd}}
+          {{/paper-select}}
+        </div>
+      {{/unless}}
+      {{#if importing}}
+        <div class="">
+          {{fileInProgress}}
+        </div>
+        <div>
+          {{t "import.photos.progress"}}
+        </div>
+        <div class="">
+          {{paper-progress-linear}}
+        </div>
+      {{/if}}
+    </div>
+  {{/paper-dialog-content}}
+  {{#paper-dialog-actions class="layout-row"}}
     {{#if importing}}
-      {{fileInProgress}}
-      {{paper-progress-linear}}
+      {{#paper-button onClick=(action "stopImport") disable=importing}}{{t "button.stop"}}{{/paper-button}}
     {{/if}}
-    {{#card.actions}}
+    {{#unless importing}}
       {{#paper-button onClick=(action "startImport")}}{{t "button.start"}}{{/paper-button}}
-      {{#paper-button onClick=(action "stopImport")}}{{t "button.stop"}}{{/paper-button}}
-    {{/card.actions}}
-  {{/card.content}}
-{{/paper-card}}
+      {{#paper-button onClick=(action "cancelImport")}}{{t "button.cancel"}}{{/paper-button}}
+    {{/unless}}
+  {{/paper-dialog-actions}}
+{{/paper-dialog}}
+
