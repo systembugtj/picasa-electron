@@ -48,7 +48,8 @@ export default Component.extend(PreferenceMixin, {
   },
 
   scanThumbnail() {
-    from(this.get(PROPERTY_NAME.FOLDERS)).pipe(
+    from(this.get(PROPERTY_NAME.FOLDERS))
+      .pipe(
         mergeMap(folder => this.checkImages(folder))
       )
       .subscribe(folder => {
