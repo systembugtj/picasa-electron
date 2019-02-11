@@ -86,8 +86,11 @@ export default Controller.extend({
       this.set("disableCancel", true);
     },
 
-    handleImportFinished() {
-      this.set("disableCancel", false);
+    handleImportFinished(error) {
+      this.set("showImportDialog", false);
+
+      this.set("globalMessage", error ? error.message : "Import successfully!")
+      this.set("showSystemNotification", true);
     },
 
     closeImportDialog() {
@@ -102,6 +105,10 @@ export default Controller.extend({
     },
     showImage() {
 
+    },
+
+    closeSystemToast() {
+      this.set("showSystemNotification", false);
     }
   }
 })

@@ -13,6 +13,14 @@
 
 {{/split-view}}
 
+{{#if showSystemNotification}}
+  {{#paper-toast duration=5000 position="top right" swipeToClose=true onClose=(action "closeSystemToast") as |toast|}}
+    {{#toast.text}}
+      <p>{{globalMessage}}</p>
+    {{/toast.text}}
+  {{/paper-toast}}
+{{/if}}
+
 
 {{#if showNotification}}
   {{#paper-toast duration=5000 position="bottom right" swipeToClose=true onClose=(action "closeToast") as |toast|}}
@@ -24,7 +32,7 @@
 {{/if}}
 
 {{#if showImportDialog}}
-  {{import-photos source=importSource folders=model.folders
+  {{import-photos-dialog source=importSource folders=model.folders
       importStarted=(action "handleImportStarted")
       importFinished=(action "handleImportFinished")}}
 {{/if}}

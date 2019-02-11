@@ -10,7 +10,7 @@ module('Integration | Component | import-photos', function(hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{import-photos}}`);
+    await render(hbs`{{import-photos-dialog}}`);
 
     assert.equal(this.element.textContent.trim(), '');
 

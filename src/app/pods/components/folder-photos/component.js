@@ -3,7 +3,7 @@ import { notEmpty } from '@ember/object/computed';
 import { observer } from '@ember/object';
 import { inject as service } from "@ember/service";
 import { from } from 'rxjs';
-import { mergeMap, reduce, map } from 'rxjs/operators';
+import { concatMap, mergeMap, reduce, map } from 'rxjs/operators';
 import PreferenceMixin from "picasa/mixins/preference";
 import { run } from "@ember/runloop";
 import { error } from "picasa/utils/logger";
@@ -50,7 +50,7 @@ export default Component.extend(PreferenceMixin, {
   scanThumbnail() {
     from(this.get(PROPERTY_NAME.FOLDERS))
       .pipe(
-        mergeMap(folder => this.checkImages(folder))
+        concatMap(folder => this.checkImages(folder))
       )
       .subscribe(folder => {
         run(() => {

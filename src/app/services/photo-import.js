@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import PreferenceMixin from "picasa/mixins/preference";
 import { of, from, Observable } from "rxjs";
-import { map, filter, mergeMap, catchError } from 'rxjs/operators';
+import { map, filter, concatMap, mergeMap, catchError } from 'rxjs/operators';
 import moment from 'moment';
 
 const fs = requireNode("fs-extra");
@@ -23,7 +23,7 @@ export default Service.extend(PreferenceMixin, {
         mergeMap(folder => this.scanFolder(source, folder)),
         filter(action => !action.notImage),
         mergeMap(action => this.ensureDir(action)),
-        mergeMap(action => this.copyFile(action))
+        concatMap(action => this.copyFile(action)) // copy file should be concatMap.
       )
   },
 
@@ -81,7 +81,6 @@ export default Service.extend(PreferenceMixin, {
   },
 
   scanFolder(source, target) {
-
     return Observable.create(function(observer) {
       klaw(source)
         .on('data', item => {
@@ -123,23 +122,36 @@ export default Service.extend(PreferenceMixin, {
       );
   },
 
+  isImage(path) {
+    const readChunk = requireNode('read-chunk');
+    const imageType = requireNode('image-type');
+    const buffer = readChunk.sync(path, 0, 12);
+    imageType(buffer);
+    return buffer;
+  },
+
   checkExifDate(filePath) {
     return new Promise((resolve, reject) => {
-      fs.readFile(filePath, function (error, data) {
-        if (error) {
-            reject(error);
-        } else {
-          try {
+      if (this.isImage(filePath)) {
+        fs.readFile(filePath, function (error, data) {
+          if (error) {
+              reject(error);
+          } else {
+            try {
               const tags = ExifReader.load(data.buffer);
               // The MakerNote tag can be really large. Remove it to lower memory
               // usage if you're parsing a lot of files and saving the tags.
-
+              delete tags['MakerNote'];
               resolve(tags["DateTimeDigitized"]);
-          } catch (error) {
-              reject(error);
+            } catch (error) {
+              // Most time. it's not a image file which have exif.
+              resolve();
+            }
           }
-        }
-      })
-  });
+        });
+      } else {
+        reject(new Error("not supported image"));
+      }
+    });
   }
 });

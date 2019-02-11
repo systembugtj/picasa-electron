@@ -2,6 +2,7 @@ import Service, { inject as service } from '@ember/service';
 import { isEmpty } from "lodash/lang";
 import { resolve } from "rsvp";
 import PreferenceMixin from "picasa/mixins/preference";
+import { info } from "picasa/utils/logger";
 
 export default Service.extend(PreferenceMixin, {
   imageScale: service(),
@@ -15,7 +16,7 @@ export default Service.extend(PreferenceMixin, {
         .then(thumbnail => {
           return this.get("photoStorage").checkPhotoCached(uniqueName)
             .then(cached => {
-              if (cached != null && skipExistCheck) {
+              if (cached != null || skipExistCheck) {
                 return thumbnail;
               } else {
                 return this.cacheImage(uniqueName, thumbnail, path);
@@ -37,6 +38,7 @@ export default Service.extend(PreferenceMixin, {
   },
 
   cacheImage(uniqueName, thumbnail, path) {
+    info(`caching => ${thumbnail} : ${path}`)
     return this.thumbnailExist(thumbnail)
               .then(exist => {
                 return this.updateCacheRecord(exist, uniqueName, thumbnail, path);
