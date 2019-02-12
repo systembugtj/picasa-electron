@@ -22,7 +22,9 @@
   "import": {
     "photos": {
       "label": "从目录导入照片",
-      "progress": "导入进度"
+      "progress": "导入进度",
+      "source": "从下面目录导入：",
+      "destination": "导入到目录："
     },
     "select": {
       "label": "选择存放的目录"
