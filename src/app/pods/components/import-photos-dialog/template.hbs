@@ -1,32 +1,45 @@
-{{#paper-dialog class="flex-77"}}
+{{#paper-dialog class="folder-selection"}}
   {{#paper-toolbar}}
     {{#paper-toolbar-tools}}
       <h2>{{t "import.photos.label"}}</h2>
     {{/paper-toolbar-tools}}
   {{/paper-toolbar}}
   {{#paper-dialog-content}}
-    <div class="layout-column layout-align-center-center">
+    <div class="layout-column layout-align-start-start">
       {{#unless importing}}
-        <div class="folder-selection">
-          {{#paper-select
-            label=folderSelectLabel
-            selected=selectedFolder
-            options=folders
-            onChange=(action (mut selectedFolder))
-            as |folder|}}
-            {{folder.cwd}}
-          {{/paper-select}}
+        <div class="layout-row">
+          <div class="flex-shrink">
+            来源目录：
+          </div>
+          <div class="flex-gt-sm-77 flex-77">
+            {{source}}
+          </div>
+        </div>
+        <div class="layout-row">
+          <div class="flex-shrink">
+            目的目录：
+          </div>
+          <div class="flex-gt-sm-77 flex-77">
+              {{#paper-select
+                label=folderSelectLabel
+                selected=selectedFolder
+                options=folders
+                onChange=(action (mut selectedFolder))
+                as |folder|}}
+                {{folder.cwd}}
+              {{/paper-select}}
+          </div>
         </div>
       {{/unless}}
       {{#if importing}}
-        <div class="">
-          {{fileInProgress}}
-        </div>
-        <div>
+        <div class="layout-row">
           {{t "import.photos.progress"}}
         </div>
-        <div class="">
+        <div class="layout-row layout-align-center-start">
           {{paper-progress-linear}}
+        </div>
+        <div class="layout-row layout-align-center-start">
+          {{fileInProgress}}
         </div>
       {{/if}}
     </div>
