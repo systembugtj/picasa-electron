@@ -1,8 +1,8 @@
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import Service, { inject as service } from '@ember/service';
+import Evented from '@ember/object/evented';
 import { task } from 'ember-concurrency';
 
-export default Service.extend({
+export default Service.extend(Evented, {
   fetchCache: service(),
 
   init() {
@@ -13,6 +13,7 @@ export default Service.extend({
 
   scanImageForCache: task(function * (target) {
     yield this.get("fetchCache").checkCache(target, false);
+    this.trigger("imageScanned", target);
   }).maxConcurrency(2).enqueue(),
 
   requestScanFile(action) {

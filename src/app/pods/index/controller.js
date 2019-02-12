@@ -47,6 +47,12 @@ export default Controller.extend({
           // Scan folder.
         }
       });
+
+    this.get("folderScan")
+      .on("imageScanned", (target) => {
+        this.set("currentProcessing", target.path);
+        this.set("showNotification", true);
+      });
   },
 
   importPhotosFromFolder(item, focusedWindow) {
