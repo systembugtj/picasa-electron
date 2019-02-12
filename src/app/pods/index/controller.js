@@ -3,11 +3,16 @@ import { computed } from "@ember/object";
 import { inject as service } from '@ember/service';
 import { hostname } from "picasa/utils/folder-reader";
 import TreeNode from 'ember-tree-view/node';
+import { info } from "picasa/utils/logger";
+import { normalizeImage } from "picasa/utils/data-normalizer";
+
 const { dialog } = requireNode('electron').remote;
 
 export default Controller.extend({
   windowMenu: service(),
-  photoImport: service(),
+  fileWatcher: service(),
+  fetchCache: service(),
+  folderScan: service(),
 
   init() {
     this._super(...arguments);
@@ -23,6 +28,25 @@ export default Controller.extend({
     windowMenu.on("importFromFolder", () => {
       this.importPhotosFromFolder();
     })
+
+    this.get("fileWatcher").startWatcher();
+
+    this.get("fileWatcher")
+      .on("added", async (target) => {
+        if(target.isFile) {
+          const folders = await this.get("fileWatcher").getWatchedFolders()
+
+          const matched = folders.filter(folder => target.path.indexOf(folder) >= 0)
+
+          if(matched && matched.length > 0) {
+
+
+            this.get("folderScan").requestScanFile(normalizeImage(matched[0], target.path))
+          }
+        } else {
+          // Scan folder.
+        }
+      });
   },
 
   importPhotosFromFolder(item, focusedWindow) {
@@ -36,19 +60,8 @@ export default Controller.extend({
         if (paths) {
           this.set("showImportDialog", true);
           this.set("importSource", paths[0]);
-          /*
-          const path = paths[0];
-          this.get("photoImport").import(path)
-            .subscribe(photo => {
-              this.set("fileInProgress", photo.file);
-            }, () => {
-              this.set("showImportDialog", false);
-            }, () => {
-              this.set("showImportDialog", false);
-            })
-          */
         } else {
-          console.log("No path selected");
+          info("No path selected");
         }
     });
   },

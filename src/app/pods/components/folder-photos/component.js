@@ -47,6 +47,12 @@ export default Component.extend(PreferenceMixin, {
       );
   },
 
+  notifyReady(e) {
+    if (e) error(e);
+    const { ipcRenderer } = requireNode('electron');
+    ipcRenderer.send('picasa-is-ready');
+  },
+
   scanThumbnail() {
     from(this.get(PROPERTY_NAME.FOLDERS))
       .pipe(
@@ -57,9 +63,8 @@ export default Component.extend(PreferenceMixin, {
           const folders = this.get(PROPERTY_NAME.THUMBNAILS);
           folders.pushObject(folder);
         })
-      }, error, () => {
-        const { ipcRenderer } = requireNode('electron');
-        ipcRenderer.send('picasa-is-ready');
-      });
+      },
+      this.notifyReady,
+      this.notifyReady);
   },
 });

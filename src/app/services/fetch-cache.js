@@ -47,11 +47,17 @@ export default Service.extend(PreferenceMixin, {
   },
 
   updateCacheRecord(exist, uniqueName, thumbnail, path) {
-    const resizer = this.get("imageScale");
+
     return exist ?
                   this.get("photoStorage").setPhotoCached(uniqueName, thumbnail)
                   :
-                  resizer.createThumbnail(path, thumbnail)
+                  this.createThumbnail(path, thumbnail)
                     .then(() => this.get("photoStorage").setPhotoCached(uniqueName, thumbnail));
+  },
+
+  createThumbnail(path, thumbnail) {
+    return new Promise(resolve => {
+      this.get("imageScale").get("createThumbnail").perform(path, thumbnail, resolve);
+    })
   }
 });

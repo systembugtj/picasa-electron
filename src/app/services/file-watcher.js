@@ -1,13 +1,15 @@
 import Service from '@ember/service';
+import Evented from '@ember/object/evented';
 import createWatcher from 'picasa/utils/fs-watch';
 import { difference } from "lodash/array";
 import PreferenceMixin from "picasa/mixins/preference";
 import Precondition from "ember-precondition/utils/precondition";
 import { specialFolder, FOLDERS } from "picasa/utils/folder-reader";
+import { info } from "picasa/utils/logger";
 /**
  * Watch folders change
  */
-export default Service.extend(PreferenceMixin, {
+export default Service.extend(Evented, PreferenceMixin, {
   init() {
     this._super(...arguments);
 
@@ -46,6 +48,18 @@ export default Service.extend(PreferenceMixin, {
     }
   },
 
+  sendEvent(name, param, log) {
+    if (name === "ready") {
+      this.set("ready", true);
+      return;
+    }
+
+    if (this.get("ready")) {
+      info(...log);
+      this.trigger(name, param);
+    }
+  },
+
   startWatcher() {
     this.get("preferenceManager").getWatchedFolders()
       .then(paths => {
@@ -55,38 +69,30 @@ export default Service.extend(PreferenceMixin, {
           });
         // Declare the listeners of the watcher
         watcher
-        .on('add', function(path) {
-          console.log('File', path, 'has been added');
-          this.trigger("added", { isFile: true, path });
+        .on('add', (path) => {
+          this.sendEvent("added", { isFile: true, path }, ["File", path, "has been added"]);
         })
-        .on('addDir', function(path) {
-          console.log('Directory', path, 'has been added');
-          this.trigger("added", { isFile: false, path });
+        .on('addDir', (path) => {
+          this.sendEvent("added", { isFile: false, path }, ["Directory", path, "has been added"]);
         })
-        .on('change', function(path) {
-          console.log('File', path, 'has been changed');
-          this.trigger("changed", { isFile: true, path });
+        .on('change', (path) => {
+          this.sendEvent("changed", { isFile: true, path }, ["File", path, "has been changed"]);
         })
-        .on('unlink', function(path) {
-          console.log('File', path, 'has been removed');
-          this.trigger("unlink",  { isFile: true, path });
+        .on('unlink', (path) => {
+          this.sendEvent("unlink",  { isFile: true, path }, ["File", path, "has been removed"]);
         })
-        .on('unlinkDir', function(path) {
-          console.log('Directory', path, 'has been removed');
-          this.trigger("unlink",  { isFile: false, path });
+        .on('unlinkDir', (path) => {
+          this.sendEvent("unlink",  { isFile: false, path }, ["Directory", path, "has been removed"]);
         })
-        .on('error', function(error) {
-          console.log('Error happened', error);
-          this.trigger("error",  { error });
+        .on('error', (error) => {
+          this.sendEvent("error",  { error }, ["Error", error, "has been happened"]);
         })
-        .on('ready', function() {
-          console.info('From here can you check for real changes, the initial scan has been completed.');
-          this.trigger("ready");
+        .on('ready', () => {
+          this.sendEvent("ready", {}, ["Ready", 'From here can you check for real changes, the initial scan has been completed.']);
         })
-        .on('raw', function(event, path, details) {
-          // This event should be triggered everytime something happens.
-          console.log('Raw event info:', event, path, details);
-          this.trigger("raw", { event, path, details });
+        .on('raw', (event, path, details) => {
+          // This event should be triggered every time something happens.
+          this.sendEvent("raw", { event, path, details }, ['Raw event info:', event, path, details]);
         });
       })
   }

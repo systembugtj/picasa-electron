@@ -1,7 +1,7 @@
 
 const log4js = requireNode('log4js');
 
-const logger = log4js.getLogger();
+const logger = log4js.getLogger("render");
 logger.level = 'debug';
 //logger.debug("Some debug messages");
 

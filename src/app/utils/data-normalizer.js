@@ -21,3 +21,13 @@ export function normalizeImages(root, images, usePromise) {
     );
   return usePromise ? ob.toPromise() : ob;
 }
+
+export function normalizeImage(root, image) {
+  const path = requireNode("path");
+  return {
+    root,
+    name: path.basename(image),
+    path: image,
+    uniqueName: uniqueName(image)
+  };
+}

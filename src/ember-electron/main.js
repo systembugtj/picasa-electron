@@ -2,6 +2,11 @@
 const { app, BrowserWindow, protocol, ipcMain } = require('electron');
 const { dirname, join, resolve } = require('path');
 const protocolServe = require('electron-protocol-serve');
+const log4js = require('log4js');
+const sharp = require("sharp");
+const PROD_MODE = process.env.NODE_ENV === "production";
+const logger = log4js.getLogger("main");
+logger.level = PROD_MODE ? 'info' : "debug";
 
 let splash = null;
 let mainWindow = null;
@@ -10,6 +15,27 @@ ipcMain.on('picasa-is-ready', function() {
     splash.destroy();
     mainWindow.show();
 });
+
+ipcMain.on('picasa-create-thumbnail', function(event, arg) {
+  sharp(arg.path)
+      .resize(arg.width, arg.height, {
+        fit: sharp.fit.inside,
+        withoutEnlargement: arg.withoutEnlargement
+      })
+      .toFormat('jpeg')
+      .toFile(arg.thumbnail)
+      .then(i => {
+        logger.info(i);
+        return arg.thumbnail;
+      })
+      .catch(err => {
+        logger.error(err);
+        return arg.thumbnail;
+      }).then(() => {
+        // Notify render process
+        mainWindow && mainWindow.webContents.send("picasa-thumbnail-ready", arg);
+      });
+})
 
 // Registering a protocol & schema to serve our Ember application
 protocol.registerStandardSchemes(['serve'], { secure: true });
@@ -88,7 +114,7 @@ app.on('ready', () => {
   });
 
   // Open Debug tools if not in production.
-  if (process.env.NODE_ENV !== "production" && mainWindow.toggleDevTools) {
+  if (!PROD_MODE && mainWindow.toggleDevTools) {
     mainWindow.toggleDevTools();
   }
 });
