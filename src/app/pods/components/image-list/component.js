@@ -1,11 +1,15 @@
 import Component from '@ember/component';
+import { classNames } from '@ember-decorators/component';
+import { action } from '@ember-decorators/object';
 
-export default Component.extend({
-  classNames: ["image-list"],
-  imageClicked: () => {},
-  actions: {
-    handleImageClicked(src) {
-      this.imageClicked(src);
-    }
+@classNames("image-list")
+class ImageListComponent extends Component {
+  imageClicked = () => {};
+
+  @action
+  handleImageClicked(src) {
+    this.imageClicked(src);
   }
-});
+}
+
+export default ImageListComponent;

@@ -1,28 +1,26 @@
 import Component from '@ember/component';
 import I18nMixin from 'ember-i18next/mixins/i18n';
-import { inject as service } from '@ember/service';
-import { computed } from "@ember/object";
+import { inject } from '@ember-decorators/service';
+import { action, computed } from '@ember-decorators/object';
 
-export default Component.extend(I18nMixin, {
-  photoImport: service(),
-  folderSelectLabel: computed("", {
-    get() {
+export default class ImportPhotosDialog extends Component.extend(I18nMixin) {
+  @inject photoImport;
+
+  @computed
+  get folderSelectLabel() {
       return this.t("import.select.label")
-    }
-  }),
+  }
 
-  importing: false,
+  importing = false;
 
-  selectedFolder: computed("folders", {
-    get() {
+  @computed("folders")
+  get selectedFolder() {
       return this.get('folders').objectAt(0);
-    }
-  }),
+  }
 
-  importStarted: () => {},
-  importFinished: () => {},
-
-  folders: undefined, // folders to save imported folders.
+  importStarted = () => {};
+  importFinished =  () => {};
+  folders = undefined; // folders to save imported folders.
 
   importFolder(path) {
     this.set("importing", true);
@@ -37,17 +35,19 @@ export default Component.extend(I18nMixin, {
         this.importFinished();
         this.set("importing", false);
       })
-  },
-
-  actions: {
-    startImport() {
-      this.importFolder(this.get("source"));
-    },
-    stopImport() {
-      // should allow stop?
-    },
-    cancelImport() {
-      this.importFinished();
-    }
   }
-});
+
+  @action
+  startImport() {
+    this.importFolder(this.get("source"));
+  }
+  @action
+  stopImport() {
+    // should allow stop?
+  }
+
+  @action
+  cancelImport() {
+    this.importFinished();
+  }
+}

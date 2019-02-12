@@ -20,10 +20,11 @@
     "test": "ember electron:test"
   },
   "devDependencies": {
+    "@ember-decorators/babel-transforms": "^3.1.0",
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
     "@systembug/ember-spinkit": "^2.0.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^8.0.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -48,6 +49,7 @@
     "ember-cli-uglify": "^2.1.0",
     "ember-concurrency": "^0.8.27",
     "ember-data": "~3.7.0",
+    "ember-decorators": "^5.1.3",
     "ember-electron": "^2.10.0",
     "ember-export-application-global": "^2.0.0",
     "ember-font-awesome": "^4.0.0-rc.4",
@@ -86,6 +88,7 @@
     "electron-json-storage": "^4.1.6",
     "electron-protocol-serve": "^1.3.0",
     "electron-squirrel-startup": "^1.0.0",
+    "ember-reselect-shim": "^2.0.0",
     "exifreader": "^2.6.0",
     "fs-extra": "^7.0.1",
     "image-type": "^3.0.0",
