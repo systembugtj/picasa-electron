@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import folders from "./folders";
+import watched from "./watched";
 
 const rootReducer = combineReducers({
-  folders
+  watched
 })
 
 export default rootReducer;

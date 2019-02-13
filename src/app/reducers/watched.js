@@ -10,15 +10,15 @@ const initialState = {
 
 };
 
-export default function folders(state, action) {
+export default function watched(state, action) {
   switch (action.type) {
     case ActionTypes.LIST_FILES: {
       return Object.assign({}, state, { filter: false });
     }
-    /*
-    case types.SHOW_COMPLETED: {
-      return Object.assign({}, state, { filter: true });
+    case ActionTypes.ADD_FOLDERS: {
+      return Object.assign({}, state, { folders: action.payload.folders });
     }
+    /*
 
     case types.SHOW_ALL: {
       return Object.assign({}, state, { filter: undefined });

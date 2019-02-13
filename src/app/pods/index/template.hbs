@@ -1,13 +1,17 @@
 {{#split-view isVertical=true as |split|}}
   {{#split.child}}
     <div class="tree-area">
-      {{path-tree model=folders}}
+      {{#folder-list  as |folders|}}
+        {{path-tree model=folders}}
+      {{/folder-list}}
     </div>
   {{/split.child}}
   {{split.sash}}
   {{#split.child class="right-pane"}}
     <div class="images-area">
-      {{folder-photos folders=model.folders}}
+      {{#folder-list as |folders|}}
+        {{folder-photos folders=folders}}
+      {{/folder-list}}
     </div>
   {{/split.child}}
 

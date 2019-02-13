@@ -1,8 +1,7 @@
 import Controller from "@ember/controller"
-import { computed, action } from "@ember-decorators/object";
+import { action } from "@ember-decorators/object";
 import { inject } from '@ember-decorators/service';
-import { hostname } from "picasa/utils/folder-reader";
-import TreeNode from 'ember-tree-view/node';
+
 import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
 
@@ -82,22 +81,6 @@ export default class IndexController extends Controller {
         }
     });
   }
-
-  @computed("model")
-  get folders() {
-      const folders = this.get("model.folders");
-      const root = TreeNode.create({
-        title: hostname()
-      });
-
-      folders.forEach(element => {
-        root.createChild({
-          title: element.cwd
-        });
-      });
-      return root;
-  }
-
   @action
   handleImportStarted() {
     this.set("disableCancel", true);
