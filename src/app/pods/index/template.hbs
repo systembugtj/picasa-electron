@@ -7,7 +7,9 @@
   {{split.sash}}
   {{#split.child class="right-pane"}}
     <div class="images-area">
-      {{folder-photos folders=model.folders}}
+      {{#folder-list}}
+        {{folder-photos folders=folders}}
+      {{/folder-list}}
     </div>
   {{/split.child}}
 

@@ -1,7 +1,7 @@
 import Component from '@ember/component';
-import { notEmpty } from '@ember/object/computed';
-import { observer } from '@ember/object';
-import { inject as service } from "@ember/service";
+import { notEmpty } from '@ember-decorators/object/computed';
+import { observes } from '@ember-decorators/object';
+import { inject } from "@ember-decorators/service";
 import { from } from 'rxjs';
 import { concatMap, mergeMap, reduce, map } from 'rxjs/operators';
 import PreferenceMixin from "picasa/mixins/preference";
@@ -13,23 +13,28 @@ const PROPERTY_NAME = {
   THUMBNAILS: "foldersWithThumbnail"
 }
 
-export default Component.extend(PreferenceMixin, {
-  fetchCache: service(),
-  hasFolders: notEmpty(PROPERTY_NAME.THUMBNAILS),
-  folderChanged: observer(PROPERTY_NAME.FOLDERS, () => {
+export default class FolderPhotosComponent extends Component.extend(PreferenceMixin) {
+  @inject fetchCache;
+
+  @notEmpty(PROPERTY_NAME.THUMBNAILS)
+  hasFolders;
+
+  @observes(PROPERTY_NAME.FOLDERS)
+  folderChanged() {
     this.scanThumbnail();
-  }),
-  imageClicked: () => {},
+  }
+  folders = [];
+  foldersWithThumbnail = [];
+  imageClicked = () => {}
 
   init() {
-    this._super(...arguments);
-    this.set(PROPERTY_NAME.THUMBNAILS, []);
+    super.init(...arguments);
     this.scanThumbnail();
-  },
+  }
 
   isCached(image) {
     return from(this.get("fetchCache").checkCache(image, true));
-  },
+  }
 
   checkImages(folder) {
     const mergeImage = (images, image) => {
@@ -45,13 +50,13 @@ export default Component.extend(PreferenceMixin, {
           return folder;
         })
       );
-  },
+  }
 
   notifyReady(e) {
     if (e) error(e);
     const { ipcRenderer } = requireNode('electron');
     ipcRenderer.send('picasa-is-ready');
-  },
+  }
 
   scanThumbnail() {
     from(this.get(PROPERTY_NAME.FOLDERS))
@@ -66,5 +71,5 @@ export default Component.extend(PreferenceMixin, {
       },
       this.notifyReady,
       this.notifyReady);
-  },
-});
+  }
+}

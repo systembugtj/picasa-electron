@@ -5,6 +5,7 @@ import Promise from "rsvp";
 import { normalizeImages } from "picasa/utils/data-normalizer";
 import { inject as service } from '@ember/service';
 import { route } from "ember-redux";
+import { addFolders } from 'picasa/actions/folders';
 
 function listFiles(paths) {
   const model = [];
@@ -27,37 +28,23 @@ function toModel(folders) {
   })
   return Promise.all(promises);
 }
-/*
-const model = () => {
+
+const model = function (dispatch) {
   // Need a very specific path reading from preferences.
   return this.getFileWatcher().getWatchedFolders()
       .then(paths => listFiles(paths))
       .then(folders => toModel(folders))
       .then(folders => {
-        return {
-          folders
-        }
+        addFolders(folders)(dispatch);
       });
 };
-*/
+
 const IndexRoute = Route.extend(PreferenceMixin, {
   fileWatcher: service(),
 
   getFileWatcher() {
     return this.get("fileWatcher");
   },
-
-  model() {
-    // Need a very specific path reading from preferences.
-    return this.getFileWatcher().getWatchedFolders()
-        .then(paths => listFiles(paths))
-        .then(folders => toModel(folders))
-        .then(folders => {
-          return {
-            folders
-          }
-        });
-  }
 });
 
-export default route({ })(IndexRoute);
+export default route({ model })(IndexRoute);
