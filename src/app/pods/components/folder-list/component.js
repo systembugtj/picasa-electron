@@ -4,7 +4,7 @@ import listFiles from "picasa/actions/folders";
 
 const stateToComputed = (state /*, attrs*/) => {
   return {
-    folders: state.folders.folders
+    folders: state.watched.folders
   }
 };
 

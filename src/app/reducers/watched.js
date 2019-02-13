@@ -10,7 +10,7 @@ const initialState = {
 
 };
 
-export default function folders(state, action) {
+export default function watched(state, action) {
   switch (action.type) {
     case ActionTypes.LIST_FILES: {
       return Object.assign({}, state, { filter: false });
