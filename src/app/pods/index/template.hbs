@@ -1,9 +1,7 @@
 {{#split-view isVertical=true as |split|}}
   {{#split.child}}
     <div class="tree-area">
-      {{#folder-list  as |folders|}}
-        {{path-tree model=folders}}
-      {{/folder-list}}
+      {{path-tree}}
     </div>
   {{/split.child}}
   {{split.sash}}

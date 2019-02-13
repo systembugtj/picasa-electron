@@ -4,12 +4,24 @@ import { classNames } from '@ember-decorators/component';
 import { action, computed } from '@ember-decorators/object';
 import TreeNode from 'ember-tree-view/node';
 import { hostname } from "picasa/utils/folder-reader";
+import { connect } from 'ember-redux';
+import { listFiles } from "picasa/actions/folders";
+
+const stateToComputed = (state /*, attrs*/) => {
+  return {
+    folders: state.watched.folders
+  }
+};
+
+const dispatchToActions = {
+  listFiles
+};
 @classNames("path-tree")
 class PathTreeComponent extends Component.extend(PreferenceMixin) {
   expandDepth = 1;
-  @computed("model")
+  @computed("folders")
   get treeNodes() {
-    const folders = this.get("model");
+    const folders = this.get("folders");
     const root = TreeNode.create({
       title: hostname()
     });
@@ -36,4 +48,4 @@ class PathTreeComponent extends Component.extend(PreferenceMixin) {
   }
 }
 
-export default PathTreeComponent;
+export default connect(stateToComputed, dispatchToActions)(PathTreeComponent);
