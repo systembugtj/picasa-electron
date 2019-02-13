@@ -29,7 +29,6 @@ class PathTreeComponent extends Component.extend(PreferenceMixin) {
     }, (path) => {
         if (path) {
           this.getPreferenceService().addFolders(path);
-          // Start to watch the selected path
         } else {
           console.log("No path selected");
         }
