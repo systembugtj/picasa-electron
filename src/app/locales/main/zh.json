@@ -33,7 +33,11 @@
   "preferences": {
     "label": "设置"
   },
-
+  "left": {
+    "toolbar": {
+      "addWatchedFolder": "添加目录"
+    }
+  },
   "button": {
     "cancel": "取消",
     "ok": "确定",

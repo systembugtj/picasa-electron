@@ -4,9 +4,10 @@ import { observes } from '@ember-decorators/object';
 import { inject } from "@ember-decorators/service";
 import { from } from 'rxjs';
 import { concatMap, mergeMap, reduce, map } from 'rxjs/operators';
-import PreferenceMixin from "picasa/mixins/preference";
 import { run } from "@ember/runloop";
 import { error } from "picasa/utils/logger";
+
+import PreferenceMixin from "picasa/mixins/preference";
 
 const PROPERTY_NAME = {
   FOLDERS: "folders",
@@ -23,6 +24,7 @@ export default class FolderPhotosComponent extends Component.extend(PreferenceMi
   folderChanged() {
     this.scanThumbnail();
   }
+
   folders = [];
   foldersWithThumbnail = [];
   imageClicked = () => {}
@@ -33,7 +35,7 @@ export default class FolderPhotosComponent extends Component.extend(PreferenceMi
   }
 
   isCached(image) {
-    return from(this.get("fetchCache").checkCache(image, true));
+    return from(this.fetchCache.checkCache(image, true));
   }
 
   checkImages(folder) {

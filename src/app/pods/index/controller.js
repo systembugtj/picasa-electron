@@ -1,35 +1,36 @@
 import Controller from "@ember/controller"
-import { inject as service } from '@ember/service';
+import { action } from "@ember-decorators/object";
+import { inject } from '@ember-decorators/service';
 
 import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
 
 const { dialog } = requireNode('electron').remote;
 
-export default Controller.extend({
-  windowMenu: service(),
-  fileWatcher: service(),
-  fetchCache: service(),
-  folderScan: service(),
+export default class IndexController extends Controller {
+  @inject windowMenu;
+  @inject fileWatcher;
+  @inject fetchCache;
+  @inject folderScan;
 
   init() {
-    this._super(...arguments);
-    const windowMenu = this.get("windowMenu");
-    windowMenu.on("openFolderSelection", () => {
+    super.init(...arguments)
+
+    this.windowMenu.on("openFolderSelection", () => {
       this.openDirectoryDialog();
     });
 
-    windowMenu.on("openPreferences", () => {
+    this.windowMenu.on("openPreferences", () => {
       this.set("showPreferenceDialog", true);
     });
 
-    windowMenu.on("importFromFolder", () => {
+    this.windowMenu.on("importFromFolder", () => {
       this.importPhotosFromFolder();
     })
 
-    this.get("fileWatcher").startWatcher();
+    this.fileWatcher.startWatcher();
 
-    this.get("fileWatcher")
+    this.fileWatcher
       .on("added", async (target) => {
         if(target.isFile) {
           const folders = await this.get("fileWatcher").getWatchedFolders()
@@ -48,13 +49,12 @@ export default Controller.extend({
 
     this.get("folderScan")
       .on("imageScanned", (target) => {
-        this.set("currentProcessing", target.path);
-        this.set("showNotification", true);
+        this.currentProcessing = target.path;
+        this.showNotification = true;
       });
-  },
-
+  }
   importPhotosFromFolder(item, focusedWindow) {
-    if(this.get("showImportDialog")) {
+    if(this.showImportDialog) {
       // Importing photos.
       return;
     }
@@ -68,7 +68,7 @@ export default Controller.extend({
           info("No path selected");
         }
     });
-  },
+  }
 
   openDirectoryDialog() {
     dialog.showOpenDialog({
@@ -77,39 +77,39 @@ export default Controller.extend({
         if (paths) {
           this.getPreferenceService().addFolders(paths);
         } else {
-          console.log("No path selected");
+          info("No path selected");
         }
     });
-  },
-
-  actions: {
-    handleImportStarted() {
-      this.set("disableCancel", true);
-    },
-
-    handleImportFinished(error) {
-      this.set("showImportDialog", false);
-
-      this.set("globalMessage", error ? error.message : "Import successfully!")
-      this.set("showSystemNotification", true);
-    },
-
-    closeImportDialog() {
-      this.set("showImportDialog", false);
-    },
-
-    closeDialog() {
-      this.set("showPreferenceDialog", false);
-    },
-    closeToast() {
-      this.set("showNotification", false);
-    },
-    showImage() {
-
-    },
-
-    closeSystemToast() {
-      this.set("showSystemNotification", false);
-    }
   }
-})
+  @action
+  handleImportStarted() {
+    this.set("disableCancel", true);
+  }
+  @action
+  handleImportFinished(error) {
+    this.set("showImportDialog", false);
+
+    this.set("globalMessage", error ? error.message : "Import successfully!")
+    this.set("showSystemNotification", true);
+  }
+  @action
+  closeImportDialog() {
+    this.set("showImportDialog", false);
+  }
+  @action
+  closeDialog() {
+    this.set("showPreferenceDialog", false);
+  }
+  @action
+  closeToast() {
+    this.set("showNotification", false);
+  }
+  @action
+  showImage() {
+
+  }
+  @action
+  closeSystemToast() {
+    this.set("showSystemNotification", false);
+  }
+}
