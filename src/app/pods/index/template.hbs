@@ -1,19 +1,26 @@
-{{#split-view isVertical=true as |split|}}
-  {{#split.child}}
-    <div class="tree-area">
-      {{path-tree}}
-    </div>
-  {{/split.child}}
-  {{split.sash}}
-  {{#split.child class="right-pane"}}
-    <div class="images-area">
-      {{#folder-list as |folders|}}
-        {{folder-photos folders=folders}}
-      {{/folder-list}}
-    </div>
-  {{/split.child}}
+<div class="layout-column flex">
+  <div class="flex">
+    {{title-bar title=(t "title")}}
+  </div>
+  <div class="flex split-view-container">
+    {{#split-view isVertical=true as |split|}}
+      {{#split.child}}
+        <div class="tree-area">
+          {{path-tree}}
+        </div>
+      {{/split.child}}
+      {{split.sash}}
+      {{#split.child class="right-pane"}}
+        <div class="images-area">
+          {{#folder-list as |folders|}}
+            {{folder-photos folders=folders}}
+          {{/folder-list}}
+        </div>
+      {{/split.child}}
+    {{/split-view}}
+  </div>
+</div>
 
-{{/split-view}}
 
 {{#if showSystemNotification}}
   {{#paper-toast duration=5000 position="top right" swipeToClose=true onClose=(action "closeSystemToast") as |toast|}}

@@ -1,6 +1,7 @@
 .image-list {
   height: 100%;
   overflow: auto;
+  background-color: aliceblue;
   ul {
     list-style-type: none;
     li {
@@ -16,7 +17,7 @@
       word-break: keep-all;
       text-overflow: ellipsis;
       overflow: hidden;
+      transition:all 0.5s ease
     }
   }
-  background-color: beige;
 }

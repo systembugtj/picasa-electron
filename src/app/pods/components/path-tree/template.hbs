@@ -1,15 +1,1 @@
-{{#paper-toolbar}}
-  {{#paper-toolbar-tools}}
-    {{#paper-button iconButton=true}}
-      {{paper-icon "menu"}}
-    {{/paper-button}}
-    <h2>
-      Picasa
-    </h2>
-    <span class="flex"></span>
-
-    {{#paper-button onClick=(action "addWatchedFolder")}}{{t "left.toolbar.addWatchedFolder"}}{{/paper-button}}
-  {{/paper-toolbar-tools}}
-{{/paper-toolbar}}
-
 {{em-tree model=treeNodes selected=selected expand-depth=expandDepth}}

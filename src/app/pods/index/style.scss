@@ -1,0 +1,46 @@
+.right-pane::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+.right-pane::-webkit-scrollbar-thumb {
+  background-image: -webkit-gradient(linear,
+                      left bottom,
+                      left top,
+                      color-stop(0.44, rgb(122,153,217)),
+                      color-stop(0.72, rgb(73,125,189)),
+                      color-stop(0.86, rgb(28,58,148)));
+}
+.split-view-container {
+  position: relative;
+  height: calc(100vh - 32px);
+  width: 100vw;
+}
+.split-view  {
+  .split-view-sash {
+    background-color: black;
+  }
+}
+
+.images-area {
+  height: 100%;
+  margin-top: -8px;
+  background-color: aliceblue;
+  md-card {
+    margin-left: 0;
+    margin-right: 0;
+    md-card-content {
+      padding: 4px !important;
+      background-color: aliceblue !important;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.tree-area {
+  background-color: aliceblue;
+  height: 100%;
+  margin-top: -16px;
+}

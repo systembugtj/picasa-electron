@@ -74,12 +74,14 @@ app.on('ready', () => {
   const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize
   mainWindow = new BrowserWindow({
     width: width * 2 / 3,
-    height: height * 11/ 12,
+    height: height - 200,
     title: "www.ThePicasa.com",
     webPreferences: {
       webSecurity: false
     },
     show: false,
+    frame: false,
+    titleBarStyle: "hiddenInset"
   });
 
   // If you want to open up dev tools programmatically, call
