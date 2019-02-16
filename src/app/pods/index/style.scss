@@ -1,14 +1,44 @@
-.right-pane::-webkit-scrollbar {
-  width: 10px;
-  background-color: #F5F5F5;
+.right-pane {
+  &::-webkit-scrollbar {
+    width: 16px;
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $track-color;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent);
+  }
 }
-.right-pane::-webkit-scrollbar-thumb {
-  background-image: -webkit-gradient(linear,
-                      left bottom,
-                      left top,
-                      color-stop(0.44, rgb(122,153,217)),
-                      color-stop(0.72, rgb(73,125,189)),
-                      color-stop(0.86, rgb(28,58,148)));
+
+.left-pane {
+  &::-webkit-scrollbar {
+    width: 16px;
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $track-color;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent);
+
+  }
 }
 .split-view-container {
   position: relative;
@@ -17,20 +47,53 @@
 }
 .split-view  {
   .split-view-sash {
-    background-color: black;
+    opacity: 0.2;
+    background-color: $track-color;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent);
+
+    &:hover {
+      opacity: 0.6;
+      background-color: $track-color;
+      background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            rgba(255, 255, 255, .2) 50%,
+                            rgba(255, 255, 255, .2) 75%,
+                            transparent 75%,
+                            transparent)
+    }
+
+    &.dragging {
+      opacity: 1;
+      background-color: $track-color;
+      background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            rgba(255, 255, 255, .2) 50%,
+                            rgba(255, 255, 255, .2) 75%,
+                            transparent 75%,
+                            transparent)
+    }
   }
 }
 
 .images-area {
   height: 100%;
   margin-top: -8px;
-  background-color: aliceblue;
+  background-color: $standard-bgcolor;
   md-card {
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: 4px;
+    margin-right: 2px;
+    box-shadow: none;
     md-card-content {
       padding: 4px !important;
-      background-color: aliceblue !important;
+      background-color: $standard-bgcolor !important;
       ul {
         margin: 0;
         padding: 0;
@@ -40,6 +103,6 @@
 }
 
 .tree-area {
-  background-color: aliceblue;
+  background-color: $standard-bgcolor;
   height: 100%;
 }

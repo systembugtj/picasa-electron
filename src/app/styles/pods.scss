@@ -1,5 +1,9 @@
+$track-color: rgb(156, 197, 233);
+$standard-bgcolor: aliceblue;
+
 @import "app/pods/components/path-tree/style";
 @import "app/pods/components/image-list/style";
 @import "app/pods/components/import-photos-dialog/style";
 @import "app/pods/components/title-bar/style";
+@import "app/pods/components/folder-header/style";
 @import "app/pods/index/style";

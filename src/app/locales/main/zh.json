@@ -11,7 +11,12 @@
       "label": "目录管理",
       "add": "添加目录",
       "import": "导入图片..."
-    }
+    },
+    "header": {
+      "toolbar" : {
+        "refresh": "刷新",
+        "favorite": "最爱"
+      }
   },
   "file": {
     "label": "文件",
