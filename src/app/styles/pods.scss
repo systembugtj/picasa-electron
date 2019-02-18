@@ -1,5 +1,6 @@
 $track-color: rgb(156, 197, 233);
-$standard-bgcolor: aliceblue;
+$standard-bgcolor:  rgba(205, 233, 226, 0.5);
+$workbench-bgcolor: rgb(218, 247, 240);
 
 @import "app/pods/components/path-tree/style";
 @import "app/pods/components/image-list/style";

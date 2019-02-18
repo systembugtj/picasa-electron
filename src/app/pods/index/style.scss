@@ -1,4 +1,5 @@
 .right-pane {
+  background-color: $workbench-bgcolor;
   &::-webkit-scrollbar {
     width: 16px;
     background-color: $standard-bgcolor;
@@ -86,14 +87,14 @@
 .images-area {
   height: 100%;
   margin-top: -8px;
-  background-color: $standard-bgcolor;
+  background-color: $workbench-bgcolor;
   md-card {
     margin-left: 4px;
     margin-right: 2px;
     box-shadow: none;
     md-card-content {
       padding: 4px !important;
-      background-color: $standard-bgcolor !important;
+      background-color: $workbench-bgcolor !important;
       ul {
         margin: 0;
         padding: 0;
