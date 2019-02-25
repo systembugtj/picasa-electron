@@ -34,6 +34,10 @@ You will need the following things properly installed on your computer.
 * `.\vcpkg install openssl:x64-windows-static`
 * `.\vcpkg install openssl:x32-windows-static`
 
+
+### Linux
+
+* sudo apt install libssl-dev (1.1 is required for realm to build)
 ### Code Generators
 
 Make use of the many generators for code, try `ember help generate` for more details
