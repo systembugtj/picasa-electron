@@ -71,8 +71,8 @@ app.on('ready', () => {
   });
   splash.loadURL(`file://${__dirname}/splash.html`);
 
-  const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize
-  mainWindow = new BrowserWindow({
+  const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize;
+  const options = {
     width: width * 2 / 3,
     height: height - 200,
     title: "www.ThePicasa.com",
@@ -80,9 +80,10 @@ app.on('ready', () => {
       webSecurity: false
     },
     show: false,
-    frame: false,
-    titleBarStyle: "hiddenInset"
-  });
+    frame: process.platform !== 'darwin', // has frame for linux and windows, but not mac.
+    titleBarStyle: "hiddenInset", // only works on mac.
+  }
+  mainWindow = new BrowserWindow(options);
 
   // If you want to open up dev tools programmatically, call
   // mainWindow.openDevTools();
