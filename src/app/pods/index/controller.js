@@ -1,9 +1,10 @@
 import Controller from "@ember/controller"
-import { action } from "@ember-decorators/object";
+import { action, computed } from "@ember-decorators/object";
 import { inject } from '@ember-decorators/service';
 import I18nMixin from 'ember-i18next/mixins/i18n';
 import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
+import { isMacOSX } from "picasa/utils/platform";
 
 const { dialog } = requireNode('electron').remote;
 
@@ -13,6 +14,10 @@ export default class IndexController extends Controller.extend(I18nMixin) {
   @inject fetchCache;
   @inject folderScan;
 
+  @computed
+  get macosxStyle() {
+    return isMacOSX() ? "macosx" : "";
+  }
   init() {
     super.init(...arguments)
 
