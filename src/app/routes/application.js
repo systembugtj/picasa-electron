@@ -9,8 +9,8 @@ export default Route.extend(I18nMixin, {
   windowMenu: service(),
 
   beforeModel() {
-    return this.get('i18n').initLibraryAsync().then(() => {
-      this.get('windowMenu').setup();
+    return this.i18n.initLibraryAsync().then(() => {
+      this.windowMenu.setup();
       setupContextMenu();
     });
   },

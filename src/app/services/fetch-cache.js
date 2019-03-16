@@ -14,14 +14,14 @@ export default Service.extend(PreferenceMixin, {
       return this.getPreferenceService().getCachedPath()
         .then(cached => `${cached}/${uniqueName}`)
         .then(thumbnail => {
-          return this.get("photoStorage").checkPhotoCached(uniqueName)
+          return this.photoStorage.checkPhotoCached(uniqueName)
             .then(cached => {
               if (cached != null || skipExistCheck) {
                 return thumbnail;
               } else {
                 return this.cacheImage(uniqueName, thumbnail, path);
               }
-            })
+            });
         })
         .then(thumbnail => {
           image.thumbnail = thumbnail;
@@ -33,7 +33,7 @@ export default Service.extend(PreferenceMixin, {
   },
 
   thumbnailExist(thumbnail) {
-    const resizer = this.get("imageScale");
+    const resizer = this.imageScale;
     return resizer.fileExist(thumbnail);
   },
 
@@ -49,15 +49,15 @@ export default Service.extend(PreferenceMixin, {
   updateCacheRecord(exist, uniqueName, thumbnail, path) {
 
     return exist ?
-                  this.get("photoStorage").setPhotoCached(uniqueName, thumbnail)
+                  this.photoStorage.setPhotoCached(uniqueName, thumbnail)
                   :
                   this.createThumbnail(path, thumbnail)
-                    .then(() => this.get("photoStorage").setPhotoCached(uniqueName, thumbnail));
+                    .then(() => this.photoStorage.setPhotoCached(uniqueName, thumbnail));
   },
 
   createThumbnail(path, thumbnail) {
     return new Promise(resolve => {
-      this.get("imageScale").get("createThumbnail").perform(path, thumbnail, resolve);
-    })
+      this.imageScale.get("createThumbnail").perform(path, thumbnail, resolve);
+    });
   }
 });

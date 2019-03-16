@@ -60,7 +60,7 @@ export default Service.extend(Evented, I18nMixin, {
       position: undefined
     };
     const options = defaults(params, predefined);
-    const injections = this.get('injections');
+    const injections = this.injections;
     const hasInjection = injections.find((item) => (item.name === options.name));
     const injection = {
       name: options.name,
@@ -245,7 +245,7 @@ export default Service.extend(Evented, I18nMixin, {
    * @returns template - Electron menu template
    */
   _injectBlogs(template) {
-    const blogs = this.get('blogs');
+    const blogs = this.blogs;
 
     if (template && template.forEach && blogs) {
       template.forEach((item) => {
@@ -306,7 +306,7 @@ export default Service.extend(Evented, I18nMixin, {
    * @returns {Object} template - Electron Menu template
    */
   _processInjections(template) {
-    const injections = this.get('injections');
+    const injections = this.injections;
     let processedTemplate = template;
 
     if (injections && injections.length > 0) {

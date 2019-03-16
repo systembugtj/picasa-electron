@@ -5,6 +5,6 @@ export default Mixin.create({
   preferenceManager: service(),
 
   getPreferenceService() {
-    return this.get("preferenceManager");
+    return this.preferenceManager;
   }
 });

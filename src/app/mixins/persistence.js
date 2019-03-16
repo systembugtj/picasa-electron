@@ -5,6 +5,6 @@ export default Mixin.create({
   persistence: service(),
 
   getPersistenceService() {
-    return this.get("persistence");
+    return this.persistence;
   }
 });

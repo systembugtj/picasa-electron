@@ -12,11 +12,11 @@ export default Service.extend(Evented, {
   },
 
   scanImageForCache: task(function * (target) {
-    yield this.get("fetchCache").checkCache(target, false);
+    yield this.fetchCache.checkCache(target, false);
     this.trigger("imageScanned", target);
   }).maxConcurrency(2).enqueue(),
 
   requestScanFile(action) {
-    this.get("scanImageForCache").perform(action);
+    this.scanImageForCache.perform(action);
   }
 });

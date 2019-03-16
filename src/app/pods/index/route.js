@@ -43,7 +43,7 @@ const IndexRoute = Route.extend(PreferenceMixin, {
   fileWatcher: service(),
 
   getFileWatcher() {
-    return this.get("fileWatcher");
+    return this.fileWatcher;
   },
 });
 

@@ -37,7 +37,7 @@ export default Service.extend(Evented, PreferenceMixin, {
   },
 
   adjustWatchedFolder(folders) {
-    const watcher = this.get("watcher");
+    const watcher = this.watcher;
     if (watcher) {
       const current = watcher.getWatched();
 
@@ -54,14 +54,14 @@ export default Service.extend(Evented, PreferenceMixin, {
       return;
     }
 
-    if (this.get("ready")) {
+    if (this.ready) {
       info(...log);
       this.trigger(name, param);
     }
   },
 
   startWatcher() {
-    this.get("preferenceManager").getWatchedFolders()
+    this.preferenceManager.getWatchedFolders()
       .then(paths => {
         const watcher = createWatcher(paths, {
           ignored: /[/\\]\./,
