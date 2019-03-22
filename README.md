@@ -19,14 +19,13 @@ You will need the following things properly installed on your computer.
 * `cd picasa`
 * `yarn install`
 
-
 ## Running / Development
 
 * `ember electron`
 
 ### Windows
 
-* Install chocolatey or scoop
+* Install scoop
 * Install node version managment windows. https://github.com/coreybutler/nvm-windows
 * Install https://github.com/felixrieseberg/windows-build-tools#readme
 * Install vcpkg under c:\src(didn't try if install different location has effect). https://github.com/Microsoft/vcpkg
@@ -60,6 +59,10 @@ Make use of the many generators for code, try `ember help generate` for more det
 ### Deploying
 
 Specify what it takes to deploy your app.
+
+## Know Issue
+
+* realm is locked to 2.23.0, higher version has issue to build. 2.26.0 maybe better.
 
 ## Further Reading / Useful Links
 
