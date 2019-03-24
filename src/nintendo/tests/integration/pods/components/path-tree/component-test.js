@@ -1,26 +1,24 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | path tree', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('path-tree', 'Integration | Component | path tree', {
+  integration: true
+});
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders', function(assert) {
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{path-tree}}`);
+  this.render(hbs`{{path-tree}}`);
 
-    assert.dom('*').hasText('');
+  assert.equal(this.$().text().trim(), '');
 
-    // Template block usage:
-    await render(hbs`
-      {{#path-tree}}
-        template block text
-      {{/path-tree}}
-    `);
+  // Template block usage:
+  this.render(hbs`
+    {{#path-tree}}
+      template block text
+    {{/path-tree}}
+  `);
 
-    assert.dom('*').hasText('template block text');
-  });
+  assert.equal(this.$().text().trim(), 'template block text');
 });

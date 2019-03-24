@@ -1,26 +1,24 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | image list', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('image-list', 'Integration | Component | image list', {
+  integration: true
+});
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders', function(assert) {
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{image-list}}`);
+  this.render(hbs`{{image-list}}`);
 
-    assert.dom('*').hasText('');
+  assert.equal(this.$().text().trim(), '');
 
-    // Template block usage:
-    await render(hbs`
-      {{#image-list}}
-        template block text
-      {{/image-list}}
-    `);
+  // Template block usage:
+  this.render(hbs`
+    {{#image-list}}
+      template block text
+    {{/image-list}}
+  `);
 
-    assert.dom('*').hasText('template block text');
-  });
+  assert.equal(this.$().text().trim(), 'template block text');
 });
