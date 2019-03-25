@@ -20,7 +20,7 @@ module.exports = {
   "electronInstallerDebian": {},
   "electronInstallerRedhat": {},
   "github_repository": {
-    "owner": "",
+    "owner": "systembugtj",
     "name": ""
   },
   "windowsStoreConfig": {
