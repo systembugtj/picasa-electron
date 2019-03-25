@@ -20,14 +20,14 @@
             {{t "import.photos.destination"}}
           </div>
           <div class="flex-gt-sm-77 flex-77">
-              {{#paper-select
-                label=folderSelectLabel
-                selected=selectedFolder
-                options=folders
-                onChange=(action (mut selectedFolder))
-                as |folder|}}
-                {{folder.cwd}}
-              {{/paper-select}}
+            {{#paper-select
+              label=folderSelectLabel
+              selected=selectedFolder
+              options=folders
+              onChange=(action (mut selectedFolder))
+              as |folder|}}
+              {{folder.cwd}}
+            {{/paper-select}}
           </div>
         </div>
       {{/unless}}
