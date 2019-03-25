@@ -1,6 +1,10 @@
-$track-color: rgb(156, 197, 233);
-$standard-bgcolor:  rgba(205, 233, 226, 0.5);
-$workbench-bgcolor: rgb(218, 247, 240);
+$track-color:  #c99789;
+$standard-bgcolor:  #fdf5e6;
+$workbench-bgcolor:  #ffe9dc;
+$treeview-bgcolor:#ffe9dc; //#fe4a49;
+$titlebar-bgcolor: #c99789;
+$title-bgcolor: #fff5ee;
+$treeview-color: black;
 
 @import "app/pods/components/path-tree/style";
 @import "app/pods/components/image-list/style";
