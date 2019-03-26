@@ -1,7 +1,13 @@
 import Service from '@ember/service';
 import PreferenceMixin from "picasa/mixins/preference";
 import { of, from, Observable } from "rxjs";
-import { map, filter, concatMap, mergeMap, catchError } from 'rxjs/operators';
+import {
+  map,
+  filter,
+  concatMap,
+  mergeMap,
+  catchError
+} from 'rxjs/operators';
 import moment from 'moment';
 
 const fs = requireNode("fs-extra");
