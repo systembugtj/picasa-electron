@@ -1,10 +1,16 @@
-$track-color:  #c99789;
-$standard-bgcolor:  #fdf5e6;
-$workbench-bgcolor:  #ffe9dc;
-$treeview-bgcolor:#ffe9dc; //#fe4a49;
-$titlebar-bgcolor: #c99789;
+$default-font-dark-color: #596e79;
 $title-bgcolor: #fff5ee;
-$treeview-color: black;
+$title-bgcolor: #f0ece2;
+
+$track-color:  #c7b198;
+$standard-bgcolor:  #dfd3c3;
+
+$treeview-bgcolor:#f0ece2;
+$treeview-color: #596e79;
+
+$workbench-bgcolor:  #f0ece2;
+
+$titlebar-bgcolor: #dfd3c3;
 
 @import "app/pods/components/path-tree/style";
 @import "app/pods/components/image-list/style";

@@ -16,7 +16,7 @@
   .sk-three-bounce .sk-child {
     width: 20px;
     height: 20px;
-    background-color: #333;
+    background-color: #596e79;
     border-radius: 100%;
     display: inline-block;
     -webkit-animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
@@ -44,4 +44,3 @@
     -webkit-transform: scale(1);
             transform: scale(1); } }
 
-  
