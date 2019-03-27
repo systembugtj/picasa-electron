@@ -63,6 +63,7 @@ Specify what it takes to deploy your app.
 ## Know Issue
 
 * realm is locked to 2.23.0, higher version has issue to build. 2.26.0 maybe better.
+* electron-precompile-built 3.0.13, 4.x has abi issue which cause can't run sharp. Stick to 3.x, untill 6.x maybe
 
 ## Further Reading / Useful Links
 
