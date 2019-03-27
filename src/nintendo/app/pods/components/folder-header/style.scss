@@ -2,9 +2,9 @@
   md-toolbar {
     min-height: 48px;
     height: 48px;
-    background-color: $track-color;
+    background-color: $titlebar-bgcolor;
   }
   h1, h2, h3, h4, h5, h6 {
-    color: black;
+    color: $default-font-dark-color;
   }
 }

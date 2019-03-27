@@ -1,5 +1,3 @@
-import reselect from 'reselect';
-//import { mapValues, omitBy, merge, omit, defaults } from 'lodash/object';
 import ActionTypes from '../actions/types';
 
 //const { createSelector } = reselect;
