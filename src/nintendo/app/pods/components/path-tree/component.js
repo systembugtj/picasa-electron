@@ -7,6 +7,10 @@ import PreferenceMixin from "picasa/mixins/preference";
 import I18nMixin from 'ember-i18next/mixins/i18n';
 import { connect } from 'ember-redux';
 import { listFiles } from "picasa/actions/folders";
+import { action } from '@ember-decorators/object';
+import { inject } from "@ember-decorators/service";
+import { error } from "picasa/utils/logger";
+import { map } from 'rxjs/operators';
 
 const stateToComputed = (state /*, attrs*/) => {
   return {
@@ -20,6 +24,8 @@ const dispatchToActions = {
 
 @classNames("path-tree")
 class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
+  @inject photoImport;
+
   expandDepth = 1;
   @computed("folders")
   get treeNodes() {
@@ -30,10 +36,30 @@ class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
 
     folders.forEach(element => {
       root.createChild({
-        title: element.cwd
+        title: element.cwd,
       });
     });
     return root;
+  }
+  @action
+  getChildren(node) {
+    return new Promise(resolve => {
+      if(node.isLevel1) {
+        resolve();
+        return;
+      }
+      this.photoImport.scanCurrentFolder(node.title)
+      .pipe(map(directory => {
+        return node.createChild({
+          title: directory.file,
+        });
+      }))
+      .subscribe(
+        () => {},
+        error,
+        () => resolve()
+      );
+    });
   }
 }
 

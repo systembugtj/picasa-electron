@@ -86,6 +86,24 @@ export default Service.extend(PreferenceMixin, {
     return from(promise);
   },
 
+  scanCurrentFolder(source, depth) {
+    return Observable.create(function(observer) {
+      klaw(source, { depthLimit: depth || 1 })
+        .on('data', item => {
+          if(item.stats.isDirectory() && item.path != source) {
+            observer.next({
+              file: item.path,
+              created: item.stats.birthtime,
+            })
+          }
+        })
+        .on('end', () => {
+          observer.complete()
+        })
+    });
+
+  },
+
   scanFolder(source, target) {
     return Observable.create(function(observer) {
       klaw(source)

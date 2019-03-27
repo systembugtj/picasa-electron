@@ -1,5 +1,5 @@
 {{#paper-card as |card|}}
-  {{folder-header header=root save=(action "saveToDisk") hasChange=imageChanged }}
+  {{folder-header header=root save=(action "saveToDisk") hasChange=imageChanged onSlideshow=(action "changeSlideShow")}}
   {{#card.content class="layout-row layout-align-space-between"}}
     {{image-list images=images imageClicked=(action "handleImageClicked")}}
   {{/card.content}}

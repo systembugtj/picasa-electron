@@ -5,8 +5,8 @@
     {{#paper-button  mini=true aria-label=(t "folder.header.toolbar.refresh")}}
       {{paper-icon "refresh"}}
     {{/paper-button}}
-    {{#paper-button mini=true aria-label=(t "folder.header.toolbar.favorite")}}
-      {{paper-icon "favorite"}}
+    {{#paper-button mini=true aria-label=(t "folder.header.toolbar.favorite") onClick=(action "handleSlideshow")}}
+      {{paper-icon "slideshow"}}
     {{/paper-button}}
   {{/toolbar.tools}}
 {{/paper-toolbar}}
