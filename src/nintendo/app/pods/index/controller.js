@@ -6,18 +6,23 @@ import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
 import { isMacOSX } from "picasa/utils/platform";
 
-const { dialog } = requireNode('electron').remote;
 
 export default class IndexController extends Controller.extend(I18nMixin) {
   @inject windowMenu;
   @inject fileWatcher;
   @inject fetchCache;
   @inject folderScan;
+  @inject electronApi;
 
   @computed
   get macosxStyle() {
     return isMacOSX() ? "macosx" : "";
   }
+
+  get dialog() {
+    return this.electronApi.dialog;
+  }
+
   init() {
     super.init(...arguments)
 
@@ -63,7 +68,7 @@ export default class IndexController extends Controller.extend(I18nMixin) {
       // Importing photos.
       return;
     }
-    dialog.showOpenDialog(focusedWindow, {
+    this.dialog.showOpenDialog(focusedWindow, {
       properties: ['openDirectory']
     }, (paths) => {
         if (paths) {
@@ -75,8 +80,8 @@ export default class IndexController extends Controller.extend(I18nMixin) {
     });
   }
 
-  openDirectoryDialog() {
-    dialog.showOpenDialog({
+  openDirectoryDialog(item, focusedWindow) {
+    this.dialog.showOpenDialog(focusedWindow, {
         properties: ['openDirectory']
     }, (paths) => {
         if (paths) {
@@ -86,6 +91,7 @@ export default class IndexController extends Controller.extend(I18nMixin) {
         }
     });
   }
+
   @action
   handleImportStarted() {
     this.set("disableCancel", true);

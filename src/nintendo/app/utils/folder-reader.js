@@ -1,5 +1,5 @@
 import { Promise } from 'rsvp';
-import getElectronApp from "./electron-api";
+import { getElectronApp } from "./electron-api";
 import { isArray } from "lodash/lang";
 import { join } from "lodash/array";
 

@@ -93,6 +93,7 @@ export default Service.extend(PreferenceMixin, {
           if(item.stats.isDirectory() && item.path != source) {
             observer.next({
               file: item.path,
+              name: path.basename(item.path),
               created: item.stats.birthtime,
             })
           }
@@ -111,6 +112,7 @@ export default Service.extend(PreferenceMixin, {
           if(!item.stats.isDirectory()) {
             observer.next({
               file: item.path,
+              name: path.basename(item.path),
               created: item.stats.birthtime,
               target
             })

@@ -27,6 +27,7 @@ class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
   @inject photoImport;
 
   expandDepth = 1;
+
   @computed("folders")
   get treeNodes() {
     const folders = this.get("folders");
@@ -37,6 +38,7 @@ class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
     folders.forEach(element => {
       root.createChild({
         title: element.cwd,
+        path: element.cwd,
       });
     });
     return root;
@@ -48,10 +50,11 @@ class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
         resolve();
         return;
       }
-      this.photoImport.scanCurrentFolder(node.title)
+      this.photoImport.scanCurrentFolder(node.path)
       .pipe(map(directory => {
         return node.createChild({
-          title: directory.file,
+          title: directory.name,
+          path: directory.file,
         });
       }))
       .subscribe(
