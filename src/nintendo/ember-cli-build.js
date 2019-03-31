@@ -5,7 +5,11 @@ const funnel = require('broccoli-funnel');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-
+    svgJar: {
+      sourceDirs: [
+        'node_modules/flat-color-icons/svg',
+      ]
+    }
   });
 
   const locales = funnel('app/locales', {

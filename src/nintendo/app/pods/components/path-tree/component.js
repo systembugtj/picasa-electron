@@ -32,13 +32,15 @@ class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
   get treeNodes() {
     const folders = this.get("folders");
     const root = TreeNode.create({
-      title: hostname()
+      title: hostname(),
+      nodeIcon: "filing_cabinet",
     });
 
     folders.forEach(element => {
       root.createChild({
         title: element.cwd,
         path: element.cwd,
+        nodeIcon: "folder",
       });
     });
     return root;
@@ -55,6 +57,7 @@ class PathTreeComponent extends Component.extend(PreferenceMixin, I18nMixin) {
         return node.createChild({
           title: directory.name,
           path: directory.file,
+          nodeIcon: "folder",
         });
       }))
       .subscribe(
