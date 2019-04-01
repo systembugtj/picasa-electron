@@ -15,11 +15,13 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/picasa-electron/src/nintendo
+    working_directory: ~/repo
 
     steps:
       - checkout
-
+      
+      - run: cd ./src/nintentdo
+      make test
       # Download and cache dependencies
       - restore_cache:
           keys:
