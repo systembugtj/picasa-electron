@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       
-      - run: cd ./src/nintentdo
+      - run: cd ./src/nintendo
       
       # Download and cache dependencies
       - restore_cache:
