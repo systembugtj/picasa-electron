@@ -9,6 +9,11 @@
       span {
         white-space: nowrap;
       }
+
+      .tree-node-title {
+        display: inline-flex;
+        align-items: center;
+      }
     }
   }
 }
