@@ -56,11 +56,13 @@ ipcMain.on("tripasa-login-request", function(event, arg) {
       // Notify render process
       mainWindow && mainWindow.webContents.send("tripasa-access-token", token);
 
+      /*
       myApiOauth.refreshToken(token.refresh_token)
         .then(newToken => {
           //use your new token
           mainWindow && mainWindow.webContents.send("tripasa-access-token", newToken);
         });
+      */
     });
 })
 
