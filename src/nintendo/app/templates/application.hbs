@@ -1,1 +1,25 @@
-{{outlet}}
+{{#paper-sidenav-container class="inner-sidenav"}}
+  {{#paper-sidenav
+    class="md-whiteframe-z2"
+    name="left"
+    position="left"
+    open=leftSideBarOpen
+    lockedOpen=false
+    onToggle=(action (mut leftSideBarOpen))}}
+    {{#paper-toolbar as |toolbar|}}
+      {{#paper-toolbar-tools}}Right Sidenav{{/paper-toolbar-tools}}
+    {{/paper-toolbar}}
+    {{#paper-content padding=true}}
+      <ul>
+        <li>{{#link-to "index"}}My Picasa {{/link-to}}</li>
+        <li>{{#link-to "trip"}}Go! Tripasa {{/link-to}}</li>
+      </ul>
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+
+  {{#paper-card-content class="flex"}}
+    {{outlet}}
+  {{/paper-card-content}}
+
+{{/paper-sidenav-container}}

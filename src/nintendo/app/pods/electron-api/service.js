@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { getElectronApp, getElectronDialog } from "picasa/utils/electron-api";
+import { getElectronApp, getElectronDialog, getElectronIpc } from "picasa/utils/electron-api";
 
 export default class ElectronApiService extends Service {
   get app() {
@@ -7,5 +7,12 @@ export default class ElectronApiService extends Service {
   }
   get dialog() {
     return getElectronDialog();
+  }
+  get ipc() {
+    return getElectronIpc();
+  }
+
+  send(message, arg) {
+    this.ipc.send(message, arg);
   }
 }

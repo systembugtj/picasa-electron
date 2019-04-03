@@ -6,6 +6,7 @@ import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
 import { isMacOSX } from "picasa/utils/platform";
 
+
 export default class IndexController extends Controller.extend(I18nMixin) {
   @inject windowMenu;
   @inject fileWatcher;

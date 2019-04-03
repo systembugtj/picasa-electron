@@ -1,10 +1,14 @@
-const { dialog } = requireNode('electron').remote;
-const { app } = requireNode('electron').remote;
+const { ipcRenderer, remote } = requireNode('electron');
+
 
 export function getElectronApp() {
-  return app;
+  return remote.app;
 }
 
 export function getElectronDialog() {
-  return dialog;
+  return remote.dialog;
+}
+
+export function getElectronIpc() {
+  return ipcRenderer;
 }
