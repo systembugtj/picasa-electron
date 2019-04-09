@@ -6,13 +6,13 @@ import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
 import { isMacOSX } from "picasa/utils/platform";
 
-
 export default class IndexController extends Controller.extend(I18nMixin) {
   @inject windowMenu;
   @inject fileWatcher;
   @inject fetchCache;
   @inject folderScan;
   @inject electronApi;
+  @inject preferenceManager;
 
   @computed
   get macosxStyle() {
@@ -50,18 +50,18 @@ export default class IndexController extends Controller.extend(I18nMixin) {
           if(matched && matched.length > 0) {
 
 
-            this.get("folderScan").requestScanFile(normalizeImage(matched[0], target.path))
+            this.folderScan.requestScanFile(normalizeImage(matched[0], target.path))
           }
         } else {
           // Scan folder.
         }
       });
 
-    this.get("folderScan")
+    this.folderScan
       .on("imageScanned", (target) => {
         this.currentProcessing = target.path;
         this.showNotification = true;
-      });
+    });
   }
   importPhotosFromFolder(item, focusedWindow) {
     if(this.showImportDialog) {
@@ -85,7 +85,7 @@ export default class IndexController extends Controller.extend(I18nMixin) {
         properties: ['openDirectory']
     }, (paths) => {
         if (paths) {
-          this.getPreferenceService().addFolders(paths);
+          this.preferenceManager.addFolders(paths);
         } else {
           info("No path selected");
         }

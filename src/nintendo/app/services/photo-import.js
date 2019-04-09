@@ -91,6 +91,7 @@ export default Service.extend(PreferenceMixin, {
       klaw(source, { depthLimit: depth || 1 })
         .on('data', item => {
           if(item.stats.isDirectory() && item.path != source) {
+            // eslint-disable-next-line ember/no-observers
             observer.next({
               file: item.path,
               name: path.basename(item.path),
@@ -99,6 +100,7 @@ export default Service.extend(PreferenceMixin, {
           }
         })
         .on('end', () => {
+          // eslint-disable-next-line ember/no-observers
           observer.complete()
         })
     });
@@ -110,6 +112,7 @@ export default Service.extend(PreferenceMixin, {
       klaw(source)
         .on('data', item => {
           if(!item.stats.isDirectory()) {
+            // eslint-disable-next-line ember/no-observers
             observer.next({
               file: item.path,
               name: path.basename(item.path),
@@ -119,6 +122,7 @@ export default Service.extend(PreferenceMixin, {
           }
         })
         .on('end', () => {
+          // eslint-disable-next-line ember/no-observers
           observer.complete()
         })
     }).pipe(mergeMap(action => this.resolveExifDate(action)));

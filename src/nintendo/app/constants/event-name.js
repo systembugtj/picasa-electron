@@ -3,7 +3,8 @@ const EventNames = {
   ImportFromFolder: "importFromFolder",
   OpenSettingsGeneral: "openSettingsGeneral",
   OpenPreferences: "openPreferences",
-  OpenPreview: "openPreview"
+  OpenPreview: "openPreview",
+  FolderUpdated: "folderUpdated"
 }
 
 export default EventNames;

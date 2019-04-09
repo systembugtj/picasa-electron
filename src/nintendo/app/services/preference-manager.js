@@ -8,6 +8,7 @@ import { isEmpty } from "lodash/lang";
 import { A } from "@ember/array";
 import { specialFolder, FOLDERS } from "picasa/utils/folder-reader";
 import Evented from '@ember/object/evented';
+import EventNames from "picasa/constants/event-name";
 
 const APPDATA_CACHE_THUMBNAIL = "/ThePicasa/cache/thumbnail";
 
@@ -43,7 +44,7 @@ export default Service.extend(PersistenceMixin, Evented, {
           return this.createPath(cachedPath);
         } else {
           this.set(Preferences.CACHED_PATH, path);
-          return path
+          return path;
         }
       })
   },
@@ -56,8 +57,8 @@ export default Service.extend(PersistenceMixin, Evented, {
     Precondition.checkArray(folders);
     return resolve()
       .then(() => {
-        this.getPersistenceService().set(Preferences.WATCH_PATHS, Precondition.checkArray(folders));
-        this.trigger("folderUpdated");
+        this.getPersistenceService().set(Preferences.WATCH_PATHS, folders);
+        this.trigger(EventNames.FolderUpdated, folders);
       });
   },
 
