@@ -4,7 +4,8 @@ const EventNames = {
   OpenSettingsGeneral: "openSettingsGeneral",
   OpenPreferences: "openPreferences",
   OpenPreview: "openPreview",
-  FolderUpdated: "folderUpdated"
+  FolderUpdated: "folderUpdated",
+  AccessTokenReady: "accessTokeReady"
 }
 
 export default EventNames;

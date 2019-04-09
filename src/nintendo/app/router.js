@@ -8,6 +8,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('splash');
+  this.route('trip');
 });
 
 export default Router;

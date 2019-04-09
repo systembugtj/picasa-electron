@@ -1,0 +1,113 @@
+.right-pane {
+  background-color: $workbench-bgcolor;
+  &::-webkit-scrollbar {
+    width: 16px;
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $track-color;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent);
+  }
+}
+
+.left-pane {
+  &::-webkit-scrollbar {
+    width: 16px;
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: $standard-bgcolor;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $track-color;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent);
+
+  }
+}
+.macosx {
+  height: calc(100vh - 32px);
+}
+.split-view-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.split-view  {
+  .split-view-sash {
+    opacity: 0.2;
+    background-color: $track-color;
+    background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent);
+
+    &:hover {
+      opacity: 0.6;
+      background-color: $track-color;
+      background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            rgba(255, 255, 255, .2) 50%,
+                            rgba(255, 255, 255, .2) 75%,
+                            transparent 75%,
+                            transparent)
+    }
+
+    &.dragging {
+      opacity: 1;
+      background-color: $track-color;
+      background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+                            transparent 25%,
+                            transparent 50%,
+                            rgba(255, 255, 255, .2) 50%,
+                            rgba(255, 255, 255, .2) 75%,
+                            transparent 75%,
+                            transparent)
+    }
+  }
+}
+
+.images-area {
+  height: 100%;
+  margin-top: -8px;
+  background-color: $workbench-bgcolor;
+  md-card {
+    margin-left: 4px;
+    margin-right: 2px;
+    box-shadow: none;
+    md-card-content {
+      padding: 4px !important;
+      background-color: $workbench-bgcolor !important;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.tree-area {
+  background-color: $treeview-bgcolor;
+  height: 100%;
+  color: $treeview-color;
+}

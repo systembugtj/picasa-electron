@@ -4,6 +4,7 @@ const { dirname, join, resolve } = require('path');
 const protocolServe = require('electron-protocol-serve');
 const log4js = require('log4js');
 const sharp = require("sharp");
+const oauth2 = require('./oauth2');
 const PROD_MODE = process.env.NODE_ENV === "production";
 const logger = log4js.getLogger("main");
 logger.level = PROD_MODE ? 'info' : "debug";
@@ -35,6 +36,34 @@ ipcMain.on('picasa-create-thumbnail', function(event, arg) {
         // Notify render process
         mainWindow && mainWindow.webContents.send("picasa-thumbnail-ready", arg);
       });
+})
+
+ipcMain.on("tripasa-login-request", function(event, arg) {
+  const windowParams = {
+    parent: mainWindow,
+    alwaysOnTop: false,
+    autoHideMenuBar: true,
+    webPreferences: {
+        nodeIntegration: false
+    }
+  }
+
+  const myApiOauth = oauth2(arg.config, windowParams);
+
+  myApiOauth.getAccessToken(arg.options)
+    .then(token => {
+      // use your token.access_token
+      // Notify render process
+      mainWindow && mainWindow.webContents.send("tripasa-access-token", token);
+
+      /*
+      myApiOauth.refreshToken(token.refresh_token)
+        .then(newToken => {
+          //use your new token
+          mainWindow && mainWindow.webContents.send("tripasa-access-token", newToken);
+        });
+      */
+    });
 })
 
 // Registering a protocol & schema to serve our Ember application

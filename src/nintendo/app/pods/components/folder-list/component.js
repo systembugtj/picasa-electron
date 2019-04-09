@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { connect } from 'ember-redux';
 import listFiles from "picasa/actions/folders";
+import { computed } from '@ember-decorators/object';
 
 const stateToComputed = (state /*, attrs*/) => {
   return {
@@ -13,6 +14,12 @@ const dispatchToActions = {
 };
 
 class FolderListComponent extends Component {
+  showProperty = false;
+
+  @computed("showProperty")
+  get folderListClass() {
+    return this.showProperty ? "flex-70" : "flex";
+  }
 }
 
 

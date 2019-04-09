@@ -17,7 +17,8 @@
     "make": "ember electron:make",
     "package": "ember electron:package",
     "start": "ember electron",
-    "test": "ember electron:test"
+    "test": "ember electron:test",
+    "debug":"ember electron --- --inspect-brk"
   },
   "dependencies": {
     "chokidar": "^2.1.5",
@@ -35,11 +36,15 @@
     "log4js": "^4.1.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.24.0",
+    "node-fetch": "^2.3.0",
+    "object-assign": "^4.1.1",
+    "querystring": "^0.2.0",
     "read-chunk": "^3.1.0",
     "realm": "2.23.0",
     "rxjs": "^6.4.0",
     "sharp": "^0.22.0",
-    "spark-md5": "^3.0.0"
+    "spark-md5": "^3.0.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@ember-decorators/babel-transforms": "^5.1.4",
