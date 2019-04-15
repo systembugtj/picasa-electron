@@ -18,7 +18,7 @@
     "package": "ember electron:package",
     "start": "ember electron",
     "test": "ember electron:test",
-    "debug":"ember electron --- --inspect-brk"
+    "debug": "ember electron --- --inspect-brk"
   },
   "dependencies": {
     "chokidar": "^2.1.5",
@@ -39,7 +39,7 @@
     "node-fetch": "^2.3.0",
     "object-assign": "^4.1.1",
     "querystring": "^0.2.0",
-    "read-chunk": "^3.1.0",
+    "read-chunk": "^3.2.0",
     "realm": "2.23.0",
     "rxjs": "^6.4.0",
     "sharp": "^0.22.0",
@@ -62,7 +62,7 @@
     "ember-ajax": "^5.0.0",
     "ember-auto-image": "^0.4.1",
     "ember-auto-import": "^1.2.21",
-    "ember-cli": "~3.9.0-beta.2",
+    "ember-cli": "^3.9.0",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-dependency-checker": "^3.1.0",
     "ember-cli-eslint": "^5.1.0",
@@ -98,7 +98,7 @@
     "ember-svg-jar": "^1.2.2",
     "ember-symbol-observable": "1.0.6",
     "ember-tree-utils": "^3.7.2",
-    "ember-tree-view": "^3.7.6",
+    "ember-tree-view": "^3.7.7",
     "eslint-plugin-ember": "^6.3.0",
     "loader.js": "^4.7.0",
     "photoswipe": "^4.1.3",
