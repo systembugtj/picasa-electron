@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { route } from "ember-redux";
-import { inject } from "@ember-decorators/service";
+import { inject } from "@ember/service";
 
 const model = function (/*dispatch*/) {
   // Need a very specific path reading from preferences.

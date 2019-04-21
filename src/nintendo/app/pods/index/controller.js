@@ -1,20 +1,19 @@
 import Controller from "@ember/controller"
-import { action, computed } from "@ember-decorators/object";
-import { inject } from '@ember-decorators/service';
+import { action } from "@ember/object";
+import { inject as service } from '@ember/service';
 import I18nMixin from 'ember-i18next/mixins/i18n';
 import { info } from "picasa/utils/logger";
 import { normalizeImage } from "picasa/utils/data-normalizer";
 import { isMacOSX } from "picasa/utils/platform";
 
 export default class IndexController extends Controller.extend(I18nMixin) {
-  @inject windowMenu;
-  @inject fileWatcher;
-  @inject fetchCache;
-  @inject folderScan;
-  @inject electronApi;
-  @inject preferenceManager;
+  @service windowMenu;
+  @service fileWatcher;
+  @service fetchCache;
+  @service folderScan;
+  @service electronApi;
+  @service preferenceManager;
 
-  @computed
   get macosxStyle() {
     return isMacOSX() ? "macosx" : "";
   }
@@ -23,8 +22,10 @@ export default class IndexController extends Controller.extend(I18nMixin) {
     return this.electronApi.dialog;
   }
 
+  // Use init instead of constructor
+  // refer to https://blog.emberjs.com/2019/01/26/emberjs-native-class-update-2019-edition.html#toc_code-constructor-code-vs-code-init-code
   init() {
-    super.init(...arguments)
+    super.init(...arguments);
 
     this.windowMenu.on("openFolderSelection", () => {
       this.openDirectoryDialog();

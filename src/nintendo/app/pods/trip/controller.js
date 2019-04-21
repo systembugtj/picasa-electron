@@ -1,6 +1,6 @@
 import Controller from "@ember/controller"
-import { action, computed } from "@ember-decorators/object";
-import { inject } from '@ember-decorators/service';
+import { action, computed } from "@ember/object";
+import { inject } from '@ember/service';
 import I18nMixin from 'ember-i18next/mixins/i18n';
 import { isMacOSX } from "picasa/utils/platform";
 import EventNames from "picasa/constants/event-name";

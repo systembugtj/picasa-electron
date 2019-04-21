@@ -1,14 +1,14 @@
 import Component from '@ember/component';
 import { classNames } from '@ember-decorators/component';
-import { computed } from '@ember-decorators/object';
+import { computed } from '@ember/object';
 import TreeNode from 'ember-tree-view/node';
 import { hostname } from "picasa/utils/folder-reader";
 import PreferenceMixin from "picasa/mixins/preference";
 import I18nMixin from 'ember-i18next/mixins/i18n';
 import { connect } from 'ember-redux';
 import { listFiles, addFolders } from "picasa/actions/folders";
-import { action } from '@ember-decorators/object';
-import { inject } from "@ember-decorators/service";
+import { action } from '@ember/object';
+import { inject } from "@ember/service";
 import { error } from "picasa/utils/logger";
 import { map } from 'rxjs/operators';
 import EventNames from 'picasa/constants/event-name';

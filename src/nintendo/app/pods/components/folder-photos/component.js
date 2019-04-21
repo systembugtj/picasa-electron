@@ -1,7 +1,7 @@
 import Component from '@ember/component';
-import { notEmpty } from '@ember-decorators/object/computed';
+import { notEmpty } from '@ember/object/computed';
 import { observes } from '@ember-decorators/object';
-import { inject } from "@ember-decorators/service";
+import { inject } from "@ember/service";
 import { from } from 'rxjs';
 import { concatMap, mergeMap, reduce, map } from 'rxjs/operators';
 import { run } from "@ember/runloop";

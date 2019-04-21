@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import I18nMixin from 'ember-i18next/mixins/i18n';
-import { inject } from '@ember-decorators/service';
-import { action, computed } from '@ember-decorators/object';
+import { inject } from '@ember/service';
+import { action, computed } from '@ember/object';
 
 export default class ImportPhotosDialog extends Component.extend(I18nMixin) {
   @inject photoImport;

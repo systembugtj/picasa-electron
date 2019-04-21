@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { connect } from 'ember-redux';
 import listFiles from "picasa/actions/folders";
-import { computed } from '@ember-decorators/object';
+import { computed } from '@ember/object';
 
 const stateToComputed = (state /*, attrs*/) => {
   return {

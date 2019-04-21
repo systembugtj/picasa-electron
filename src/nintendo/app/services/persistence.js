@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 import { Promise } from 'rsvp';
 import EventNames from "picasa/constants/event-name"
-import { inject } from '@ember-decorators/service';
+import { inject } from '@ember/service';
 import Evented from '@ember/object/evented';
 
 export default class PersistenceService extends Service.extend(Evented) {
