@@ -1,12 +1,19 @@
 import Route from '@ember/routing/route';
-import scanFolderForImages from "picasa/utils/folder-reader";
-import PreferenceMixin from "picasa/mixins/preference";
-import Promise from "rsvp";
-import { normalizeImages } from "picasa/utils/data-normalizer";
 import { inject as service } from '@ember/service';
 import { route } from "ember-redux";
+
+import Promise from "rsvp";
+import scanFolderForImages from "picasa/utils/folder-reader";
+import PreferenceMixin from "picasa/mixins/preference";
+
+import { normalizeImages } from "picasa/utils/data-normalizer";
+
 import { addFolders } from 'picasa/actions/folders';
 
+/**
+ * list files from path.
+ * @param {array} paths
+ */
 function listFiles(paths) {
   const model = [];
   paths.forEach(path => {
@@ -39,12 +46,12 @@ const model = function (dispatch) {
       });
 };
 
-const IndexRoute = Route.extend(PreferenceMixin, {
-  fileWatcher: service(),
+class IndexRoute extends  Route.extend(PreferenceMixin) {
+  @service fileWatcher;
 
   getFileWatcher() {
     return this.fileWatcher;
-  },
-});
+  }
+}
 
 export default route({ model })(IndexRoute);
