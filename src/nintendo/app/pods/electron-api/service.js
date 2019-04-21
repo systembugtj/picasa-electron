@@ -1,5 +1,9 @@
 import Service from '@ember/service';
-import { getElectronApp, getElectronDialog, getElectronIpc } from "picasa/utils/electron-api";
+import {
+  getElectronApp,
+  getElectronDialog,
+  getElectronIpc
+} from "picasa/utils/electron-api";
 
 export default class ElectronApiService extends Service {
   get app() {
