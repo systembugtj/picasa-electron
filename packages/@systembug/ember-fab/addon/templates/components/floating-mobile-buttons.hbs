@@ -1,0 +1,16 @@
+{{#if hasChildren}}
+  <li>
+    {{#floating-mobile-children-wrapper active=childrenActive toggleChildren=(action "toggleChildren")}}
+      {{yield (action "toggleChildren")}}
+    {{/floating-mobile-children-wrapper}}
+  </li>
+  <li>
+    <button {{action "toggleChildren"}} class="pure-button pure-button-primary floating-button {{if childrenActive "enabled" "disabled"}}" >
+      <span class="floating-button-icon-plus"></span>
+    </button>
+  </li>
+{{else}}
+  {{#floating-mobile-child-buttons}}
+    {{yield (action "toggleChildren")}}
+  {{/floating-mobile-child-buttons}}
+{{/if}}

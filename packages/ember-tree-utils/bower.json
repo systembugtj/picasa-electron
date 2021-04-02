@@ -1,0 +1,10 @@
+{
+  "name": "ember-tree-utils",
+  "version": "0.2.4",
+  "description": "A set of utilities for Ember.js",
+  "homepage": "http://www.github.com/systembugtj/ember-tree-utils",
+  "license": "MIT",
+  "dependencies": {
+
+  }
+}

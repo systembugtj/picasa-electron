@@ -1,0 +1,18 @@
+{
+    "name": "picasa-electron",
+    "private": true,
+    "devDependencies": {
+        "lerna": "^4.0.0"
+    },
+    "scripts": {
+        "postinstall": "lerna bootstrap --force-local"
+    },
+    "workspaces": [
+        "packages/*",
+        "packages/@systembug/*"
+    ],
+    "volta": {
+        "node": "12.0.0",
+        "yarn": "1.22.10"
+    }
+}

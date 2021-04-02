@@ -1,0 +1,11 @@
+<div class="demo-tab">
+  <SplitView @isVertical={{true}} @class="splitViewVertical" as |split|>
+    <split.child @class="border">
+      <Ring/>
+    </split.child>
+    {{split.sash}}
+    <split.child @class="border">
+      <Yoda/>
+    </split.child>
+  </SplitView>
+</div>

@@ -1,0 +1,15 @@
+
+
+<div class="image-container">
+  <AutoImage @width={{80}} @height={{60}} @src="http://placekitten.com/2000/1125" />
+</div>
+<div class="image-container">
+  <ul>
+    {{#each model as |image|}}
+      <li>
+        <AutoImage @width={{40}} @height={{40}} @src={{image}} />
+      </li>
+    {{/each}}
+  </ul>
+</div>
+

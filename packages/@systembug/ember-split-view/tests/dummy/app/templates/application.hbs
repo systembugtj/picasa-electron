@@ -1,0 +1,19 @@
+<h2 id="title">Ember SplitView Demo</h2>
+<div class="intro">
+  Drag the sash between the views (boxes).
+</div>
+
+<PaperToolbar>
+  <PaperToolbarTools>
+    <LinkTo @route="vertical" class="toolbar-item">Vertical</LinkTo>
+    <LinkTo @route="horizontal" class="toolbar-item">Horizontal</LinkTo>
+    <LinkTo @route="verticalcomposite" class="toolbar-item">Vertical Composite</LinkTo>
+    <LinkTo @route="horizontalcomposite" class="toolbar-item">Horizontal Composite</LinkTo>
+    <LinkTo @route="composite" class="toolbar-item">Composite</LinkTo>
+    <LinkTo @route="collapsible" class="toolbar-item">Collapsible</LinkTo>
+  </PaperToolbarTools>
+</PaperToolbar>
+
+<PaperContent @class="content">
+  {{outlet}}
+</PaperContent>

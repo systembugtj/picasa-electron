@@ -1,0 +1,25 @@
+@import "auto-image";
+
+html, body {
+  margin: 0;
+}
+
+.image-container {
+  margin: 30px;
+  ul {
+    list-style-type: none;
+    li {
+      margin: 4px;
+      float: left;
+      margin-right: 13px;
+      margin-bottom: 13px;
+      box-shadow: 1px 1px 2px #777;
+      border-radius: 1px;
+      background-color: white;
+      white-space: nowrap;
+      word-break: keep-all;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}

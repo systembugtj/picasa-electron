@@ -1,0 +1,79 @@
+@import "ember-paper";
+
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}
+
+pre {
+  border: none;
+  background-color: inherit;
+}
+
+body > .ember-view {
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-section {
+  height: 1200px;
+}
+
+.content {
+  margin-top: 10px;
+  height: 700px;
+}
+
+.toolbar-item {
+  padding-left: 20px;
+}
+
+.demo-tab {
+  padding: 25px;
+  text-align: center;
+  flex: 1;
+}
+
+.splitViewVertical {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.splitViewHorizontal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.split-view-child {
+  padding: 10px;
+  overflow: hidden;
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.border {
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+}
+
+.composite {
+  min-width: 220px;
+  min-height: 220px;
+}
+
+.intro {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

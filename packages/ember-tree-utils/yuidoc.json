@@ -1,0 +1,12 @@
+{
+    "name": "Ember Utils",
+    "description": "A set of utilities for Ember.js",
+    "version": "0.1.0",
+    "url": "http://www.github.com/systembugtj/ember-tree-utils/apidocs",
+    "options": {
+        "outdir": "./apidocs",
+        "paths": [
+            "./addon"
+        ]
+    }
+}
