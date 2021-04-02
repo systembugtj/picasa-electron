@@ -1,8 +1,8 @@
-import Component from '@ember/component';
-import { action, computed } from '@ember/object';
-import { classNames } from '@ember-decorators/component';
+import Component from "@ember/component";
+import { action, computed } from "@ember/object";
+import { classNames } from "@ember-decorators/component";
 import { isMacOSX } from "picasa/utils/platform";
-import { inject } from '@ember/service';
+import { inject } from "@ember/service";
 
 @classNames("title-bar")
 class TitleBarComponent extends Component {
@@ -20,20 +20,23 @@ class TitleBarComponent extends Component {
 
   @action
   addWatchedFolder() {
-    const { dialog } = requireNode('electron').remote;
-    dialog.showOpenDialog({
-        properties: ['openDirectory']
-    }, (path) => {
-      if (path) {
-        this.getPreferenceService().addFolders(path);
-      } else {
-        console.log("No path selected");
+    const { dialog } = requireNode("@electron/remote");
+    dialog.showOpenDialog(
+      {
+        properties: ["openDirectory"],
+      },
+      (path) => {
+        if (path) {
+          this.getPreferenceService().addFolders(path);
+        } else {
+          console.log("No path selected");
+        }
       }
-    });
+    );
   }
 
   doubleClick() {
-    this.electronApi.send("picasa-toggle-window-max")
+    this.electronApi.send("picasa-toggle-window-max");
   }
 }
 export default TitleBarComponent;

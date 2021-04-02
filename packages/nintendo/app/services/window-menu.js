@@ -1,18 +1,10 @@
-import {
-  setup as getMenuTemplate
-} from 'picasa/utils/window-menu';
-import Service from '@ember/service';
-import {
-  defaults
-} from "lodash/object";
-import {
-  debounce
-} from '@ember/runloop';
-import {
-  later
-} from '@ember/runloop';
-import Evented from '@ember/object/evented';
-import I18nMixin from 'ember-i18next/mixins/i18n';
+import { setup as getMenuTemplate } from "picasa/utils/window-menu";
+import Service from "@ember/service";
+import { defaults } from "lodash/object";
+import { debounce } from "@ember/runloop";
+import { later } from "@ember/runloop";
+import Evented from "@ember/object/evented";
+import I18nMixin from "ember-i18next/mixins/i18n";
 import EventNames from "picasa/constants/event-name";
 import { info } from "picasa/utils/logger";
 
@@ -51,17 +43,17 @@ export default Service.extend(Evented, I18nMixin, {
    */
   injectMenuItem(params = {}) {
     const predefined = {
-      menuName: 'Ghost',
+      menuName: "Ghost",
       click: () => {},
-      name: 'default-name',
-      label: 'Default label',
+      name: "default-name",
+      label: "Default label",
       accelerator: undefined,
       addSeperator: false,
-      position: undefined
+      position: undefined,
     };
     const options = defaults(params, predefined);
     const injections = this.injections;
-    const hasInjection = injections.find((item) => (item.name === options.name));
+    const hasInjection = injections.find((item) => item.name === options.name);
     const injection = {
       name: options.name,
       injection: (template) => {
@@ -69,7 +61,7 @@ export default Service.extend(Evented, I18nMixin, {
         const newItem = {
           label: options.label,
           accelerator: options.accelerator,
-          click: options.click
+          click: options.click,
         };
 
         // Insert item into the menu
@@ -79,7 +71,7 @@ export default Service.extend(Evented, I18nMixin, {
 
           if (options.addSeperator) {
             menu.submenu.insertAt(sepPosition, {
-              type: 'separator'
+              type: "separator",
             });
           }
 
@@ -87,12 +79,12 @@ export default Service.extend(Evented, I18nMixin, {
         }
 
         return template;
-      }
+      },
     };
 
     if (!hasInjection) {
       injections.pushObject(injection);
-      this.set('injections', injections);
+      this.set("injections", injections);
       this.setup();
     }
   },
@@ -105,9 +97,9 @@ export default Service.extend(Evented, I18nMixin, {
    */
   addQuickSwitchItemsToMenu(preferencesCallback, blogs) {
     if (blogs && preferencesCallback) {
-      this.set('preferencesCallback', preferencesCallback);
-      this.set('blogs', blogs);
-      later(this, 'setup');
+      this.set("preferencesCallback", preferencesCallback);
+      this.set("blogs", blogs);
+      later(this, "setup");
     }
   },
 
@@ -115,12 +107,8 @@ export default Service.extend(Evented, I18nMixin, {
    * Setups the window menu for the application
    */
   _prepareMenu() {
-    const {
-      remote
-    } = requireNode('electron');
-    const {
-      Menu
-    } = remote;
+    const remote = requireNode("@electron/remote");
+    const { Menu } = remote;
     const template = getMenuTemplate(this.t.bind(this));
 
     this._injectBlogs(template);
@@ -144,92 +132,120 @@ export default Service.extend(Evented, I18nMixin, {
   _injectShortcuts(template) {
     if (template && template.forEach) {
       template.forEach((item) => {
-        if (item && item.label && item.label === 'View') {
+        if (item && item.label && item.label === "View") {
           item.submenu.insertAt(2, {
-            type: 'separator'
+            type: "separator",
           });
           item.submenu.insertAt(2, {
-            label: 'Labs',
-            accelerator: 'CmdOrCtrl+Alt+L',
-            name: 'open-labs',
-            click: (item, focusedWindow) => this.dispatchEvent("openSettingsLabs", item, focusedWindow)
+            label: "Labs",
+            accelerator: "CmdOrCtrl+Alt+L",
+            name: "open-labs",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openSettingsLabs", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            label: 'Apps',
-            accelerator: 'CmdOrCtrl+Alt+A',
-            name: 'open-apps',
-            click: (item, focusedWindow) => this.dispatchEvent("openSettingsApps", item, focusedWindow)
+            label: "Apps",
+            accelerator: "CmdOrCtrl+Alt+A",
+            name: "open-apps",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openSettingsApps", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            label: 'Code Injection',
-            accelerator: 'CmdOrCtrl+Alt+C+I',
-            name: 'open-code-injection',
-            click: (item, focusedWindow) => this.dispatchEvent("openSettingsCodeInjection", item, focusedWindow)
+            label: "Code Injection",
+            accelerator: "CmdOrCtrl+Alt+C+I",
+            name: "open-code-injection",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent(
+                "openSettingsCodeInjection",
+                item,
+                focusedWindow
+              ),
           });
           item.submenu.insertAt(2, {
-            label: 'Tags',
-            accelerator: 'CmdOrCtrl+Alt+T',
-            name: 'open-tags',
-            click: (item, focusedWindow) => this.dispatchEvent("openSettingsTags", item, focusedWindow)
+            label: "Tags",
+            accelerator: "CmdOrCtrl+Alt+T",
+            name: "open-tags",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openSettingsTags", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            label: 'Navigation',
-            accelerator: 'CmdOrCtrl+Alt+N',
-            name: 'open-navigation',
-            click: (item, focusedWindow) => this.dispatchEvent("openSettingsNavigation", item, focusedWindow)
+            label: "Navigation",
+            accelerator: "CmdOrCtrl+Alt+N",
+            name: "open-navigation",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openSettingsNavigation", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            label: 'General',
-            accelerator: 'CmdOrCtrl+Alt+G',
-            name: 'open-general',
-            click: (item, focusedWindow) => this.dispatchEvent("openSettingsGeneral", item, focusedWindow)
+            label: "General",
+            accelerator: "CmdOrCtrl+Alt+G",
+            name: "open-general",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openSettingsGeneral", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            type: 'separator'
+            type: "separator",
           });
           item.submenu.insertAt(2, {
-            label: 'Team',
-            accelerator: 'CmdOrCtrl+Alt+T',
-            name: 'open-team',
-            click: (item, focusedWindow) => this.dispatchEvent("openTeam", item, focusedWindow)
+            label: "Team",
+            accelerator: "CmdOrCtrl+Alt+T",
+            name: "open-team",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openTeam", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            label: 'Content',
-            accelerator: 'CmdOrCtrl+Alt+L',
-            name: 'open-content',
-            click: (item, focusedWindow) => this.dispatchEvent("openContent", item, focusedWindow)
+            label: "Content",
+            accelerator: "CmdOrCtrl+Alt+L",
+            name: "open-content",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openContent", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            label: 'New Post',
-            accelerator: 'CmdOrCtrl+Alt+C',
-            name: 'open-new-post',
-            click: (item, focusedWindow) => this.dispatchEvent("openNewPost", item, focusedWindow)
+            label: "New Post",
+            accelerator: "CmdOrCtrl+Alt+C",
+            name: "open-new-post",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent("openNewPost", item, focusedWindow),
           });
           item.submenu.insertAt(2, {
-            type: 'separator'
+            type: "separator",
           });
         }
 
-        if (item && item.label && item.label === 'Edit') {
+        if (item && item.label && item.label === "Edit") {
           item.submenu.insertAt(2, {
-            label: 'Open Preview',
-            accelerator: 'CmdOrCtrl+P',
-            name: 'open-preview',
-            click: (item, focusedWindow) => this.dispatchEvent(EventNames.OpenPreview, item, focusedWindow)
+            label: "Open Preview",
+            accelerator: "CmdOrCtrl+P",
+            name: "open-preview",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent(EventNames.OpenPreview, item, focusedWindow),
           });
         }
-        if (item && item.label && item.label === this.t('folder.management.label')) {
+        if (
+          item &&
+          item.label &&
+          item.label === this.t("folder.management.label")
+        ) {
           item.submenu.insertAt(0, {
             label: this.t("folder.management.add"),
-            accelerator: 'CmdOrCtrl+D',
-            name: 'add-folder',
-            click: (item, focusedWindow) => this.dispatchEvent(EventNames.OpenFolderSelection, item, focusedWindow)
+            accelerator: "CmdOrCtrl+D",
+            name: "add-folder",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent(
+                EventNames.OpenFolderSelection,
+                item,
+                focusedWindow
+              ),
           });
           item.submenu.insertAt(1, {
             label: this.t("folder.management.import"),
-            accelerator: 'CmdOrCtrl+D',
-            name: 'import-folder',
-            click: (item, focusedWindow) => this.dispatchEvent(EventNames.ImportFromFolder, item, focusedWindow)
+            accelerator: "CmdOrCtrl+D",
+            name: "import-folder",
+            click: (item, focusedWindow) =>
+              this.dispatchEvent(
+                EventNames.ImportFromFolder,
+                item,
+                focusedWindow
+              ),
           });
         }
       });
@@ -249,7 +265,7 @@ export default Service.extend(Evented, I18nMixin, {
 
     if (template && template.forEach && blogs) {
       template.forEach((item) => {
-        if (item && item.label && item.label === 'View') {
+        if (item && item.label && item.label === "View") {
           item.submenu = item.submenu.concat(blogs);
         }
       });
@@ -271,10 +287,8 @@ export default Service.extend(Evented, I18nMixin, {
     if (template && template.forEach) {
       template.forEach((menuItem) => {
         if (
-          menuItem &&
-          menuItem.label &&
-          menuItem.label === 'The Picasa' ||
-          menuItem.label === 'Electron' ||
+          (menuItem && menuItem.label && menuItem.label === "The Picasa") ||
+          menuItem.label === "Electron" ||
           menuItem.label === this.t("file.label")
         ) {
           menuItem.submenu.forEach((subMenuItem) => {
@@ -283,7 +297,12 @@ export default Service.extend(Evented, I18nMixin, {
               subMenuItem.label &&
               subMenuItem.label === this.t("preferences.label")
             ) {
-              subMenuItem.click = (item, focusedWindow) => this.dispatchEvent(EventNames.OpenPreferences, item, focusedWindow);
+              subMenuItem.click = (item, focusedWindow) =>
+                this.dispatchEvent(
+                  EventNames.OpenPreferences,
+                  item,
+                  focusedWindow
+                );
             }
           });
         }
@@ -311,12 +330,12 @@ export default Service.extend(Evented, I18nMixin, {
 
     if (injections && injections.length > 0) {
       injections.forEach((item) => {
-        if (item.injection && typeof item.injection === 'function') {
+        if (item.injection && typeof item.injection === "function") {
           processedTemplate = item.injection(processedTemplate);
         }
       });
     }
 
     return processedTemplate;
-  }
+  },
 });

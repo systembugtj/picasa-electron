@@ -1,5 +1,5 @@
-const { ipcRenderer, remote } = requireNode('electron');
-
+const { ipcRenderer } = requireNode("electron");
+const remote = requireNode("@electron/remote");
 
 export function getElectronApp() {
   return remote.app;

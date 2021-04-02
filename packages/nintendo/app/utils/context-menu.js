@@ -6,55 +6,65 @@
  * @param e - MouseEvent
  */
 function handleContextMenu(e) {
-    let {remote} = requireNode('electron');
-    let {BrowserWindow, Menu} = remote;
-    let template = [{
-            label: '回撤',
-            role: 'undo'
-        }, {
-            label: 'Redo',
-            role: 'redo'
-        }, {
-            type: 'separator'
-        }, {
-            label: 'Cut',
-            role: 'cut'
-        }, {
-            label: 'Copy',
-            role: 'copy'
-        }, {
-            label: 'Paste',
-            role: 'paste'
-        }, {
-            label: 'Paste and Match Style',
-            click: () => BrowserWindow.getFocusedWindow().webContents.pasteAndMatchStyle()
-        }, {
-            label: 'Select All',
-            role: 'selectall'
-        }];
+  let remote = requireNode("@electron/remote");
+  let { BrowserWindow, Menu } = remote;
+  let template = [
+    {
+      label: "回撤",
+      role: "undo",
+    },
+    {
+      label: "Redo",
+      role: "redo",
+    },
+    {
+      type: "separator",
+    },
+    {
+      label: "Cut",
+      role: "cut",
+    },
+    {
+      label: "Copy",
+      role: "copy",
+    },
+    {
+      label: "Paste",
+      role: "paste",
+    },
+    {
+      label: "Paste and Match Style",
+      click: () =>
+        BrowserWindow.getFocusedWindow().webContents.pasteAndMatchStyle(),
+    },
+    {
+      label: "Select All",
+      role: "selectall",
+    },
+  ];
 
-    e.preventDefault();
-    e.stopPropagation();
+  e.preventDefault();
+  e.stopPropagation();
 
-    let node = e.target;
-    let editorMenu = Menu.buildFromTemplate(template);
+  let node = e.target;
+  let editorMenu = Menu.buildFromTemplate(template);
 
-    while (node) {
-        if (node.nodeName.match(/^(input|textarea)$/i) || node.isContentEditable) {
-            editorMenu.popup(remote.getCurrentWindow());
-            break;
-        }
-
-        node = node.parentNode;
+  while (node) {
+    if (node.nodeName.match(/^(input|textarea)$/i) || node.isContentEditable) {
+      editorMenu.popup(remote.getCurrentWindow());
+      break;
     }
 
-    /**
-     * We cannot, with pure JavaScript, confirm that this event handler works.
-     * A little hack to ensure that this method becomes testable.
-     */
-    if (window && window.QUnit && editorMenu) {
-        window.CONTEXTMENU_OPENED = true;
-    }
+    node = node.parentNode;
+  }
+
+  /**
+   * We cannot, with pure JavaScript, confirm that this event handler works.
+   * A little hack to ensure that this method becomes testable.
+   */
+  if (window && window.QUnit && editorMenu) {
+    window.CONTEXTMENU_OPENED = true;
+  }
 }
 
 /**
@@ -63,5 +73,5 @@ function handleContextMenu(e) {
  * @export
  */
 export function setup() {
-    window.addEventListener('contextmenu', handleContextMenu);
+  window.addEventListener("contextmenu", handleContextMenu);
 }

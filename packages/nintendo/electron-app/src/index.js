@@ -25,6 +25,9 @@ const emberAppURL = pathToFileURL(
 let splash = null;
 let mainWindow = null;
 
+// Use @electron/remote
+require("@electron/remote/main").initialize();
+
 ipcMain.on("picasa-is-ready", function () {
   splash.destroy();
   mainWindow.show();
@@ -122,8 +125,6 @@ app.on("ready", async () => {
     }
   }
 
-  await handleFileUrls(emberAppDir);
-
   const {
     width,
     height,
@@ -135,16 +136,22 @@ app.on("ready", async () => {
     title: "www.ThePicasa.com",
     webPreferences: {
       webSecurity: false,
+      nodeIntegration: true,
+      enableRemoteModule: true,
     },
-    show: false,
+    show: isDev,
     frame: process.platform !== "darwin", // has frame for linux and windows, but not mac.
     titleBarStyle: "hiddenInset", // only works on mac.
   };
 
+  await handleFileUrls(emberAppDir);
+
   mainWindow = new BrowserWindow(options);
 
   // If you want to open up dev tools programmatically, call
-  // mainWindow.openDevTools();
+  if (isDev) {
+    mainWindow.openDevTools();
+  }
 
   // Load the ember application
   mainWindow.loadURL(emberAppURL);

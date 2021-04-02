@@ -1,4 +1,4 @@
-const { process } = requireNode('electron').remote;
+const { process } = requireNode("@electron/remote");
 
 export function isMacOSX() {
   return process.platform === "darwin";
