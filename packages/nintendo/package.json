@@ -22,7 +22,9 @@
     "test:ember": "ember test",
     "debug": "ember electron --- --inspect-brk",
     "web:build": "ember build --environment=production",
-    "web:test": "npm-run-all lint:* test:*"
+    "web:test": "npm-run-all lint:* test:*",
+    "electron-app:install": "cd ./electron-app && yarn install",
+    "postinstall": "yarn electron-app:install"
   },
   "dependencies": {
     "@types/sharp": "^0.27.3",
