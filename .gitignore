@@ -3,3 +3,5 @@ electron-out/
 .idea/
 codemods.log
 node_modules
+ember-dist/
+packages/nintendo/electron-app/ember-dist/

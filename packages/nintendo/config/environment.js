@@ -4,9 +4,9 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'picasa',
     podModulePrefix: 'picasa/pods',
-    locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : 'hash',
+    locationType: process.env.EMBER_CLI_ELECTRON ? 'hash' : process.env.EMBER_CLI_ELECTRON ? 'hash' : 'hash',
     environment,
-    rootURL: process.env.EMBER_CLI_ELECTRON ? '' : '/',
+    rootURL: process.env.EMBER_CLI_ELECTRON ? '' : process.env.EMBER_CLI_ELECTRON ? '' : '/',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

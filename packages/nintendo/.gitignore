@@ -27,3 +27,4 @@
 electron-out/
 .idea/
 codemods.log
+/ember-dist
