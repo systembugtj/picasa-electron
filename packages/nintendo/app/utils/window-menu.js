@@ -114,7 +114,7 @@ function translate(key) {
 export function setup(t) {
   t = t || translate;
 
-  let { remote } = requireNode("@electron/remote");
+  let remote = requireNode("@electron/remote");
   let browserWindow = remote.getCurrentWindow();
 
   let template = [

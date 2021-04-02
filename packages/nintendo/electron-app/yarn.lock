@@ -3049,7 +3049,7 @@ set-immediate-shim@~1.0.1:
   resolved "https://registry.yarnpkg.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
   integrity sha1-SysbJ+uAip+NzEgaWOXlb1mfP2E=
 
-sharp@^0.27.2:
+sharp@0.27.2:
   version "0.27.2"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.27.2.tgz#a939775e630e88600c0b5e68f20593aea722252f"
   integrity sha512-w3FVoONPG/x5MXCc3wsjOS+b9h3CI60qkus6EPQU4dkT0BDm0PyGhDCK6KhtfT3/vbeOMOXAKFNSw+I3QGWkMA==
