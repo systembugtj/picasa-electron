@@ -1,0 +1,16 @@
+.title-bar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  md-card {
+    margin: 0;
+    box-shadow: none;
+  }
+  md-toolbar {
+    min-height: 32px;
+    height: 32px;
+    background-color: $title-bgcolor;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+  }
+}

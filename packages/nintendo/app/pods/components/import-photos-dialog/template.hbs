@@ -1,0 +1,57 @@
+{{#paper-dialog class="folder-selection"}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>{{t "import.photos.label"}}</h2>
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+  {{#paper-dialog-content}}
+    <div class="layout-column layout-align-start-start">
+      {{#unless importing}}
+        <div class="layout-row">
+          <div class="flex-shrink">
+            {{t "import.photos.source"}}
+          </div>
+          <div class="flex-gt-sm-77 flex-77">
+            {{source}}
+          </div>
+        </div>
+        <div class="layout-row">
+          <div class="flex-shrink">
+            {{t "import.photos.destination"}}
+          </div>
+          <div class="flex-gt-sm-77 flex-77">
+            {{#paper-select
+              label=(t "import.select.label")
+              selected=selectedFolder
+              options=folders
+              onChange=(action (mut selectedFolder))
+              as |folder|}}
+              {{folder}}
+            {{/paper-select}}
+          </div>
+        </div>
+      {{/unless}}
+      {{#if importing}}
+        <div class="layout-row">
+          {{t "import.photos.progress"}}
+        </div>
+        <div class="layout-row layout-align-center-start">
+          {{paper-progress-linear}}
+        </div>
+        <div class="layout-row layout-align-center-start">
+          {{fileInProgress}}
+        </div>
+      {{/if}}
+    </div>
+  {{/paper-dialog-content}}
+  {{#paper-dialog-actions class="layout-row"}}
+    {{#if importing}}
+      {{#paper-button onClick=(action "stopImport") disable=importing}}{{t "button.stop"}}{{/paper-button}}
+    {{/if}}
+    {{#unless importing}}
+      {{#paper-button onClick=(action "startImport")}}{{t "button.start"}}{{/paper-button}}
+      {{#paper-button onClick=(action "cancelImport")}}{{t "button.cancel"}}{{/paper-button}}
+    {{/unless}}
+  {{/paper-dialog-actions}}
+{{/paper-dialog}}
+

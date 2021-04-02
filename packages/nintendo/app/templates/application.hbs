@@ -1,0 +1,28 @@
+<HeadLayout />
+<PaperSidenavContainer @class="inner-sidenav">
+  <PaperSidenav @class="md-whiteframe-z2" @name="left" @position="left" @open={{leftSideBarOpen}} @lockedOpen={{false}} @onToggle={{action (mut leftSideBarOpen)}}>
+    <PaperToolbar>
+      <PaperToolbarTools>Right Sidenav</PaperToolbarTools>
+    </PaperToolbar>
+    <PaperContent @padding={{true}}>
+      <ul>
+        <li><LinkTo @route="index">My Picasa </LinkTo></li>
+        <li><LinkTo @route="trip">Go! Tripasa </LinkTo></li>
+      </ul>
+    </PaperContent>
+  </PaperSidenav>
+  <PaperCardContent @class="flex">
+    {{outlet}}
+    <FloatingMobileButtons as |toggleChildren|>
+      <FloatingMobileChildButtons @label="Add Item">
+        <a href {{action toggleChildren}}>{{fa-icon "user"}}</a>
+      </FloatingMobileChildButtons>
+      <FloatingMobileChildButtons @label="Remove Item">
+        <a href>{{fa-icon "trash-o"}}</a>
+      </FloatingMobileChildButtons>
+      <FloatingMobileChildButtons @label="Edit Item">
+        <a  href>{{fa-icon "pencil"}}</a>
+      </FloatingMobileChildButtons>
+    </FloatingMobileButtons>
+  </PaperCardContent>
+</PaperSidenavContainer>

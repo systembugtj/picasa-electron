@@ -1,0 +1,8 @@
+// dark.scss
+
+// 1) define all the variables you need
+$bodyBackgroundColor: '#fff';
+$imageListBackgroundColor: lightgray;
+
+// 2) Import your style fle where the variables will be consumed.
+@import 'main';

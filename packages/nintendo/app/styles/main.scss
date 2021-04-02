@@ -1,0 +1,30 @@
+// here is where you define styles that depends on the current theme. All the theme dependent values are referenced with variables. eg:
+body {
+  background-color: $bodyBackgroundColor;
+  overflow: hidden;
+}
+
+.loading-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  .icon {
+    margin: auto;
+  }
+}
+.content-area {
+  margin-top: 64px;
+}
+.image-list-view {
+  background-color: $imageListBackgroundColor;
+}
+.inline-image {
+  div {
+    display: inline-block;
+  }
+}
+
+.thumbnail-frame {
+  width: 100px;
+  height: 100px
+}

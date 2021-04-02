@@ -1,0 +1,12 @@
+{
+  "title": "The Picasa",
+  "menu": {
+    "open": "Open"
+  },
+  "folder": {
+    "management": {
+      "add": "Add Folder",
+      "import": "Import from ..."
+    }
+  }
+}

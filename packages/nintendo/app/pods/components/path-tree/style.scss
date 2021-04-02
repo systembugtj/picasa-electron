@@ -1,0 +1,17 @@
+.path-tree {
+  height: 100%;
+  ul {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    li {
+      span {
+        white-space: nowrap;
+      }
+
+      .tree-node-title {
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+  }
+}

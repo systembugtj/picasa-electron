@@ -1,0 +1,26 @@
+{{#paper-card as |card|}}
+  {{folder-header header=root save=(action "saveToDisk") hasChange=imageChanged
+      onRefresh=(action "refreshThumbnail")
+      onSlideshow=(action "changeSlideShow")}}
+  {{#card.content class="layout-row layout-align-space-between"}}
+    {{image-list images=images imageClicked=(action "handleImageClicked")}}
+  {{/card.content}}
+{{/paper-card}}
+
+{{#if showDialog}}
+  {{#paper-dialog class="flex-77" onClose=(action "closeDialog" "cancel") }}
+    {{#paper-dialog-content}}
+      {{auto-image width=700 height=500 src=lightboxSrc }}
+    {{/paper-dialog-content}}
+    {{#paper-dialog-actions class="layout-row"}}
+      {{#paper-button onClick=(action "closeDialog" "ok")}}OK{{/paper-button}}
+    {{/paper-dialog-actions}}
+  {{/paper-dialog}}
+{{/if}}
+
+{{#if showToast}}
+  {{#paper-toast duration=5000 position="bottom right" swipeToClose=true onClose=(action "closeToast") as |toast|}}
+    {{#toast.text}}Hello{{/toast.text}}
+    {{#paper-button accent=true onClick=(action "buttonAction")}}Undo{{/paper-button}}
+  {{/paper-toast}}
+{{/if}}
