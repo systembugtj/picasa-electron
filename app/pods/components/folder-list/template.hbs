@@ -1,0 +1,12 @@
+
+
+<div class="layout-row flex">
+  <div class={{folderListClass}}>
+    {{yield folders }}
+  </div>
+  {{#if showProperty}}
+    <div class="flex">
+      {{image-property}}
+    </div>
+  {{/if}}
+</div>

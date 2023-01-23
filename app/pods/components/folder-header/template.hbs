@@ -1,0 +1,12 @@
+{{#paper-toolbar class="" as |toolbar|}}
+  {{#toolbar.tools}}
+    <h2>{{header}}</h2>
+    <span class="flex"></span>
+    {{#paper-button  mini=true aria-label=(t "folder.header.toolbar.refresh")}}
+      {{paper-icon "refresh"}}
+    {{/paper-button}}
+    {{#paper-button mini=true aria-label=(t "folder.header.toolbar.favorite") onClick=(action "handleSlideshow")}}
+      {{paper-icon "slideshow"}}
+    {{/paper-button}}
+  {{/toolbar.tools}}
+{{/paper-toolbar}}

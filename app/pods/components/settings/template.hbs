@@ -1,0 +1,22 @@
+{{#paper-tabs
+  center=center
+  stretch=stretch
+  borderBottom=borderBottom
+  selected=selectedBasicTab
+  onChange=(action (mut selectedBasicTab)) as |tabs|}}
+  {{#tabs.tab}}
+    Page One
+  {{/tabs.tab}}
+  {{#tabs.tab disabled=true}}
+    Page Two (disabled)
+  {{/tabs.tab}}
+  {{#tabs.tab}}
+    Page Three
+  {{/tabs.tab}}
+  {{#tabs.tab}}
+    Page Four
+  {{/tabs.tab}}
+  {{#tabs.tab}}
+    Page Five
+  {{/tabs.tab}}
+{{/paper-tabs}}

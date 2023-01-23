@@ -1,7 +1,0 @@
-<ul>
-  {{#each images as |image|}}
-    <li>
-      {{thumbnail-image source=image.path src=image.thumbnail  imageClicked=(action "handleImageClicked")}}
-    </li>
-  {{/each}}
-</ul>

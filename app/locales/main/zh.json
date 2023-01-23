@@ -1,0 +1,53 @@
+{
+  "title": "旅图志",
+  "menu": {
+    "open": "打开"
+  },
+  "view": {
+    "label": "视图"
+  },
+  "folder": {
+    "management": {
+      "label": "目录管理",
+      "add": "添加目录",
+      "import": "导入图片..."
+    },
+    "header": {
+      "toolbar" : {
+        "refresh": "刷新",
+        "favorite": "最爱"
+      }
+    }
+  },
+  "file": {
+    "label": "文件",
+    "folder": {
+      "open": "打开目录"
+    }
+  },
+  "import": {
+    "photos": {
+      "label": "从目录导入照片",
+      "progress": "导入进度",
+      "source": "从下面目录导入：",
+      "destination": "导入到目录："
+    },
+    "select": {
+      "label": "选择存放的目录"
+    }
+  },
+  "preferences": {
+    "label": "设置"
+  },
+  "left": {
+    "toolbar": {
+      "addWatchedFolder": "添加目录"
+    }
+  },
+  "button": {
+    "cancel": "取消",
+    "ok": "确定",
+    "start": "开始",
+    "stop": "结束"
+  }
+}

@@ -1,0 +1,6 @@
+
+{{#if hasFolders}}
+  {{#each foldersWithThumbnail as |folder|}}
+    {{folder-card root=folder.cwd images=folder.images}}
+  {{/each}}
+{{/if}}

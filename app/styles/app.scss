@@ -1,0 +1,32 @@
+@import 'ember-paper';
+@import 'pods';
+@import "auto-image";
+@import "ember-photoswipe";
+
+body {
+  overflow: hidden;
+}
+.loading-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  .icon {
+    margin: auto;
+  }
+}
+.content-area {
+  margin-top: 64px;
+}
+.image-list-view {
+  background-color: lightgray;
+}
+.inline-image {
+  div {
+    display: inline-block;
+  }
+}
+
+.thumbnail-frame {
+  width: 100px;
+  height: 100px
+}
